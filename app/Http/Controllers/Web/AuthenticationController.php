@@ -55,12 +55,12 @@ class AuthenticationController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'age' => 'required',
-            'height' => 'required',
-            'weight' => 'required',
-            'gender' => 'required',
-            'password' => 'required',
-            'confirm_password' => 'required'
+            'age' => 'required|integer',
+            'height' => 'required|numeric', // Validate as numeric (including decimals)
+            'weight' => 'required|numeric', // Validate as numeric (including decimals)
+            'gender' => 'required|string',
+            'password' => 'required|string',
+            'confirm_password' => 'required|string|same:password',
         ]);
 
         $data['name'] = $request->name;
@@ -72,11 +72,13 @@ class AuthenticationController extends Controller
         $data['password'] = Hash::make($request->password);
         $data['confirm_password'] = $request->confirm_password;
         $data['role'] = 'user';
+
         $user = User::create($data);
-        if(!$user){
-            return redirect(route('registration'))->with("error", "Registration Failed, Please Try Again.");
+        if ($user) {
+            return redirect()->route('login')->with("success", "Registration Successful, Login to access the app");
+        } else {
+            return redirect()->back()->with("error", "Failed to register user, please try again.");
         }
-        return redirect(route('login'))->with("success", "Registration Successful, Login to access the app");
     }
 
     public function adminHome(){

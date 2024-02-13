@@ -23,33 +23,41 @@ class AuthenticationController extends Controller{
 
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
-    
-    public function register(Request $request){
+
+    public function register(Request $request)
+    {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string',
             'email' => 'required|email|unique:users',
-            'age' => 'required',
-            'height' => 'required',
-            'weight' => 'required',
-            'gender' => 'required',
-            'password' => 'required|min:6',
-            'confirm_password' => 'required|same:password',
+            'age' => 'required|integer',
+            'height' => 'required|numeric', // Allow decimal values
+            'weight' => 'required|numeric', // Allow decimal values
+            'gender' => 'required|string',
+            'password' => 'required|string',
+            'confirm_password' => 'required|string|same:password',
         ]);
 
+        // Parse height and weight values as floats
+        $height = floatval($request->height);
+        $weight = floatval($request->weight);
+
+        // Create the user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'age' => $request->age,
-            'height' => $request->height,
-            'weight' => $request->weight,
+            'height' => $height,
+            'weight' => $weight,
             'gender' => $request->gender,
             'password' => Hash::make($request->password),
             'role' => 'user',
             'status' => 'active',
         ]);
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+        if ($user) {
+            return response()->json(['message' => 'User registered successfully'], 201);
+        } else {
+            return response()->json(['message' => 'Failed to register user'], 500);
+        }
     }
-
-    
 }

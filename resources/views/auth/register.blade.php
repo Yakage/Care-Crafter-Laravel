@@ -36,12 +36,12 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label"> Height </label>
-                <input type="number" class="form-control" name="height">
+                <label class="form-label">Height</label>
+                <input type="text" class="form-control" name="height">
             </div>
             <div class="mb-3">
-                <label class="form-label"> Weight </label>
-                <input type="number" class="form-control" name="weight">
+                <label class="form-label">Weight</label>
+                <input type="text" class="form-control" name="weight">
             </div>
 
             <div class="mb-3">
