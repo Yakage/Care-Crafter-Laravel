@@ -70,7 +70,7 @@
         <div class="welcome-container">
             <div class="welcome-title">Welcome to CareCrafter!</div>
             <p> Your Health Companion </p>
-            <div class="welcome-text">Where you can track your daily activities, Step tracker, Sleep Tracker, Water intake and more.</div>
+            <div class="welcome-text">Where you can track your dailyy activities, Step tracker, Sleep Tracker, Water intake and more.</div>
         </div>
     </div>
 
