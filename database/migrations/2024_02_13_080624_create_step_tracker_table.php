@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('step_tracker', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->integer('current_steps_per_day');
+            $table->integer('total_steps_taken');
+            $table->float('average_step_taken');
+            $table->integer('daily_goal_step_per_month_or_year');
             $table->timestamps();
         });
     }

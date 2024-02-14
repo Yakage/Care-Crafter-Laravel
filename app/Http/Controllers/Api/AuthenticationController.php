@@ -17,11 +17,21 @@ class AuthenticationController extends Controller{
 
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
-            $token = $user->createToken('AuthToken')->plainTextToken;
-            return response()->json(['token' => $token], 200);
+            $token = $user->createToken('Personal Access Token')->accessToken;
+
+            // Check if the user is an admin
+            if ($user->role === 'admin') {
+                return response()->json(['message' => 'Admin logged in', 'user' => $user, 'token' => $token], 200);
+            }
+
+            // If not admin, mark the user as active
+            $user->status = 'active';
+            $user->save();
+
+            return response()->json(['message' => 'User logged in', 'user' => $user, 'token' => $token], 200);
         }
 
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        return response()->json(['message' => 'Invalid Credentials'], 401);
     }
 
     public function register(Request $request)
@@ -55,9 +65,9 @@ class AuthenticationController extends Controller{
         ]);
 
         if ($user) {
-            return response()->json(['message' => 'User registered successfully'], 201);
+            return response()->json(['message' => 'Registration Successful', 'user' => $user], 201);
         } else {
-            return response()->json(['message' => 'Failed to register user'], 500);
+            return response()->json(['message' => 'Failed to register user, please try again.'], 400);
         }
     }
 }

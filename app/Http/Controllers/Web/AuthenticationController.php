@@ -28,7 +28,7 @@ class AuthenticationController extends Controller
             return redirect()->route('user.home'); // Redirect to user dashboard
         }
 
-        return response()->json(['message' => 'Unauthorized'], 401);
+        return redirect()->route('login')->with("error", "Invalid Credentials");
     }
 
     public function showLoginForm(){
@@ -61,6 +61,15 @@ class AuthenticationController extends Controller
             'gender' => 'required|string',
             'password' => 'required|string',
             'confirm_password' => 'required|string|same:password',
+        ], [
+            'name' => 'Please enter your name',
+            'email' => 'Please enter your email',
+            'age' => 'Please enter your age',
+            'height' => 'Please enter your heigh in kilograms',
+            'weight' => 'Please enter your weight in kilograms',
+            'gender' => 'Please enter your gender [Male or Female Only]',
+            'password.min' => 'The password must be at least 8 characters.',
+            'confirm_password.same' => 'The password and password confirmation does not match.',
         ]);
 
         $data['name'] = $request->name;
