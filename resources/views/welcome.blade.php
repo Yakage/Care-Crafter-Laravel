@@ -51,7 +51,7 @@
                                         <a href = "#" class = "nav-link text-white text-nowrap">About us</a>
                                     </li>
                                     <li class = "nav-item">
-                                        <a href = "#" class = "nav-link text-white text-nowrap">Login</a>
+                                        <a href = "{{ url("login")}}" class = "nav-link text-white text-nowrap">Login</a>
                                     </li>
                                 </ul>
                             </div>
