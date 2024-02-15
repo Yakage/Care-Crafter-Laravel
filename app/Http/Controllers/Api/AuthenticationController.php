@@ -66,6 +66,15 @@ class AuthenticationController extends Controller{
             'password' => Hash::make($request->password),
             'role' => 'user',
             'status' => 'active',
+        ], [
+            'name' => 'Please enter your name',
+            'email' => 'Please enter your email',
+            'age' => 'Please enter your age',
+            'height' => 'Please enter your heigh in kilograms',
+            'weight' => 'Please enter your weight in kilograms',
+            'gender' => 'Please enter your gender [Male or Female Only]',
+            'password.min' => 'The password must be at least 8 characters.',
+            'confirm_password.same' => 'The password and password confirmation does not match.',
         ]);
 
         if ($user) {

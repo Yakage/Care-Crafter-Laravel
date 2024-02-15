@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['user', 'admin']); 
             $table->enum('status', ['active', 'not active']); 
+            $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

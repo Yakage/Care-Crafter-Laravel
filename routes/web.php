@@ -16,14 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+// For Authentication
 Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthenticationController::class, 'login']);
-
 Route::get('/register', [AuthenticationController::class, 'register'])->name('register');
 Route::post('/register', [AuthenticationController::class, 'registerPost'])->name('register.post');
 
+//For Admin
 Route::get('/admin-home', [AuthenticationController::class, 'adminHome'])->name('admin.home');
+
+//For Users
 Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
 
 

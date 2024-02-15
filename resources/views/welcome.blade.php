@@ -42,16 +42,19 @@
 
                                 <ul class = "navbar-nav d-flex align-items-center">
                                     <li class = "nav-item">
-                                        <a href = "#" class = "nav-link text-white text-nowrap">Features</a>
+                                        <a href = "#services" class = "nav-link text-white text-nowrap">Features</a>
                                     </li>
                                     <li class = "nav-item">
-                                        <a href = "#" class = "nav-link text-white text-nowrap">Our app</a>
+                                        <a href = "#our_app" class = "nav-link text-white text-nowrap">Our app</a>
                                     </li>
                                     <li class = "nav-item">
                                         <a href = "#" class = "nav-link text-white text-nowrap">About us</a>
                                     </li>
                                     <li class = "nav-item">
                                         <a href = "{{ url("login")}}" class = "nav-link text-white text-nowrap">Login</a>
+                                    </li>
+                                    <li class = "nav-item">
+                                        <a href = "{{ url("register")}}" class = "nav-link text-white text-nowrap">Register</a>
                                     </li>
                                 </ul>
                             </div>
@@ -155,7 +158,7 @@
                     </div>
                 </section>
 
-                <section class = "sc-grid sc-grid-one">
+                <section class = "sc-grid sc-grid-one" id="our_app">
                     <div class="container">
                         <div class = "grid-content d-grid align-items-center">
                             <div class = "grid-img">
