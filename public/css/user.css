@@ -54,7 +54,6 @@ body {
 
 #home {
     margin: 0;
-    flex-direction: column;
     margin-left: 180px;
 }
 
@@ -205,6 +204,21 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+.tracker-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.tracker-container3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .tracker-box {

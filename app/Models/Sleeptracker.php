@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SleepTracker extends Model
 {
     protected $fillable = [
+        'user_id',
         'time',
         'wake_up_time',
         'sleep_time', 

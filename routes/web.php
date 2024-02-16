@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('step-tracker/{stepTracker}', [StepTrackerController::class, 'destroy'])->name('step-tracker.destroy');
 });
 
+
 //For Sleep Tracker
 Route::group(['middleware' => 'auth'], function(){
     Route::get('sleep-tracker', [SleepTrackerController::class, 'index'])->name('sleep-tracker.index');

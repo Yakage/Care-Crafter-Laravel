@@ -8,24 +8,35 @@ use Illuminate\Support\Facades\Auth;
 
 class StepTrackerController extends Controller
 {
-    public function index()
-    {
-        $user = Auth::user();
-        $stepTrackers = $user->stepTracker()->get();
-        return view('user.step-tracker.index', compact('stepTrackers'));
-    }
+    // StepTrackerController.php
 
-    public function create()
-    {
+public function index()
+{
+    $user = Auth::user();
+    $stepTrackers = $user->stepTracker()->get();
+    return view('user.home', compact(['stepTrackers' => $stepTrackers]));
+}
+
+
+    public function create(Request $request){
         return view('user.step-tracker.create');
     }
-
     public function store(Request $request)
     {
+        $request->validate([
+            'current_steps_per_day' => 'required|numeric', // Validate the input
+            'daily_goal' => 'required|numeric' // Add validation for daily goal
+        ]);
+    
         $user = Auth::user();
-        $stepTracker = new StepTracker($request->all());
+        $stepTracker = new StepTracker([
+            'user_id' => auth()->id(),
+            'current_steps_per_day' => $request->current_steps_per_day,
+            'daily_goal' => $request->daily_goal
+        ]);
         $user->stepTracker()->save($stepTracker);
-        return redirect()->route('user.step-tracker.index');
+    
+        return redirect()->route('step-tracker.index')->with('success', 'Daily goal set successfully.');
     }
 
     public function show(StepTracker $stepTracker)

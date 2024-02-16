@@ -7,11 +7,17 @@
 </head>
 <body>
     <h1>Add New Step Goal</h1>
-    <form action="{{ route('step-tracker.store') }}" method="POST">
+    <form method="POST" action="{{ route('step-tracker.store') }}">
         @csrf
-        <label for="daily_goal">Daily Goal</label>
-        <input type="number" id="daily_goal" name="daily_goal">
-        <button type="submit">Submit</button>
+        <div class="form-group">
+            <label for="current_steps_per_day">Current Steps Per Day:</label>
+            <input type="text" name="current_steps_per_day" class="form-control" id="current_steps_per_day">
+        </div>
+        <div class="form-group">
+            <label for="daily_goal">Daily Goal:</label>
+            <input type="text" name="daily_goal" class="form-control" id="daily_goal">
+        </div>
+        <button type="submit" class="btn btn-primary">Set Daily Goal</button>
     </form>
 </body>
 </html>

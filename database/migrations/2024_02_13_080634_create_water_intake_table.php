@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->float('daily_goal');
-            $table->float('total_water_intake_for_the_day');
-            $table->float('current_water_intake_for_the_day');
+            $table->float('total_intake');
+            $table->float('current_intake');
             $table->boolean('reminder');
             $table->text('today_log');
             $table->integer('reminder_interval');
