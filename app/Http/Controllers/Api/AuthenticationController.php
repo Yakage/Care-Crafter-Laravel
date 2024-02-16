@@ -37,8 +37,6 @@ class AuthenticationController extends Controller{
     }
 
 
-
-
     public function register(Request $request){
         $request->validate([
             'name' => 'required|string',
