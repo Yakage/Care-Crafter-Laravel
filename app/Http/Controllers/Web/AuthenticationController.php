@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AuthenticationController extends Controller
-{
+class AuthenticationController extends Controller{
     public function login(Request $request){
         $credentials = $request->only('email', 'password');
 
@@ -43,8 +42,8 @@ class AuthenticationController extends Controller
         $user->save();
 
         $request->user()->tokens()->delete();
-
-        return response()->json(['message' => 'Logged out'], 200);
+        Auth::logout();
+        return redirect()->route('login')->with("success", "Successfully Logout");
     }
 
     function register(){
@@ -95,10 +94,5 @@ class AuthenticationController extends Controller
     }
     public function userHome(){
         return view('user.home');
-    }
-    public function showUserCount()
-    {
-    $userCount = User::count();
-    return view('admin.home', ['userCount' => $userCount]);
     }
 }
