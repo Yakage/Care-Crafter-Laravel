@@ -31,6 +31,8 @@ Route::get('/admin-home', [AuthenticationController::class, 'adminHome'])->name(
 //For Users
 Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
 
+Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
+
 //For Step Tracker
 Route::group(['middleware' => 'auth'], function(){
     Route::get('step-tracker', [StepTrackerController::class, 'index'])->name('step-tracker.index');
