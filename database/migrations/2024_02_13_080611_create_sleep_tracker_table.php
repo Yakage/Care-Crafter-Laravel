@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('sleep_tracker', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('time');
+            $table->string('wake_up_time');
+            $table->string('sleep_time');
+            $table->float('time_slept');
+            $table->float('total_sleep_time');
+            $table->integer('sleep_score');
             $table->timestamps();
         });
     }

@@ -26,7 +26,8 @@ class User extends Authenticatable
         'weight',
         'password', 
         'role',
-        'status'
+        'status',
+        'api_token'
     ];
 
     public function stepTracker()
