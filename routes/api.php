@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AuthenticationController;
+use App\Http\Controllers\Api\SleepTrackerController;
 use App\Http\Controllers\Api\StepTrackerController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\WaterIntakeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,14 +29,32 @@ Route::get('/users', [UserController::class, 'getUser']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 Route::post('/login', [AuthenticationController::class, 'login']);
 
-// for Step Tracker CRUD Api
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::middleware('auth:sanctum')->get('/users', [UserController::class, 'getUser']);
 
 // Step Tracker CRUD API
-Route::middleware('auth:sanctum')->post('/step-trackers', [StepTrackerController::class, 'store']);
-Route::middleware('auth:sanctum')->get('/step-trackers/{stepTracker}', [StepTrackerController::class, 'show']);
-Route::middleware('auth:sanctum')->put('/step-trackers/{stepTracker}', [StepTrackerController::class, 'update']);
-Route::middleware('auth:sanctum')->delete('/step-trackers/{stepTracker}', [StepTrackerController::class, 'destroy']);
+Route::middleware('auth:api')->group(function () {
+    Route::get('step-tracker', [StepTrackerController::class, 'index']);
+    Route::post('step-tracker', [StepTrackerController::class, 'store']);
+    Route::get('step-tracker/{stepTracker}', [StepTrackerController::class, 'show']);
+    Route::put('step-tracker/{stepTracker}', [StepTrackerController::class, 'update']);
+    Route::delete('step-tracker/{stepTracker}', [StepTrackerController::class, 'destroy']);
+});
+
+
+//For Sleep Tracker
+Route::middleware('auth:api')->group(function () {
+    Route::get('sleep-tracker', [SleepTrackerController::class, 'index']);
+    Route::post('sleep-tracker', [SleepTrackerController::class, 'store']);
+    Route::get('sleep-tracker/{sleepTracker}', [SleepTrackerController::class, 'show']);
+    Route::put('sleep-tracker/{sleepTracker}', [SleepTrackerController::class, 'update']);
+    Route::delete('sleep-tracker/{sleepTracker}', [SleepTrackerController::class, 'destroy']);
+});
+
+//For Water Intake
+Route::middleware('auth:api')->group(function () {
+    Route::get('water-intake', [WaterIntakeController::class,'index']);
+    Route::post('water-intake', [WaterIntakeController::class,'store']);
+    Route::get('water-intake/{waterIntake}', [WaterIntakeController::class,'show']);
+    Route::put('water-intake/{waterIntake}', [WaterIntakeController::class,'update']);
+    Route::delete('water-intake/{waterIntake}', [WaterIntakeController::class,'destroy']);
+});
+

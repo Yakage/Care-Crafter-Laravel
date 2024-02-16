@@ -1,39 +1,45 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\StepTracker;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 
 class StepTrackerController extends Controller{
     public function index(){
         $user = Auth::user();
         $stepTracker = $user->stepTracker;
-        return response()->json($stepTracker, 200);
+        return view('step-tracker.index', compact('stepTracker'));
+    }
+
+    public function create(){
+        return view('step-tracker.create');
     }
 
     public function store(Request $request){
         $user = Auth::user();
         $stepTracker = new StepTracker($request->all());
         $user->stepTracker()->save($stepTracker);
-        return response()->json($stepTracker, 201);
+        return redirect()->route('step-tracker.index');
     }
 
     public function show(StepTracker $stepTracker){
-        return response()->json($stepTracker, 200);
+        return view('step-tracker.show', compact('stepTracker'));
+    }
+
+    public function edit(StepTracker $stepTracker){
+        return view('step-tracker.edit', compact('stepTracker'));
     }
 
     public function update(Request $request, StepTracker $stepTracker){
         $stepTracker->update($request->all());
-        return response()->json($stepTracker, 200);
+        return redirect()->route('step-tracker.index');
     }
 
     public function destroy(StepTracker $stepTracker){
         $stepTracker->delete();
-        return response()->json(null, 204);
+        return redirect()->route('step-tracker.index');
     }
 }
-
 
