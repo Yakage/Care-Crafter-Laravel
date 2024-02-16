@@ -7,19 +7,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body>
+    <div class="mt-5">
+        @if(session()->has('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
+        
+        @endif
+        @if(session()->has('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+        
+        @endif
+    </div>
     <div class="container">
         <form action="{{route('login')}}" method="POST" class="ms-auto me-auto mt-3" style="width: 500px">
             @csrf
-            <div class="mt-5">
-            @if(session()->has('error'))
-                <div class="alert alert-danger">{{session('error')}}</div>
             
-            @endif
-            @if(session()->has('success'))
-                <div class="alert alert-success">{{session('success')}}</div>
-            
-            @endif
-        </div>
             <div class="mb-3">
                 <label class="form-label"> Email </label>
                 <input type="email" class="form-control" name="email">

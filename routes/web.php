@@ -24,6 +24,7 @@ Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('
 Route::post('/login', [AuthenticationController::class, 'login']);
 Route::get('/register', [AuthenticationController::class, 'register'])->name('register');
 Route::post('/register', [AuthenticationController::class, 'registerPost'])->name('register.post');
+Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
 //For Admin
 Route::get('/admin-home', [AuthenticationController::class, 'adminHome'])->name('admin.home');
@@ -31,7 +32,7 @@ Route::get('/admin-home', [AuthenticationController::class, 'adminHome'])->name(
 //For Users
 Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
 
-Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
+//Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
 
 //For Step Tracker
 Route::group(['middleware' => 'auth'], function(){
