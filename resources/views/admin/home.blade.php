@@ -26,10 +26,10 @@
             <a class="nav-link" href="#">Services</a>
             </li>
             <li class="nav-item">
-                <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn btn-link">Logout</button>
-                </form>
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-link">Logout</button>
+            </form>
             </li>
         </ul>
         </div>
