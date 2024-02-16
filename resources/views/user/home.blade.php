@@ -14,6 +14,11 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#account">Account</a></li>
                 <li><a href="#feedbacks">Feedbacks</a></li>
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-link">Logout</button>
+                </form>
+                </li>
             </ul>
         </nav>
     </div>
