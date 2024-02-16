@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('login');
@@ -25,5 +25,7 @@ Route::post('/register', [AuthenticationController::class, 'registerPost'])->nam
 
 Route::get('/admin-home', [AuthenticationController::class, 'adminHome'])->name('admin.home');
 Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
+
+Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
 
 

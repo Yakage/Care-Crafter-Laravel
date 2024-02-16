@@ -85,4 +85,9 @@ class AuthenticationController extends Controller{
     public function userHome(){
         return view('user.home');
     }
+    public function showUserCount()
+    {
+    $userCount = User::count();
+    return view('admin.home', ['userCount' => $userCount]);
+    }
 }
