@@ -55,7 +55,7 @@
 
             <div class="mb-3">
                 <label class="form-label"> Gender </label>
-                <input type="text" class="form-control" name="gender" placeholder="Male or Female only">
+                <input type="text" class="form-control" name="gender" placeholder="male or female (lowercase)">
             </div>
 
             <div class="mb-3">
