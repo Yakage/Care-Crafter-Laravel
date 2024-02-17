@@ -17,6 +17,7 @@
         
         @endif
     </div>
+    <form id="loginForm">
     <div class="container">
         <form action="{{route('login')}}" method="POST" class="ms-auto me-auto mt-3" style="width: 500px">
             @csrf
@@ -34,8 +35,8 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <p>Don't have an account? <a href="{{ route('register') }}">Create an account</a></p>
-
+    <p style="text-align: center">Don't have an account? <a href="{{ route('register') }}">Create an account</a></p>
+    </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" ></script>
 </body>
 </html>
