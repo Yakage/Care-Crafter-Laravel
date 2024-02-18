@@ -10,13 +10,13 @@ use App\Http\Controllers\Controller;
 class StepTrackerController extends Controller{
     public function index(){
         $user = Auth::user();
-        $stepTracker = $user->stepTracker;
+        $stepTracker = $user->stepTracker->get();
         return response()->json($stepTracker, 200);
     }
 
     public function store(Request $request){
         $user = Auth::user();
-        $stepTracker = new StepTracker($request->all());
+        $stepTracker = new StepTracker($request->current());
         $user->stepTracker()->save($stepTracker);
         return response()->json($stepTracker, 201);
     }
