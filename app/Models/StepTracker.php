@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class StepTracker extends Model
 {
     protected $fillable = [
-        'current_steps',
-        'total_steps',
-        'average_steps',
+        'user_id',
+        'current_steps_per_day',
+        'total_steps_taken',
+        'average_steps_taken',
         'daily_goal'
     ];
 

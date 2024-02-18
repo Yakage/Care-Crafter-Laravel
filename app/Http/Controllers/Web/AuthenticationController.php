@@ -80,6 +80,7 @@ class AuthenticationController extends Controller{
         $data['password'] = Hash::make($request->password);
         $data['confirm_password'] = $request->confirm_password;
         $data['role'] = 'user';
+        $data['status'] = 'active';
 
         $user = User::create($data);
         if ($user) {

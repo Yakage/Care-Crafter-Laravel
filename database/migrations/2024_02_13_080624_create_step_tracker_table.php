@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('current_steps_per_day');
             $table->integer('total_steps_taken');
             $table->float('average_step_taken');
-            $table->integer('daily_goal_step_per_month_or_year');
+            $table->integer('daily_goal');
             $table->timestamps();
         });
     }
