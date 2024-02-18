@@ -1,0 +1,21 @@
+body {
+    background: #fefffe;
+}
+
+.registration-box {
+    font-size: 15px;
+    border: 1px solid #ccc;
+    padding: 50px;
+    border-radius: 5px;
+    max-width: 700px;
+    height: auto;
+    margin-bottom: 5rem;
+    margin-left: auto;
+    margin-top: auto;
+    margin-right: auto;
+}
+
+.registration-box .btn-primary {
+    background-color: #458ff6;
+    border-color: #458ff6;
+}
