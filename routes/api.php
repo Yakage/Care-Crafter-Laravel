@@ -41,6 +41,10 @@ Route::middleware('auth:api')->group(function () {
 
 
 //For Sleep Tracker
+Route::get('/sleep', [SleepTrackerController::class, 'indexWakeAndSleepTime']);
+Route::post('/sleep', [SleepTrackerController::class, 'createSleepTrackingRecord']);
+Route::put('/sleep/{id}', [SleepTrackerController::class, 'updateSleepTrackingRecord']);
+
 Route::middleware('auth:api')->group(function () {
     Route::get('sleep-tracker', [SleepTrackerController::class, 'index']);
     Route::post('sleep-tracker', [SleepTrackerController::class, 'store']);

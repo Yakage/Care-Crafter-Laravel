@@ -35,8 +35,9 @@ class SleepTrackerController extends Controller{
 
     }
 
-    public function updateWakeandSleepTime(Request $request, $id, SleepTracker $sleepTracker){
+    public function updateWakeandSleepTime(Request $request, $id){
         //$user = User::find($id);
+        $sleepTracker = SleepTracker::find($id);
         $validatedData = $request->validate([
             'wake_up_time' => 'required',
             'sleep_time' => 'required'
