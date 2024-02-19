@@ -1,485 +1,155 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.dashboard {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 120px;
-    background-color: #84d2de;
-    padding: 20px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #fefffe;
+    margin: 0;
 }
 
-.nav-links ul {
-    list-style: none;
+.dropdown-container {
+    position: fixed;
+    background: #fda8d9;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+}
+
+.dropdown-toggle {
+    color: #fefffe;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    min-width: 120px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: width 0.3s, height 0.3s, border-radius 0.3s;
+}
+
+.profile-link {
+    display: block;
+}
+
+.profile-link:hover .profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+}
+
+.sidebar {
+    background-color: #458ff6;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.sidebar h4 {
+    color: #fefffe;
+}
+
+.sidebar ul {
+    margin: 0;
     padding: 0;
 }
 
-.nav-links ul li {
-    margin-bottom: 10px;
+.nav-item a {
+    color: #fefffe;
+    transition: background-color 0.3s, border-color 0.3s;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
 
-.nav-links ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    transition: background-color 0.3s ease;
+.nav-item a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
 }
 
-.nav-links ul li:hover {
-    background-color: #00B0FF;
-}
-
-.nav-links ul li a:hover {
-    background-color: #00B0FF;
+.content-container {
+    padding-left: 250px;
+    padding-right: 0;
+    overflow-y: auto;
 }
 
 .section {
     height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
-    background: white;
+    margin-left: 250px;
 }
 
-#home {
-    margin: 0;
-    margin-left: 180px;
-}
-
-.home-title {
-    color: #84d2de;
-    font-size: 40px;
-}
-
-.home-subtitle {
-    color: #84d2de;
-    font-size: 20px;
-}
-
-.dashboard {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 120px;
-    background-color: #84d2de;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.nav-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.nav-links ul li {
-    margin-bottom: 10px;
-}
-
-.nav-links ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.nav-links ul li:hover {
-    background-color: #00B0FF;
-}
-
-.nav-links ul li a:hover {
-    background-color: #00B0FF;
-}
-
-.section {
-    height: 100vh;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-}
-
-#features {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-left: 180px;
-}
-
-#features {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-left: 180px;
-}
-
-#features h1 {
-    font-size: 30px;
-    margin-bottom: 5rem;
-}
-
-.cards-container {
+.row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    margin-right: -10px;
+    margin-left: -10px;
 }
 
-.card {
+.col-md-3 {
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    margin-bottom: 20px;
+}
+
+.feature-box {
     width: 250px;
     height: 250px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 10px;
-}
-
-.card:hover {
-    background-color: #00B0FF;
-}
-
-.card img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    margin-bottom: 10px;
-}
-
-.card h3 {
-    font-size: 18px;
-}
-
-#step-tracker-card {
-    background-color: #7dd9d7;
-    color: white;
-}
-
-#sleep-tracker-card {
-    background-color: #e6b6ff;
-    color: white;
-}
-
-#water-intake-card {
-    background-color: #f5e179;
-    color: white;
-}
-
-#health-journal-card {
-    background-color: #97e982;
-    color: white;
-}
-
-#step-tracker h1, #sleep-tracker h1, #water-intake h1, #health-journal h1 {
-    font-size: 20px;
-    margin-left: 180px;
-}
-
-#step-tracker {
-    margin-left: 180px;
-}
-
-.tracker-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-.tracker-container2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.tracker-container3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.tracker-box {
-    width: 300px;
-    height: 300px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px;
-}
-
-.tracker-box h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.tracker-box p {
-    font-size: 18px;
-    text-align: center;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.create-btn,
-.edit-btn,
-.delete-btn {
-    width: 100px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.create-btn {
-    background-color: #84d2de;
-    color: white;
-}
-
-.edit-btn {
-    background-color: #e6b6ff;
-    color: white;
-}
-
-.delete-btn {
-    background-color: #ff6767;
-    color: white;
-}
-
-
-#sleep-tracker {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 180px;
-}
-
-.container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.box {
-    flex: 1;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 30px;
-    margin: 10px;
-    height: 400px;
-}
-
-.box h2 {
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 20px;
-}
-
-.sleep-actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.sleep-actions button {
-    margin-right: 10px;
-}
-
-.sleep-log-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 18px;
-}
-
-
-.sleep-log-form label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.sleep-log-form input,
-.sleep-log-form select {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 15px;
-}
-
-.sleep-log-form button {
-    width: 100px;
-    padding: 10px;
-    margin-top: 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #84d2de;
-    color: white;
-    transition: background-color 0.3s ease;
-}
-
-.sleep-log-form button:hover {
-    background-color: #00B0FF;
-}
-
-#edit-sleep-btn,
-#delete-sleep-btn {
-    width: 100px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #84d2de;
-    color: white;
-    transition: background-color 0.3s ease;
-    margin-right: 10px;
-}
-
-#edit-sleep-btn:hover,
-#delete-sleep-btn:hover {
-    background-color: #00B0FF;
-}
-
-#water-intake {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    height: 100%;
-    margin-left: 180px;
-}
-
-.reminder-box {
-    width: 45%;
-    height: auto;
-    max-height: 400px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
     padding: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex-grow: 1;
-    text-align: center;
-    justify-content: center;
-}
-
-.reminder-box h1 {
-    text-align: center;
-    justify-content: center;
-}
-
-.reminder-box h1,
-.reminder-box h2,
-.reminder-box label {
-    font-size: 16px;
-}
-
-.reminder-box form,
-.reminder-box ul {
-    font-size: 14px;
-}
-
-
-.reminder-box input,
-.reminder-box select {
-    width: calc(100% - 10px);
-    padding: 8px;
-    margin-bottom: 15px;
-}
-
-.reminder-box button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: #FFD700;
+    transition: background-color 0.3s, transform 0.3s;
     cursor: pointer;
-    background-color: #84d2de;
-    color: white;
-    transition: background-color 0.3s ease;
 }
 
-.reminder-box button:hover {
-    background-color: #00B0FF;
+.feature-box img {
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 10px;
 }
 
-#feedbacks {
-    margin-left: 180px;
-}
-
-#feedbacks .container {
-    width: 50%;
+/* Hover effect */
+.feature-box:hover {
+    background-color: #f8b500;
+    transform: scale(1.05);
 }
 
 
-#feedback-form {
-    display: flex;
-    flex-direction: column;
-}
-
-#feedback-form .form-group {
-    margin-bottom: 20px;
-}
-
-#feedback-form label {
-    font-weight: bold;
-}
-
-#feedback-form input[type="text"],
-#feedback-form input[type="email"],
-#feedback-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-#feedback-form button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #84d2de;
-    color: white;
-    transition: background-color 0.3s ease;
-}
-
-#feedback-form button[type="submit"]:hover {
-    background-color: #00B0FF;
+@media (max-width: 576px) {
+    .sidebar {
+        display: none !important;
+    }
+    .content-container {
+        padding-left: 0;
+    }
+    .section {
+        height: auto;
+        margin-left: 0;
+    }
 }
