@@ -32,7 +32,7 @@
                 <img src="{{ asset('download.jpg') }}" alt="Profile Picture" class="profile-picture mt-3">
             </a>
 
-            <h4 class="text-center mt-3 ">DalDalDildo</h4>
+            <h4 class="text-center mt-3 ">Juan Enrile</h4>
 
             <ul class="nav flex-column mt-3 text-center">
                 <li class="nav-item">

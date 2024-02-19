@@ -113,6 +113,7 @@ body {
 }
 
 .feature-box {
+    color: #fefffe;
     width: 250px;
     height: 250px;
     text-align: center;
@@ -134,7 +135,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* Hover effect */
 .feature-box:hover {
     background-color: #f8b500;
     transform: scale(1.05);
@@ -153,3 +153,49 @@ body {
         margin-left: 0;
     }
 }
+
+@media (min-width: 768px) and (max-width: 991px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    .nav-item a {
+        font-size: 1rem;
+    }
+
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    .feature-box {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .nav-item a {
+        font-size: 1.2rem;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .feature-box {
+        width: 370px;
+        height: 370px;
+    }
+}
+
