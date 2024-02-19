@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('water_intake', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->float('daily_goal');
-            $table->float('total_intake');
-            $table->float('current_intake');
-            $table->boolean('reminder');
-            $table->text('today_log');
-            $table->integer('reminder_interval');
-            $table->float('average_volume');
-            $table->float('average_completion');
-            $table->integer('drink_frequency');
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->float('daily_goal')->nullable();
+            $table->float('total_intake')->nullable();
+            $table->float('current_intake')->nullable();
+            $table->boolean('reminder')->nullable();
+            $table->text('today_log')->nullable();
+            $table->integer('reminder_interval')->nullable();
+            $table->float('average_volume')->nullable();
+            $table->float('average_completion')->nullable();
+            $table->integer('drink_frequency')->nullable();
             $table->timestamps();
         });
     }

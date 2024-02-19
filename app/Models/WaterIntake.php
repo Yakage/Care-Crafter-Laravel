@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class WaterIntake extends Model
-{
+{   
+    protected $table = 'water_intake';
     protected $fillable = [
         'user_id',
         'daily_goal',
         'total_intake', 
         'current_intake', 
         'reminder', 
-        'today_log',
         'reminder_interval',
+        'today_log',
         'average_volume',
         'average_completion', 
         'drink_frequency'
