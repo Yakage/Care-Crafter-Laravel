@@ -81,4 +81,25 @@ class AuthenticationController extends Controller{
             return response()->json(['message' => 'Failed to register user, please try again.'], 400);
         }
     }
+    public function adminHomeApi()
+    {
+        return $this->respondWithUserData();
+    }
+
+    private function respondWithUserData()
+    {
+        $userCount = User::count();
+        $userCountsByGender = User::selectRaw('gender, count(*) as user_count')
+            ->groupBy('gender')
+            ->get()
+            ->pluck('user_count', 'gender');
+
+        $data = [
+            'userCount' => $userCount,
+            'userCountsByGender' => $userCountsByGender,
+        ];
+
+        return response()->json($data);
+    }
 }
+
