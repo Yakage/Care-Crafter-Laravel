@@ -390,7 +390,7 @@
                                     <li><a href = "#">Help center</a></li>
                                     <li><a href = "#">Contact support</a></li>
                                     <li><a href = "#">Instructions</a></li>
-                                    <li><a href = "#">How it works</a></li>
+                                    <li><a href="{{ route('user.home') }}">How it works</a></li>
                                 </ul>
                             </div>
                         </div>
