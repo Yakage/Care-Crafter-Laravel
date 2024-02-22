@@ -20,7 +20,8 @@
             <a class="dropdown-item" href="#feedbacks">Feedbacks</a>
             <a class="dropdown-item" href="#account">Account</a>
             <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" href="{{ route('welcome') }}">Logout</a>
+
         </div>
     </div>
 </div>
