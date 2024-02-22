@@ -137,18 +137,21 @@ class AuthenticationController extends Controller{
     {
         return $this->respondWithUserData();
     }
-
+//returning user and individual gender count to the view
     private function respondWithUserData()
     {
-        $userCount = User::count();
-        $userCountsByGender = User::selectRaw('gender, count(*) as user_count')
+        $userCount = User::count(); //counts users
+
+        $userCountsByGender = User::selectRaw('gender, count(*) as user_count') //counts users by gender
             ->groupBy('gender')
             ->get()
             ->pluck('user_count', 'gender');
 
+        $activeUsersCount = User::where('status', 'active')->count();  // counts all active users
         $data = [
             'userCount' => $userCount,
             'userCountsByGender' => $userCountsByGender,
+            'activeUsersCount' => $activeUsersCount,
         ];
 
         return response()->json($data);

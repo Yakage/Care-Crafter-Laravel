@@ -226,11 +226,11 @@
                                         </div>
                                         <div class = "item-info text-white">
                                             <p class = "fw-7 name">Kissune</p>
-                                            <span class = "designation fw-4">Mwa</span>
+                                            <span class = "designation fw-4">test</span>
                                         </div>
                                     </div>
                                     <div class = "item-right">
-                                        <p class = "text text-white">"ehehehe</p>
+                                        <p class = "text text-white">"Test"</p>
                                     </div>
                                 </div>
 
@@ -241,11 +241,11 @@
                                         </div>
                                         <div class = "item-info text-white">
                                             <p class = "fw-7 name">Kissune</p>
-                                            <span class = "designation fw-4">loveu</span>
+                                            <span class = "designation fw-4">Test</span>
                                         </div>
                                     </div>
                                     <div class = "item-right">
-                                        <p class = "text text-white">"ehehehe"</p>
+                                        <p class = "text text-white">Test</p>
                                     </div>
                                 </div>
 
@@ -256,11 +256,11 @@
                                         </div>
                                         <div class = "item-info text-white">
                                             <p class = "fw-7 name">Kissune</p>
-                                            <span class = "designation fw-4">mahar kita</span>
+                                            <span class = "designation fw-4">Test</span>
                                         </div>
                                     </div>
                                     <div class = "item-right">
-                                        <p class = "text text-white">"ehehe"</p>
+                                        <p class = "text text-white">"Test"</p>
                                     </div>
                                 </div>
 
@@ -271,11 +271,11 @@
                                         </div>
                                         <div class = "item-info text-white">
                                             <p class = "fw-7 name">kissune</p>
-                                            <span class = "designation fw-4">i love you richa</span>
+                                            <span class = "designation fw-4">Test</span>
                                         </div>
                                     </div>
                                     <div class = "item-right">
-                                        <p class = "text text-white">"eheh"</p>
+                                        <p class = "text text-white">"Test"</p>
                                     </div>
                                 </div>
                             </div>

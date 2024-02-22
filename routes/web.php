@@ -6,6 +6,7 @@ use App\Http\Controllers\WaterIntakeController;
 use App\Http\Controllers\Web\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,3 +70,5 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('water-intake/{waterIntake}', [WaterIntakeController::class, 'destroy'])->name('water-intake.destroy');
 });
 
+//For users logout
+Route::get('/welcome', function () {return view('welcome');})->name('welcome');
