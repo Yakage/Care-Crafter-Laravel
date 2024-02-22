@@ -19,11 +19,12 @@ class AuthenticationController extends Controller{
             if ($user->role === 'admin') {
                 return redirect()->route('admin.home'); // Redirect to admin dashboard
             }
-
-            // If not admin, mark the user as active
+             // Check if not already active and update
+        if ($user->status !== 'active') {
             $user->status = 'active';
             $user->save();
-
+        }
+                
             return redirect()->route('user.home'); // Redirect to user dashboard
         }
 
@@ -98,10 +99,13 @@ class AuthenticationController extends Controller{
         ->groupBy('gender')
         ->get()
         ->pluck('user_count', 'gender');
+// active user count
+        $activeUsersCount = User::where('status', 'active')->count();
 //returns view
         return view('admin.home', [
             'userCount' => $userCount,
-            'userCountsByGender' => $userCountsByGender,]);
+            'userCountsByGender' => $userCountsByGender,
+            'activeUsersCount' => $activeUsersCount]);
         
     }
     public function userHome(){

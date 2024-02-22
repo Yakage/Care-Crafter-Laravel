@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,20 +29,26 @@
         </div>
     </div>
     </nav>
-        <div class="card">
+        <div class="card " id="usercount">
             <div class="card-body">
                 <h5 class="card-title">USERS</h5>
                 <p class="card-text">Total Users: {{ $userCount }}</p>
             </div>
         </div>
-        <div class="card">
+        <div class="card" id="gendercount">
             <div class="card-body">
-                <h2>Users by Gender:</h2>
+                <h5>Users by Gender:</h2>
                     <ul>
                         @foreach ($userCountsByGender as $gender => $count)
                             <li>{{ $gender }}: {{ $count }}</li>
                         @endforeach
                     </ul>
+            </div>
+        </div>
+        <div class="card " id="activeusercount">
+            <div class="card-body">
+                <h5 class="card-title">ACTIVE USERS</h5>
+                <p>Number of active users: {{ $activeUsersCount }}</p>
             </div>
         </div>
    
