@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="css/login.css" >
 </head>
 <body>
-    <div class="mt-5">
+    <div >
         @if(session()->has('error'))
             <div class="alert alert-danger">{{session('error')}}</div>
         
@@ -17,26 +17,26 @@
         
         @endif
     </div>
-    <div id="loginForm">
-        <div class="container ">
-            <form action="{{route('login')}}" method="POST" class="ms-auto me-auto mt-3" style="width: 500px">
-                @csrf
-                
-                <div class="mb-3">
-                    <label class="form-label"> Email </label>
-                    <input type="email" class="form-control" name="email">
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label"> Password </label>
-                    <input type="password" class="form-control" name="password">
-                </div>
+    <div class="center">
+      <h1>Login</h1>
+      <form action="{{route('login')}}" method="POST">
+        @csrf
 
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+        <div class="txt_field">
+            <input type="email" class="form-control" name="email" required>
+            <span></span>
+            <label>Email</label>
         </div>
-        <p style="text-align: center">Don't have an account? <a href="{{ route('register') }}">Create an account</a></p>
+        <div class="txt_field">
+            <input type="password" class="form-control" name="password" required>
+            <span></span>
+            <label>Password</label>
+        </div>
+        <input type="submit" value="Login" />
+        
+      </form>
+      <div class="pass">Forgot Password?</div>
+      <div class="signup_link">Create a account?  <a href="{{ route('register')}}">Register</a></div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" ></script>
 </body>
 </html>

@@ -67,7 +67,7 @@ class AuthenticationController extends Controller{
             'age' => 'Please enter your age',
             'height' => 'Please enter your heigh in kilograms',
             'weight' => 'Please enter your weight in kilograms',
-            'gender' => 'Please enter your gender [Male or Female Only]',
+            'gender' => 'Please enter your gender [male or female Only]',
             'password.min' => 'The password must be at least 8 characters.',
             'confirm_password.same' => 'The password and password confirmation does not match.',
         ]);

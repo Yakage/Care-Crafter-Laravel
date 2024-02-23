@@ -20,13 +20,8 @@
             <a class="dropdown-item" href="#feedbacks">Feedbacks</a>
             <a class="dropdown-item" href="#account">Account</a>
             <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="{{ route('user.user-ui.user') }}">Dashboard</a>
-            <a class="dropdown-item">
-            <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                @csrf
-                <button type="submit" class="btn btn-link">Logout</button>
-            </form>
-            </a>
+            <a class="dropdown-item" href="{{ route('welcome') }}">Logout</a>
+
         </div>
     </div>
 </div>
@@ -88,6 +83,82 @@
             <section id="step-tracker" class="section">
                 <div class="container">
                     <h2 class="text-center" style="color: #458ff6;">Step Tracker</h2>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Daily Goal</h5>
+                                    <p class="card-text" id="daily-goal">10000</p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Weekly Goal</h5>
+                                    <p class="card-text" id="daily-goal">10000</p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Monthly Goal</h5>
+                                    <p class="card-text" id="daily-goal">10000</p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Steps</h5>
+                                    <p class="card-text" id="daily-goal">10000</p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Average</h5>
+                                    <p class="card-text" id="daily-goal">10000</p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Daily Goal</h5>
+                                    <p class="card-text" id="daily-goal">10000</p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 

@@ -14,23 +14,23 @@ class AuthenticationController extends Controller{
         'email' => 'required|email',
         'password' => 'required',
     ]);
-
+    
     if (Auth::attempt($request->only('email', 'password'))) {
         $user = Auth::user();
         $tokenResult = $user->createToken('Personal Access Token');
         $accessToken = $tokenResult->plainTextToken;
 
-    
+        
         // Check if the user is an admin
         if ($user->role === 'admin') {
-            return response()->json(['message' => 'Admin logged in', 'user' => $user, 'access_token' => $accessToken], 200);
+            return response()->json(['message' => 'Admin logged in', 'userId' => $user->id, 'access_token' => $accessToken], 200);
         }
     
         // If not admin, mark the user as active
         $user->status = 'active';
         $user->save();
     
-        return response()->json(['message' => 'User logged in', 'user' => $user, 'access_token' => $accessToken], 200);
+        return response()->json(['message' => 'User logged in', 'access_token' => $accessToken], 200);
     }
     
         return response()->json(['message' => 'Invalid Credentials'], 401);
@@ -41,7 +41,7 @@ class AuthenticationController extends Controller{
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
-            'age' => 'required|integer',
+            'age' => 'required|numeric',
             'height' => 'required|numeric', // Allow decimal values
             'weight' => 'required|numeric', // Allow decimal values
             'gender' => 'required|string',
@@ -68,19 +68,72 @@ class AuthenticationController extends Controller{
             'name' => 'Please enter your name',
             'email' => 'Please enter your email',
             'age' => 'Please enter your age',
-            'height' => 'Please enter your heigh in kilograms',
+            'height' => 'Please enter your heigh in millimeters',
             'weight' => 'Please enter your weight in kilograms',
-            'gender' => 'Please enter your gender [Male or Female Only]',
+            'gender' => 'Please enter your gender [male or female Only]',
             'password.min' => 'The password must be at least 8 characters.',
             'confirm_password.same' => 'The password and password confirmation does not match.',
         ]);
 
         if ($user) {
-            return response()->json(['message' => 'Registration Successful', 'user' => $user], 201);
+            return response()->json(['message' => 'Registration Successful', 'user' => $user, 'userId' => $user->id], 201);
         } else {
             return response()->json(['message' => 'Failed to register user, please try again.'], 400);
         }
     }
+
+    public function updateUser(Request $request){
+
+        $user = Auth::user();
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,',
+            'age' => 'required|numeric',
+            'height' => 'required|numeric',
+            'weight' => 'required|numeric',
+            'gender' => 'required|string|in:male,female',
+        ], [
+            'name.required' => 'Please enter your name',
+            'email.required' => 'Please enter your email',
+            'age.required' => 'Please enter your age',
+            'height.required' => 'Please enter your height',
+            'weight.required' => 'Please enter your weight',
+            'gender.required' => 'Please enter your gender',
+            'gender.in' => 'Please enter a valid gender (male or female)',
+        ]);
+
+
+        // Find the user by ID
+        //$user = User::find($id);
+
+        // Check if user exists
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        // Update user data
+        // $user->name = $request->input('name');
+        // $user->email = $request->input('email');
+        // $user->age = $request->input('age');
+        // $user->height = $request->input('height');
+        // $user->weight = $request->input('weight');
+        // $user->gender = $request->input('gender');
+
+        // // Save the updated user
+        // $user->save();
+        $user->update($validatedData);
+
+        // Return a success response
+        return response()->json(['message' => 'User updated successfully', 'user' => $user], 200);
+    }
+
+    public function logout(Request $request){
+        auth()->user()->currentAccessToken()->delete();
+
+        return response()->json(['message' => 'Logged out successfully'], 200);
+    }
+
     public function adminHomeApi()
     {
         return $this->respondWithUserData();
