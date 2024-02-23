@@ -36,12 +36,13 @@ class AuthenticationController extends Controller{
     }
 
     public function logout(Request $request){
-        $user = $request->user();
+        $user = Auth::user();
 
         // Set user status to not active
-        $user->status = 'not active';
-        $user->save();
-
+        if ($user->status !== 'not active') {
+            $user->status = 'not active';
+            $user->update();
+        }
         $request->user()->tokens()->delete();
         Auth::logout();
         return redirect()->route('login')->with("success", "Successfully Logout");
@@ -63,7 +64,6 @@ class AuthenticationController extends Controller{
             'confirm_password' => 'required|string|same:password',
         ], [
             'name' => 'Please enter your name',
-            'email' => 'Please enter your email',
             'age' => 'Please enter your age',
             'height' => 'Please enter your heigh in kilograms',
             'weight' => 'Please enter your weight in kilograms',
@@ -91,24 +91,5 @@ class AuthenticationController extends Controller{
         }
     }
 
-    public function adminHome(){
-//counts users in the database
-        $userCount = User::count();
-// Count users by gender
-        $userCountsByGender = User::selectRaw('gender, count(*) as user_count')
-        ->groupBy('gender')
-        ->get()
-        ->pluck('user_count', 'gender');
-// active user count
-        $activeUsersCount = User::where('status', 'active')->count();
-//returns view
-        return view('admin.home', [
-            'userCount' => $userCount,
-            'userCountsByGender' => $userCountsByGender,
-            'activeUsersCount' => $activeUsersCount]);
-        
-    }
-    public function userHome(){
-        return view('user.home');
-    }
+    
 }

@@ -3,7 +3,9 @@
 use App\Http\Controllers\SleepTrackerController;
 use App\Http\Controllers\StepTrackerController;
 use App\Http\Controllers\WaterIntakeController;
+use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\AuthenticationController;
+use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,10 +30,17 @@ Route::post('/register', [AuthenticationController::class, 'registerPost'])->nam
 Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
 //For Admin
-Route::get('/admin-home', [AuthenticationController::class, 'adminHome'])->name('admin.home');
-
+Route::get('/admin-home', [AdminController::class, 'adminHome'])->name('admin.home');
+Route::get('/admin.user-table', [AdminController::class, 'indexUsers'])->name('admin.user.table');
+Route::get('/admin.user-table.create', [AdminController::class, 'createUsers']);
+Route::post('/admin.user-table.create' , [AdminController::class, 'storeUsers']);
+Route::get('/admin.user-table.{id}.edit', [AdminController::class, 'editUsers']);
+Route::put('/admin.user-table/{id}/edit', [AdminController::class, 'updateUsers']);
+Route::get('/admin.user-table.{id}.delete', [AdminController::class, 'destroyUsers']);
 //For Users
-Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
+Route::get('/user-home', [UserController::class, 'userHome'])->name('user.home');
+
+
 
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
 

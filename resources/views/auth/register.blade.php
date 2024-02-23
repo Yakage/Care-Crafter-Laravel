@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
-    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+    <link href="{{ ('css/register.css') }}" rel="stylesheet">
 </head>
 <body>
     <div>
@@ -50,7 +50,7 @@
                 <input type="text" class="form-control form-control-sm" name="gender" placeholder="Enter your Gender [male or female]" required>
             </div>
             <div class="txt_field">
-                <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+                <input type="password" class="form-control" name="password" required placeholder="Enter your password [minimum 8 characters]">
             </div>
             <div class="txt_field">
                 <input type="password" class="form-control form-control-sm" required name="confirm_password" placeholder="Enter your password to confirm">

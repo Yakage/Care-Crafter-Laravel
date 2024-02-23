@@ -10,42 +10,32 @@
 </head>
 <body>
 
-<div class="dropdown-container">
-    <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Menu
-        </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#features">Features</a>
-            <a class="dropdown-item" href="#feedbacks">Feedbacks</a>
-            <a class="dropdown-item" href="#account">Account</a>
-            <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="{{ route('welcome') }}">Logout</a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 sidebar d-flex flex-column justify-content-center align-items-center">
+                <a href="#" class="profile-link">
+                    <img src="{{ asset('download.jpg') }}" alt="Profile Picture" class="profile-picture mt-3">
+                </a>
 
-        </div>
-    </div>
-</div>
+                <h4 class="text-center mt-3 ">Juan Enrile</h4>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3 sidebar d-flex flex-column justify-content-center align-items-center">
-            <a href="#" class="profile-link">
-                <img src="{{ asset('download.jpg') }}" alt="Profile Picture" class="profile-picture mt-3">
-            </a>
-
-            <h4 class="text-center mt-3 ">Juan Enrile</h4>
-
-            <ul class="nav flex-column mt-3 text-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="#features">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#feedbacks">Feedbacks</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#account">Account</a>
-                </li>
-            </ul>
+                <ul class="nav flex-column mt-3 text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#feedbacks">Feedbacks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#account">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('welcome') }}">Logout</a>
+                    </li>
+                </ul>
         </div>
         <div class="col-md-9 content-container">
             <section id="features" class="section">

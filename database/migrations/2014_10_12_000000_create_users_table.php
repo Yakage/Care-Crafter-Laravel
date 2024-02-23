@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female']); 
             $table->string('password');
             $table->enum('role', ['user', 'admin']); 
-            $table->enum('status', ['active', 'not active']); 
+            $table->enum('status', ['active', 'not active'])->nullable(); 
             $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

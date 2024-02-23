@@ -8,50 +8,60 @@
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">CareCrafter</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-            <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                @csrf
-                <button type="submit" class="btn btn-link">Logout</button>
-            </form>
-            </li>
-        </ul>
-        </div>
-    </div>
-    </nav>
-        <div class="card " id="usercount">
-            <div class="card-body">
-                <h5 class="card-title">USERS</h5>
-                <p class="card-text">Total Users: {{ $userCount }}</p>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white ms-5" href="#">CareCrafter</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item" >
+                        <a class="nav-link active text-white" aria-current="page" href="{{ url('admin-home')}}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="{{ url('admin.user-table')}}">User Table</a>
+                    </li>
+                    <li class="nav-item">
+                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-link text-white text-decoration-none">Logout</button>
+                    </form>
+                    </li>
+                </ul>
+                </div>
             </div>
-        </div>
-        <div class="card" id="gendercount">
-            <div class="card-body">
-                <h5>Users by Gender:</h2>
-                    <ul>
-                        @foreach ($userCountsByGender as $gender => $count)
-                            <li>{{ $gender }}: {{ $count }}</li>
-                        @endforeach
-                    </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="card " id="usercount">
+                <div class="card-body">
+                    <h5 class="card-title">USERS</h5>
+                    <p class="card-text">Total Users: {{ $userCount }}</p>
+                </div>
             </div>
-        </div>
-        <div class="card " id="activeusercount">
-            <div class="card-body">
-                <h5 class="card-title">ACTIVE USERS</h5>
-                <p>Number of active users: {{ $activeUsersCount }}</p>
+            <div class="card" id="gendercount">
+                <div class="card-body">
+                    <h5>Users by Gender:</h2>
+                        <ul>
+                            @foreach ($userCountsByGender as $gender => $count)
+                                <li>{{ $gender }}: {{ $count }}</li>
+                            @endforeach
+                        </ul>
+                </div>
             </div>
-        </div>
+            <div class="card " id="activeusercount">
+                <div class="card-body">
+                    <h5 class="card-title">ACTIVE USERS</h5>
+                    <p>Number of active users: {{ $activeUsersCount }}</p>
+                </div>
+            </div>
+        </section>
+    </main>
+        
    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </body>
 </html>
