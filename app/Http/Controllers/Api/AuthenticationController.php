@@ -30,7 +30,7 @@ class AuthenticationController extends Controller{
         $user->status = 'active';
         $user->save();
     
-        return response()->json(['message' => 'User logged in', 'userId' => $user->id, 'access_token' => $accessToken], 200);
+        return response()->json(['message' => 'User logged in', 'access_token' => $accessToken], 200);
     }
     
         return response()->json(['message' => 'Invalid Credentials'], 401);
@@ -82,12 +82,13 @@ class AuthenticationController extends Controller{
         }
     }
 
-    public function updateUser(Request $request, $id)
-    {
+    public function updateUser(Request $request){
+
+        $user = Auth::user();
         // Validate the request data
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'email' => 'required|email|unique:users,email,',
             'age' => 'required|numeric',
             'height' => 'required|numeric',
             'weight' => 'required|numeric',
@@ -104,7 +105,7 @@ class AuthenticationController extends Controller{
 
 
         // Find the user by ID
-        $user = User::find($id);
+        //$user = User::find($id);
 
         // Check if user exists
         if (!$user) {
@@ -112,22 +113,22 @@ class AuthenticationController extends Controller{
         }
 
         // Update user data
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->age = $request->input('age');
-        $user->height = $request->input('height');
-        $user->weight = $request->input('weight');
-        $user->gender = $request->input('gender');
+        // $user->name = $request->input('name');
+        // $user->email = $request->input('email');
+        // $user->age = $request->input('age');
+        // $user->height = $request->input('height');
+        // $user->weight = $request->input('weight');
+        // $user->gender = $request->input('gender');
 
-        // Save the updated user
-        $user->save();
+        // // Save the updated user
+        // $user->save();
+        $user->update($validatedData);
 
         // Return a success response
         return response()->json(['message' => 'User updated successfully', 'user' => $user], 200);
     }
 
-    public function logout(Request $request)
-    {
+    public function logout(Request $request){
         auth()->user()->currentAccessToken()->delete();
 
         return response()->json(['message' => 'Logged out successfully'], 200);
