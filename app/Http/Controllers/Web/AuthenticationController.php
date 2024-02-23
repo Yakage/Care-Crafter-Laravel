@@ -111,4 +111,40 @@ class AuthenticationController extends Controller{
     public function userHome(){
         return view('user.home');
     }
+
+    //public function userDashboard(){
+    //    return view('user.user-ui.user', ['userData' => $userData]);
+    //}
+
+    public function userDashboard(Request $request)// retrieves user data
+{
+    $user = Auth::user();
+    $userData = [
+        'name' => $user->name,
+        'age' => $user->age,
+        'height' => $user->height,
+        'weight' => $user->weight,
+        'email' => $user->email,
+        'gender' => $user->gender,
+        'user_id' => $user->id,
+    ];
+
+    return view('user.user-ui.user', compact('userData'));
+}
+
+public function update(Request $request)// responsible for updating the data
+{
+    $user = Auth::user();
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'age' => 'required|numeric|min:18',
+        'height' => 'required|numeric',
+        'weight' => 'required|numeric',
+        'gender' => 'required|in:male,female,other',
+    ]);
+
+    $user->update($validatedData);
+
+    return redirect()->route('user.dashboard')->with('success', 'Profile updated successfully!');
+}
 }

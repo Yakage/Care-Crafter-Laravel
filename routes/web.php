@@ -26,11 +26,18 @@ Route::get('/register', [AuthenticationController::class, 'register'])->name('re
 Route::post('/register', [AuthenticationController::class, 'registerPost'])->name('register.post');
 Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
+
+
 //For Admin
 Route::get('/admin-home', [AuthenticationController::class, 'adminHome'])->name('admin.home');
 
 //For Users
 Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
+//user dash
+Route::get('/user/user-ui/user', [AuthenticationController::class, 'userDashboard'])->name('user.user-ui.user');
+Route::get('/user/user-ui/user', 'AuthenticationController@index')->name('user.user-ui.user')->middleware('auth');
+Route::get('/user/user-ui/user', [AuthenticationController::class, 'userDashboard'])->name('user.user-ui.user');
+
 
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
 

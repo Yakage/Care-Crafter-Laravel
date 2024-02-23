@@ -20,7 +20,13 @@
             <a class="dropdown-item" href="#feedbacks">Feedbacks</a>
             <a class="dropdown-item" href="#account">Account</a>
             <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" href="{{ route('user.user-ui.user') }}">Dashboard</a>
+            <a class="dropdown-item">
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-link">Logout</button>
+            </form>
+            </a>
         </div>
     </div>
 </div>
