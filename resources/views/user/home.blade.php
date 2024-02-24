@@ -13,7 +13,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3 sidebar d-flex flex-column justify-content-center align-items-center">
-                <a href="#" class="profile-link">
                     <img src="{{ asset('download.jpg') }}" alt="Profile Picture" class="profile-picture mt-3">
                 </a>
 
@@ -24,13 +23,10 @@
                         <a class="nav-link" href="#features">Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#feedbacks">Feedbacks</a>
+                        <a class="nav-link" href="{{ route('user.feedback')}}">Feedbacks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#account">Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Settings</a>
+                        <a class="nav-link" href="{{ url('admin.user-table.{id}.edit') }}">Edit Account</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('welcome') }}">Logout</a>
@@ -155,29 +151,180 @@
             <section id="sleep-tracker" class="section">
                 <div class="container">
                     <h2 class="text-center" style="color: #458ff6;">Sleep Tracker</h2>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Wake Up Time</h5>
+                                    <h5 class="card-title">Sleep Time</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Time Slept</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Total Sleep Time from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Sleep</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Average Sleep Time from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sleep Score</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
+            
 
             <section id="water-intake" class="section">
                 <div class="container">
                     <h2 class="text-center" style="color: #458ff6;">Water Intake Reminder</h2>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Daily Goal</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Intake</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Total Sleep Time from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Current Intake</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Average Sleep Time from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Reminder</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Reminder Interval</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Today Log</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Average Volume</h5>
+                                    <h5 class="card-title">Average Completion</h5>
+                                    <h5 class="card-title">Drink Frequency</h5>
+                                    <p>Content</p>
+                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary edit-btn">Edit</button>
+                                    <button class="btn btn-danger delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <section id="health-journal" class="section">
                 <div class="container">
-                    <h2 class="text-center" style="color: #458ff6;">Health Journal</h2>
+                    
                 </div>
             </section>
 
             <section id="feedbacks" class="section">
                 <div class="container">
-                    <h2 class="text-center" style="color: #458ff6;">Feedbacks</h2>
+                    
                 </div>
             </section>
             <section id="account" class="section">
                 <div class="container">
-                    <h2 class="text-center" style="color: #458ff6;">Account</h2>
+                
                 </div>
             </section>
         </div>

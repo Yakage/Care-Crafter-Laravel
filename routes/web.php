@@ -45,6 +45,7 @@ Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('u
 Route::get('/user/user-ui/user', [AuthenticationController::class, 'userDashboard'])->name('user.user-ui.user');
 Route::get('/user/user-ui/user', 'AuthenticationController@index')->name('user.user-ui.user')->middleware('auth');
 Route::get('/user/user-ui/user', [AuthenticationController::class, 'userDashboard'])->name('user.user-ui.user');
+Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('user.feedback');
 
 
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */

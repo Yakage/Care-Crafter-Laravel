@@ -39,10 +39,10 @@ class AuthenticationController extends Controller{
         $user = Auth::user();
 
         // Set user status to not active
-        if ($user->status !== 'not active') {
-            $user->status = 'not active';
-            $user->update();
-        }
+    
+        // $user->status = 'not active';
+        // $user->update();
+        
         $request->user()->tokens()->delete();
         Auth::logout();
         return redirect()->route('login')->with("success", "Successfully Logout");
@@ -109,6 +109,7 @@ class AuthenticationController extends Controller{
         
     }
     public function userHome(){
-        return view('user.home');
+        $users = User::get();
+        return view('user.home', compact('users'));
     }
 }
