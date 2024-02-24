@@ -43,7 +43,7 @@ class AuthenticationController extends Controller{
         // $user->status = 'not active';
         // $user->update();
         
-        $request->user()->tokens()->delete();
+       // $request->user()->tokens()->delete();
         Auth::logout();
         return redirect()->route('login')->with("success", "Successfully Logout");
     }
