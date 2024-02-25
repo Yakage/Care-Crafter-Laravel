@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Login</title>
     <link rel="stylesheet" href="css/login.css" >
 </head>
 <body>
-    <div >
+    <div id="messageDialog" class="dialog">
         @if(session()->has('error'))
-            <div class="alert alert-danger">{{session('error')}}</div>
-        
+            <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
         @if(session()->has('success'))
-            <div class="alert alert-success">{{session('success')}}</div>
-        
+            <div class="alert alert-success">{{ session('success') }}</div>
         @endif
     </div>
     <div class="container">
         <div class="title">Login</div>
         <div class="content">
-            <form action="{{route('login')}}" method="POST">
+            <form id='loginForm' action="{{route('login')}}" method="POST">
                 @csrf
 
                 <div class="user-details">
@@ -43,5 +44,6 @@
         <div class="pass"><a href="">Forgot Password?</a></div>
         <div class="signup_link">Create a account?  <a href="{{ route('register')}}">Register</a></div>
     </div>
+    <script src="js/loginandregister.js"></script>
 </body>
 </html>

@@ -16,13 +16,13 @@ class AdminSeeder extends Seeder
         User::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'age' => 20,
+            'birthday' => '2004-01-02',
+            'gender' => 'male',
             'height' => '177.3',
             'weight' => '69',
-            'gender' => 'male',
             'password' => Hash::make('12345678'),
             'role' => 'admin',
-            'status' => 'active',
+            'status' => 'online',
         ]);
     }
 }

@@ -27,7 +27,7 @@ class AuthenticationController extends Controller{
         }
     
         // If not admin, mark the user as active
-        $user->status = 'active';
+        $user->status = 'online';
         $user->update();
     
         return response()->json(['message' => 'User logged in', 'access_token' => $accessToken], 200);

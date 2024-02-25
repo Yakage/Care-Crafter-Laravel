@@ -31,7 +31,7 @@ class AdminController extends Controller
             ->get()
             ->pluck('user_count', 'gender');
         // active user count
-            $activeUsersCount = User::where('status', 'active')->count();
+            $activeUsersCount = User::where('status', 'online')->count();
         //returns view
             return view('admin.home', [
                 'userCount' => $userCount,
@@ -79,7 +79,7 @@ class AdminController extends Controller
         $data['password'] = Hash::make($request->password);
         $data['confirm_password'] = $request->confirm_password;
         $data['role'] = 'user';
-        $data['status'] = 'active';
+        $data['status'] = 'online';
 
         $user = User::create($data);
         if ($user) {

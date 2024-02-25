@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Register</title>
     <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
-    <div>
+    <div id="messageDialog" class="dialog">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -28,7 +31,7 @@
     <div class="container">
         <div class="title">Registration Form</div>
         <div class="content">
-            <form action="{{route('register.post')}}" method="POST">
+            <form id="registerForm" action="{{route('register.post')}}" method="POST">
                 @csrf
 
                 <div class="user-details">
@@ -46,7 +49,7 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Gender</span>
-                    <input type="text" class="form-control form-control-sm" name="gender" placeholder="Enter your Gender [male or female]" required>
+                    <input type="text" id="gender" class="form-control form-control-sm" name="gender" placeholder="Enter your Gender [male or female]" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Height</span>
@@ -73,6 +76,6 @@
         </div>
         <div class="signup_link">Already have a account?  <a href="{{ route('login')}}">Login</a></div>
     </div>
-
+    <script src="js/loginandregister.js"></script>
 </body>
 </html>

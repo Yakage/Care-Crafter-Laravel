@@ -9,38 +9,73 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <div class="container-fluid">
-                <a class="navbar-brand text-white ms-5" href="#">CareCrafter</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item" >
-                        <a class="nav-link active text-white" aria-current="page" href="{{ url('admin-home')}}">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="{{ url('admin.user-table')}}">User Table</a>
-                    </li>
-                    <li class="nav-item">
-                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+        <section id="sidebar">
+            <a href="#" class="brand">
+                <i class='bx bxs-smile'></i>
+                <span class="text">AdminCrafter</span>
+            </a>
+            <ul class="side-menu top">
+                <li class="">
+                    <a href="{{ route('admin.home')}}">
+                        <i class='bx bxs-dashboard' ></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{{ route('admin.user.table')}}">
+                        <i class='bx bxs-doughnut-chart' ></i>
+                        <span class="text">User Table</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-group' ></i>
+                        <span class="text">Team</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-cog' ></i>
+                        <span class="text">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-link text-white text-decoration-none">Logout</button>
+                        <button type="submit">
+                            <a href="">
+                                <i class='bx bxs-cog'></i>	
+                                <span class="text">Logout</span>
+                            </a>
+                        </button>
                     </form>
-                    </li>
-                </ul>
-                </div>
-            </div>
-        </nav>
+                </li>
+            </ul>
+        </section>
     </header>
-    <main>
+    <main id="content">
         <section>
-            <div class="container mt-5">
+            <nav>
+                <i class='bx bx-menu' ></i>
+                <form action="#">
+                    <div class="form-input">
+                        <input type="search" placeholder="Search...">
+                        <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                    </div>
+                </form>
+                <input type="checkbox" id="switch-mode" hidden>
+                <label for="switch-mode" class="switch-mode"></label>
+                </a>
+            </nav>
+        </section>
+        <section>
+            <div class="container mt-5 ms-auto">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header bg-primary text-white">
                                 <h4>  Users Data Table
                                     <a href="{{ url('admin.user-table.create')}}" class="btn btn-primary float-end">Add Users</a>
                                 </h4>

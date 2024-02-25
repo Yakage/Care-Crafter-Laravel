@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller{
+    public function showLoginForm(){
+        return view('auth.login');
+    }
     public function login(Request $request){
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
@@ -20,8 +22,8 @@ class AuthenticationController extends Controller{
                 return redirect()->route('admin.home'); // Redirect to admin dashboard
             }
              // Check if not already active and update
-        if ($user->status !== 'active') {
-            $user->status = 'active';
+        if ($user->status !== 'online') {
+            $user->status = 'online';
             $user->save();
         }
                 
@@ -31,12 +33,8 @@ class AuthenticationController extends Controller{
         return redirect()->route('login')->with("error", "Invalid Credentials");
     }
 
-    public function showLoginForm(){
-        return view('auth.login');
-    }
-
     public function logout(Request $request){
-        $user = Auth::user();
+        //Auth::user();
 
         // Set user status to not active
     
@@ -45,7 +43,7 @@ class AuthenticationController extends Controller{
         
        // $request->user()->tokens()->delete();
         Auth::logout();
-        return redirect()->route('login')->with("success", "Successfully Logout");
+        return redirect('/')->with("success", "Successfully Logout");
     }
 
     function register(){
@@ -64,7 +62,6 @@ class AuthenticationController extends Controller{
             'confirm_password' => 'required|string|same:password',
         ], [
             'name' => 'Please enter your name',
-            'email' => 'Please enter a valid email',
             'birthday' => 'Please enter your birthday',
             'gender' => 'Please enter your gender [male or female Only]',
             'height' => 'Please enter your heigh in kilograms',
@@ -82,14 +79,11 @@ class AuthenticationController extends Controller{
         $data['password'] = Hash::make($request->password);
         $data['confirm_password'] = $request->confirm_password;
         $data['role'] = 'user';
-        $data['status'] = 'active';
+        $data['status'] = 'online';
 
-        $user = User::create($data);
-        if ($user) {
-            return redirect()->route('login')->with("success", "Registration Successful, Login to access the app");
-        } else {
-            return redirect()->back()->with("error", "Failed to register user, please try again.");
-        }
+        User::create($data);  
+        return redirect()->route('login')->with("success", "Registration Successful, Login to access the app");
+       
     }
 
     public function adminHome(){
@@ -101,7 +95,7 @@ class AuthenticationController extends Controller{
         ->get()
         ->pluck('user_count', 'gender');
 // active user count
-        $activeUsersCount = User::where('status', 'active')->count();
+        $activeUsersCount = User::where('status', 'online')->count();
 //returns view
         return view('admin.home', [
             'userCount' => $userCount,

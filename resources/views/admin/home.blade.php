@@ -18,15 +18,15 @@
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="#">
+				<a href="{{ route('admin.home')}}">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="{{ route('admin.user.table')}}">
 					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Analytics</span>
+					<span class="text">User Table</span>
 				</a>
 			</li>
 			<li>
@@ -44,14 +44,15 @@
 				</a>
 			</li>
 			<li>
-			<form id="logoutForm" action="{{ route('logout') }}" method="POST" class="d-inline">
-    @csrf
-    <button type="submit" class="btn btn-link text-white text-decoration-none">
-        <i class='bx bxs-log-out-circle'></i>
-        <span class="text">Logout</span>
-    </button>
-</form>
-
+				<form id="logoutForm" action="{{ route('logout') }}" method="POST">
+					@csrf
+					<button type="submit">
+						<a href="">
+							<i class='bx bxs-cog'></i>	
+							<span class="text">Logout</span>
+						</a>
+					</button>
+				</form>
 			</li>
 		</ul>
 	</section>
@@ -81,11 +82,6 @@
 			<div class="head-title">
 				<div class="left">
 					<h1>Dashboard</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Home</a>
-						</li>
-					</ul>
 				</div>
 			</div>
 
