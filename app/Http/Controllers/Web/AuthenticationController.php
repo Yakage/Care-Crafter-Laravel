@@ -86,23 +86,7 @@ class AuthenticationController extends Controller{
        
     }
 
-    public function adminHome(){
-//counts users in the database
-        $userCount = User::count();
-// Count users by gender
-        $userCountsByGender = User::selectRaw('gender, count(*) as user_count')
-        ->groupBy('gender')
-        ->get()
-        ->pluck('user_count', 'gender');
-// active user count
-        $activeUsersCount = User::where('status', 'online')->count();
-//returns view
-        return view('admin.home', [
-            'userCount' => $userCount,
-            'userCountsByGender' => $userCountsByGender,
-            'activeUsersCount' => $activeUsersCount]);
-        
-    }
+    
     public function userHome(){
         $users = User::get();
         return view('user.home', compact('users'));

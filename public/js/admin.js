@@ -22,6 +22,31 @@ menuBar.addEventListener('click', function () {
 	sidebar.classList.toggle('hide');
 })
 
+const xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday", "Sunday"];
+const yValues = [55, 49, 44, 24, 15];
+const barColors = ["red", "green","blue","orange","brown"];
+
+new Chart("myChart", {
+type: "bar",
+data: {
+	labels: xValues,
+	datasets: [{
+	backgroundColor: barColors,
+	data: yValues
+	}]
+},
+options: {
+	legend: {display: false},
+	title: {
+		display: true,
+		text: "User Statistics",
+		fontSize: 36,
+		fontFamily: "poppins, sans-serif"
+		
+	}
+}
+});
+
 
 
 

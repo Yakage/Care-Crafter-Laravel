@@ -23,20 +23,40 @@ class AdminController extends Controller
     }
 
     public function adminHome(){
-        //counts users in the database
-            $userCount = User::count();
-        // Count users by gender
-            $userCountsByGender = User::selectRaw('gender, count(*) as user_count')
-            ->groupBy('gender')
-            ->get()
-            ->pluck('user_count', 'gender');
+        //counts users and admin in the database
+        $userCount = User::where('role', 'user')->count();
         // active user count
-            $activeUsersCount = User::where('status', 'online')->count();
+        $activeUsersCount = User::where('status', 'online')
+                                ->where('role', 'user')
+                                ->count();
+        // offline user count
+        $unactiveUsersCount = User::where('status', 'offline')
+                                ->where('role', 'user')
+                                ->count();
+        
+
+        $adminCount = User::where('role', 'admin')->count();
+
+        // Count users by gender
+        $userCountsByGender = User::selectRaw('gender, count(*) as user_count')
+                                    ->groupBy('gender')
+                                    ->get()
+                                    ->pluck('user_count', 'gender');
+        
+        $activeAdminsCount = User::where('status', 'online')->count();
+        
+        
+
         //returns view
-            return view('admin.home', [
-                'userCount' => $userCount,
-                'userCountsByGender' => $userCountsByGender,
-                'activeUsersCount' => $activeUsersCount]);
+        return view('admin.home', [
+            'userCount' => $userCount,
+            'activeUsersCount' => $activeUsersCount,
+            'unactiveUsersCount' => $unactiveUsersCount,
+            'adminCount' => $adminCount,
+            'userCountsByGender' => $userCountsByGender,
+            
+        
+        ]);
             
     }
     
