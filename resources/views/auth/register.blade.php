@@ -23,40 +23,54 @@
         @if(session()->has('success'))
             <div class="alert alert-success">{{session('success')}}</div>
         @endif
-        </div>
+    </div>
     
-    <div class="center">
-        <h1>Register</h1>
-        <form action="{{route('register.post')}}" method="POST">
-            @csrf
+    <div class="container">
+        <div class="title">Registration Form</div>
+        <div class="content">
+            <form action="{{route('register.post')}}" method="POST">
+                @csrf
 
-            <div class="txt_field">
-                <input type="text" class="form-control form-control-sm" name="name" required placeholder="Enter your name">
-            </div>
-            <div class="txt_field">
-                <input type="email" class="form-control form-control-sm" name="email" required placeholder="Enter your email">
-            </div>
-            <div class="txt_field">
-                <input type="number" class="form-control form-control-sm" name="age" required placeholder="Enter your age">
-            </div>
-            <div class="txt_field">
-                <input type="text" class="form-control form-control-sm" name="height" required placeholder='Enter your height in centimeter'>
-            </div>
-            <div class="txt_field">
-                <input type="text" class="form-control form-control-sm" name="weight" required placeholder="Enter your weight in kilogram">
-            </div>
-            <div class="txt_field">
-                <input type="text" class="form-control form-control-sm" name="gender" placeholder="Enter your Gender [male or female]" required>
-            </div>
-            <div class="txt_field">
-                <input type="password" class="form-control" name="password" required placeholder="Enter your password [minimum 8 characters]">
-            </div>
-            <div class="txt_field">
-                <input type="password" class="form-control form-control-sm" required name="confirm_password" placeholder="Enter your password to confirm">
-            </div>
-            <input type="submit" value="Register" />
-            
-        </form>
+                <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Name</span>
+                    <input type="text" class="form-control form-control-sm" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" class="form-control form-control-sm" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Birthday</span>
+                    <input type="date" class="form-control form-control-sm" name="birthday" placeholder="Enter your birthday" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Gender</span>
+                    <input type="text" class="form-control form-control-sm" name="gender" placeholder="Enter your Gender [male or female]" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Height</span>
+                    <input type="text" class="form-control form-control-sm" name="height" placeholder='Enter your height in centimeter' required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Weight</span>
+                    <input type="text" class="form-control form-control-sm" name="weight" placeholder="Enter your weight in kilogram" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" class="form-control" name="password" placeholder="Enter your password [minimum 8 characters]" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Confirm Password</span>
+                    <input type="password" class="form-control form-control-sm" required name="confirm_password" placeholder="Enter your password to confirm">
+                </div>
+                </div>
+                
+                <div class="button">
+                <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
         <div class="signup_link">Already have a account?  <a href="{{ route('login')}}">Login</a></div>
     </div>
 

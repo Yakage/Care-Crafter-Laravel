@@ -56,28 +56,29 @@ class AuthenticationController extends Controller{
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'age' => 'required|integer',
+            'birthday' => 'required|date',
+            'gender' => 'required|string',
             'height' => 'required|numeric', // Validate as numeric (including decimals)
             'weight' => 'required|numeric', // Validate as numeric (including decimals)
-            'gender' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
             'confirm_password' => 'required|string|same:password',
         ], [
             'name' => 'Please enter your name',
-            'age' => 'Please enter your age',
+            'email' => 'Please enter a valid email',
+            'birthday' => 'Please enter your birthday',
+            'gender' => 'Please enter your gender [male or female Only]',
             'height' => 'Please enter your heigh in kilograms',
             'weight' => 'Please enter your weight in kilograms',
-            'gender' => 'Please enter your gender [male or female Only]',
             'password.min' => 'The password must be at least 8 characters.',
             'confirm_password.same' => 'The password and password confirmation does not match.',
         ]);
 
         $data['name'] = $request->name;
         $data['email'] = $request->email;
-        $data['age'] = $request->age;
+        $data['birthday'] = $request->birthday;
+        $data['gender'] = $request->gender;
         $data['height'] = $request->height;
         $data['weight'] = $request->weight;
-        $data['gender'] = $request->gender;
         $data['password'] = Hash::make($request->password);
         $data['confirm_password'] = $request->confirm_password;
         $data['role'] = 'user';

@@ -17,26 +17,31 @@
         
         @endif
     </div>
-    <div class="center">
-      <h1>Login</h1>
-      <form action="{{route('login')}}" method="POST">
-        @csrf
+    <div class="container">
+        <div class="title">Login</div>
+        <div class="content">
+            <form action="{{route('login')}}" method="POST">
+                @csrf
 
-        <div class="txt_field">
-            <input type="email" class="form-control" name="email" required>
-            <span></span>
-            <label>Email</label>
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input type="email" class="form-control form-control-sm" name="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="input-box">
+                        <span class="details">Password</span>
+                        <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="button">
+                    <input type="submit" value="Login">
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="txt_field">
-            <input type="password" class="form-control" name="password" required>
-            <span></span>
-            <label>Password</label>
-        </div>
-        <input type="submit" value="Login" />
-        
-      </form>
-      <div class="pass">Forgot Password?</div>
-      <div class="signup_link">Create a account?  <a href="{{ route('register')}}">Register</a></div>
+        <div class="pass"><a href="">Forgot Password?</a></div>
+        <div class="signup_link">Create a account?  <a href="{{ route('register')}}">Register</a></div>
     </div>
 </body>
 </html>
