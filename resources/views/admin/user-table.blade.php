@@ -88,10 +88,10 @@
                                             <td>ID</td>
                                             <td>Name</td>
                                             <td>Email</td>
-                                            <td>Age</td>
+                                            <td>Birthday</td>
+                                            <td>Gender</td>
                                             <td>Height</td>
                                             <td>Weight</td>
-                                            <td>Gender</td>
                                             <td>Role</td>
                                             <td>Status</td>
                                         </tr>
@@ -102,10 +102,10 @@
                                             <td>{{$items->id}}</td>
                                             <td>{{$items->name}}</td>
                                             <td>{{$items->email}}</td>
-                                            <td>{{$items->age}}</td>
+                                            <td>{{$items->birthday}}</td>
+                                            <td>{{$items->gender}}</td>
                                             <td>{{$items->height}}</td>
                                             <td>{{$items->weight}}</td>
-                                            <td>{{$items->gender}}</td>
                                             <td>{{$items->role}}</td>
                                             <td>{{$items->status}}</td>
                                             <td>

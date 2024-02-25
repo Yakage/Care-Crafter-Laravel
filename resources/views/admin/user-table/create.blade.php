@@ -39,9 +39,15 @@
                             </div>
 
                             <div class="mb-3">
-                                <label>Age</label>
-                                <input type="number" name="age" value="{{old('age')}}">
-                                @error('age') <span class="text-danger">{{ $message }}</span> @enderror
+                                <label>Birthday</label>
+                                <input type="date" name="birthday" value="{{old('birthday')}}">
+                                @error('birthday') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Gender</label>
+                                <input type="text" name="gender" value="{{old('gender')}}">
+                                @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="mb-3">
@@ -55,21 +61,19 @@
                                 <input type="text" name="weight" value="{{old('weight')}}">
                                 @error('weight') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
-                            <div class="mb-3">
-                                <label>Gender</label>
-                                <input type="text" name="gender" value="{{old('gender')}}">
-                                @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
+
                             <div class="mb-3">
                                 <label>Password</label>
                                 <input type="password" name="password" value="{{old('password')}}">
                                 @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
+
                             <div class="mb-3">
                                 <label>Confirm Password</label>
                                 <input type="password" name="confirm_password" value="{{old('confirm_password')}}">
                                 @error('confirm_password') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
+                            
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>

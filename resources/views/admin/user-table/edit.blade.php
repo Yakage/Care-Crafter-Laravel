@@ -40,9 +40,15 @@
                             </div>
 
                             <div class="mb-3">
-                                <label>Age</label>
-                                <input type="number" name="age" value="{{ $users->age }}">
-                                @error('age') <span class="text-danger">{{ $message }}</span> @enderror
+                                <label>Birthday</label>
+                                <input type="date" name="birthday" value="{{ $users->birthday }}">
+                                @error('birthday') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label>Gender</label>
+                                <input type="text" name="gender" value="{{ $users->gender }}">
+                                @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="mb-3">
@@ -57,11 +63,6 @@
                                 @error('weight') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
 
-                            <div class="mb-3">
-                                <label>Gender</label>
-                                <input type="text" name="gender" value="{{ $users->gender }}">
-                                @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
