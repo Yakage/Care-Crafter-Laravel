@@ -45,7 +45,7 @@ class AdminController extends Controller
         return view('admin.user-table', compact('users'));
     }
 
-    public function create(){
+    public function createUsers(){
         return view('admin.user-table.create');
     }
 
@@ -81,12 +81,10 @@ class AdminController extends Controller
         $data['role'] = 'user';
         $data['status'] = 'online';
 
-        $user = User::create($data);
-        if ($user) {
-            return redirect()->route('admin')->with("success", "User successfully created");
-        } else {
-            return redirect()->back()->with("error", "Failed to register user, please try again.");
-        }
+        User::create($data);
+        return redirect()->route('admin')->with("success", "User successfully created");
+    
+         
     }
 
     public function editUsers(int $id){
