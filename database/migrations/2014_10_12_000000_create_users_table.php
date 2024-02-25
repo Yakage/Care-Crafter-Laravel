@@ -14,10 +14,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->integer('age');
+            $table->date('birthday');
+            $table->enum('gender', ['male', 'female']); 
             $table->decimal('height', 10, 2);
             $table->decimal('weight', 10, 2);
-            $table->enum('gender', ['male', 'female']); 
             $table->string('password');
             $table->enum('role', ['user', 'admin']); 
             $table->enum('status', ['active', 'not active'])->nullable(); 

@@ -41,11 +41,11 @@ class AuthenticationController extends Controller{
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
-            'age' => 'required|numeric',
+            'birthday' => 'required|date',
+            'gender' => 'required|string',
             'height' => 'required|numeric', // Allow decimal values
             'weight' => 'required|numeric', // Allow decimal values
-            'gender' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
             'confirm_password' => 'required|string|same:password',
         ]);
 
@@ -57,20 +57,20 @@ class AuthenticationController extends Controller{
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'age' => $request->age,
+            'birthday' => $request->birthday,
+            'gender' => $request->gender,
             'height' => $height,
             'weight' => $weight,
-            'gender' => $request->gender,
             'password' => Hash::make($request->password),
             'role' => 'user',
             'status' => 'active',
         ], [
             'name' => 'Please enter your name',
             'email' => 'Please enter your email',
-            'age' => 'Please enter your age',
+            'birthday' => 'Please enter your birthday',
+            'gender' => 'Please enter your gender [male or female Only]',
             'height' => 'Please enter your heigh in millimeters',
             'weight' => 'Please enter your weight in kilograms',
-            'gender' => 'Please enter your gender [male or female Only]',
             'password.min' => 'The password must be at least 8 characters.',
             'confirm_password.same' => 'The password and password confirmation does not match.',
         ]);
@@ -89,18 +89,19 @@ class AuthenticationController extends Controller{
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,',
-            'age' => 'required|numeric',
-            'height' => 'required|numeric',
-            'weight' => 'required|numeric',
+            'birthday' => 'required|date',
             'gender' => 'required|string|in:male,female',
-        ], [
+
+            'height' => 'required|numeric',
+            'weight' => 'required|numeric',       
+         ], [
             'name.required' => 'Please enter your name',
             'email.required' => 'Please enter your email',
-            'age.required' => 'Please enter your age',
-            'height.required' => 'Please enter your height',
-            'weight.required' => 'Please enter your weight',
+            'birthday.required' => 'Please enter your birthday',
             'gender.required' => 'Please enter your gender',
             'gender.in' => 'Please enter a valid gender (male or female)',
+            'height.required' => 'Please enter your height',
+            'weight.required' => 'Please enter your weight',
         ]);
 
 

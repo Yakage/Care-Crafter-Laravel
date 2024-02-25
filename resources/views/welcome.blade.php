@@ -60,7 +60,7 @@
                 </nav>
 
                 <div class="element-one">
-                    <img src = "element-img-1.png" alt = "">
+                    <img src = "img/element-img-1.png" alt = "">
                 </div>
 
                 <div class="banner">
@@ -75,7 +75,7 @@
                             </div>
 
                             <div class = "banner-right d-flex align-items-center justify-content-end">
-                                <img src = "banner-image.png" alt = "">
+                                <img src = "img/banner-image.png" alt = "">
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
             <main>
                 <section class = "sc-services" id="services">
                     <div class = "services-shape">
-                        <img src = "curve-shape-1.png" alt = "">
+                        <img src = "img/curve-shape-1.png" alt = "">
                     </div>
                     <div class="container">
                         <div class = "services-content">
@@ -101,7 +101,7 @@
                             <div class = "services-list">
                                 <div class = "services-item">
                                     <div class = "item-icon">
-                                        <img src = "service-icon-1.png" alt = "service icon">
+                                        <img src = "img/service-icon-1.png" alt = "service icon">
                                     </div>
                                     <h5 class = "item-title fw-7">Water Intake</h5>
                                     <p class = "text">Total Water Drank for the past few weeks.</p>
@@ -109,7 +109,7 @@
 
                                 <div class = "services-item">
                                     <div class = "item-icon">
-                                        <img src = "service-icon-2.png" alt = "service icon">
+                                        <img src = "img/service-icon-2.png" alt = "service icon">
                                     </div>
                                     <h5 class = "item-title fw-7">Sleep tracker</h5>
                                     <p class = "text">Track your sleeping time.</p>
@@ -117,7 +117,7 @@
 
                                 <div class = "services-item">
                                     <div class = "item-icon">
-                                        <img src = "service-icon-3.png" alt = "service icon">
+                                        <img src = "img/service-icon-3.png" alt = "service icon">
                                     </div>
                                     <h5 class = "item-title fw-7">Step Tracker</h5>
                                     <p class = "text">Statistics of your total steps.</p>
@@ -125,7 +125,7 @@
 
                                 <div class = "services-item">
                                     <div class = "item-icon">
-                                        <img src = "service-icon-4.png" alt = "service icon">
+                                        <img src = "img/service-icon-4.png" alt = "service icon">
                                     </div>
                                     <h5 class = "item-title fw-7">BMI Calculator</h5>
                                     <p class = "text">Track your BMI.</p>
@@ -133,7 +133,7 @@
 
                                 <div class = "services-item">
                                     <div class = "item-icon">
-                                        <img src = "service-icon-6.png" alt = "service icon">
+                                        <img src = "img/service-icon-6.png" alt = "service icon">
                                     </div>
                                     <h5 class = "item-title fw-7">Tracking</h5>
                                     <p class = "text">Track and save your mental history and health data</p>
@@ -151,7 +151,7 @@
                     <div class="container">
                         <div class = "grid-content d-grid align-items-center">
                             <div class = "grid-img">
-                                <img src = "health-care-img.png" alt = "">
+                                <img src = "img/health-care-img.png" alt = "">
                             </div>
                             <div class = "grid-text">
                                 <div class = "content-wrapper text-start">
@@ -172,7 +172,7 @@
                     <div class = "container">
                         <div class = "grid-content d-grid align-items-center">
                             <div class = "grid-img">
-                                <img src = "download-image.png" alt = "">
+                                <img src = "img/download-image.png" alt = "">
                             </div>
                             <div class = "grid-text">
                                 <div class = "content-wrapper text-start">
@@ -183,7 +183,7 @@
                                     <p class = "text title-box-text">Experience the future of health tracking with CareCrafter – your all-in-one companion for daily activity monitoring. Track steps, monitor sleep, manage water intake, and more. Download now for a seamless journey to holistic well-being!</p>
                                     <button type = "button" class = "btn btn-primary-outline">
                                         Download
-                                        <img src = "arrow-down.svg" />
+                                        <img src = "img/arrow-down.svg" />
                                     </button>
                                 </div>
                             </div>
