@@ -33,6 +33,8 @@ Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logou
 
 //For Admin
 Route::get('/admin-home', [AdminController::class, 'adminHome'])->name('admin.home');
+Route::get('/admin.user-feedbacks', [AdminController::class, 'userFeedbacks'])->name('admin.user.feedbacks');
+Route::get('/search', [AdminController::class, 'userSearch'])->name('user.search');
 Route::get('/admin.user-table', [AdminController::class, 'indexUsers'])->name('admin.user.table');
 Route::get('/admin.user-table.create', [AdminController::class, 'createUsers']);
 Route::post('/admin.user-table.create' , [AdminController::class, 'storeUsers']);

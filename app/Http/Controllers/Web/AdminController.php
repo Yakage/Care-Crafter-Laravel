@@ -17,6 +17,10 @@ class AdminController extends Controller
         return view('admin.user-table');
     }
 
+    public function userFeedbacks(){
+        return view('admin.user-feedbacks');
+    }
+
     public function getUser(Request $request){
         $users = User::all();
         return response()->json(['users' => $users], 200);
@@ -38,10 +42,8 @@ class AdminController extends Controller
         $adminCount = User::where('role', 'admin')->count();
 
         // Count users by gender
-        $userCountsByGender = User::selectRaw('gender, count(*) as user_count')
-                                    ->groupBy('gender')
-                                    ->get()
-                                    ->pluck('user_count', 'gender');
+        $userCountsByMaleGender = User::where('gender', 'male')->count();
+        $userCountsByFemaleGender = User::where('gender', 'female')->count();
         
         $activeAdminsCount = User::where('status', 'online')->count();
         
@@ -53,13 +55,20 @@ class AdminController extends Controller
             'activeUsersCount' => $activeUsersCount,
             'unactiveUsersCount' => $unactiveUsersCount,
             'adminCount' => $adminCount,
-            'userCountsByGender' => $userCountsByGender,
+            'userCountsByMaleGender' => $userCountsByMaleGender,
+            'userCountsByFemaleGender' => $userCountsByFemaleGender,
             
-        
         ]);
             
     }
     
+    public function userSearch(Request $request)
+    {
+        $searchTerm = $request->input('searchTerm');
+        $users = User::where('name', 'like', '%'.$searchTerm.'%')->get();
+        return view('admin.user-table', compact('users'));
+    }
+
     public function indexUsers(){
         $users = User::get();
         return view('admin.user-table', compact('users'));

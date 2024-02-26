@@ -28,9 +28,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('admin.user.feedbacks')}}">
                         <i class='bx bxs-group' ></i>
-                        <span class="text">Team</span>
+                        <span class="text">User Feedbacks</span>
                     </a>
                 </li>
             </ul>
@@ -59,15 +59,12 @@
         <section>
             <nav>
                 <i class='bx bx-menu' ></i>
-                <form action="#">
+                <form action="{{ route('user.search') }}" method="GET">
                     <div class="form-input">
-                        <input type="search" placeholder="Search...">
+                        <input type="search" name="searchTerm" placeholder="Search...">
                         <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
                     </div>
                 </form>
-                <input type="checkbox" id="switch-mode" hidden>
-                <label for="switch-mode" class="switch-mode"></label>
-                </a>
             </nav>
         </section>
         <section>
@@ -85,15 +82,15 @@
                                 <table class="table table -bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <td>ID</td>
-                                            <td>Name</td>
-                                            <td>Email</td>
-                                            <td>Birthday</td>
-                                            <td>Gender</td>
-                                            <td>Height</td>
-                                            <td>Weight</td>
-                                            <td>Role</td>
-                                            <td>Status</td>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Birthday</th>
+                                            <th>Gender</th>
+                                            <th>Height</th>
+                                            <th>Weight</th>
+                                            <th>Role</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -29,7 +29,7 @@
                         <a class="nav-link" href="{{ route('user.feedback')}}">Feedbacks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('admin.user-table.{id}.edit') }}">Edit Account</a>
+                        <a class="nav-link" href="{{ url('admin.user-table.{id}.edit') }}">Account</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('welcome') }}">Logout</a>
