@@ -41,12 +41,11 @@ Route::post('/admin.user-table.create' , [AdminController::class, 'storeUsers'])
 Route::get('/admin.user-table.{id}.edit', [AdminController::class, 'editUsers']);
 Route::put('/admin.user-table/{id}/edit', [AdminController::class, 'updateUsers']);
 Route::get('/admin.user-table.{id}.delete', [AdminController::class, 'destroyUsers']);
+
 //For Users
 Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
 //user dash
-Route::get('/user/user-ui/user', [AuthenticationController::class, 'userDashboard'])->name('user.user-ui.user');
-Route::get('/user/user-ui/user', 'AuthenticationController@index')->name('user.user-ui.user')->middleware('auth');
-Route::get('/user/user-ui/user', [AuthenticationController::class, 'userDashboard'])->name('user.user-ui.user');
+Route::get('/user/user-ui/user', [UserController::class, 'userAccount'])->name('user.user-ui.user');
 Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('user.feedback');
 
 

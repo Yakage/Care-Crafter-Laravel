@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
 class AuthenticationController extends Controller{
     public function showLoginForm(){
         return view('auth.login');
@@ -34,16 +35,18 @@ class AuthenticationController extends Controller{
     }
 
     public function logout(Request $request){
-        //Auth::user();
+        $user = Auth::user();
 
-        // Set user status to not active
-    
-        // $user->status = 'not active';
-        // $user->update();
-        
-       // $request->user()->tokens()->delete();
-        Auth::logout();
-        return redirect('/')->with("success", "Successfully Logout");
+    // Check if a user is authentic
+        if (Auth::check()) {
+            Auth::logout();
+            return redirect('/')->with("success", "Successfully Logout");
+        } else {
+            // User is not authenticated
+            return redirect('/login');
+        }
+
+       
     }
 
     function register(){
