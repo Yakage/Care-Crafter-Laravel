@@ -62,6 +62,12 @@ body{
   background: #458ff6;
 }
 
+.back{
+  margin-left: 65%;
+  text-decoration: none;
+  color: #458ff6;
+}
+
 .content form .user-details{
   display: flex;
   flex-wrap: wrap;

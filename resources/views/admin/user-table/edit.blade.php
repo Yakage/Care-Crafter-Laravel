@@ -4,72 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Students</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <title>Edit Users Data</title>
+    <link rel="stylesheet" href="css/register.css">
 </head>
-<body class="bg-primary">
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
+<body>
+    <div class="container">
+        @if (session('status'))
+            <div class="alert alert">{{session('status')}}</div>
+        @endif
+        <div class="title">
+            <h4>Update User Data 
+                <a href="{{ url('admin.user-table')}}" class="back">Back</a>
+            </h4>
+        </div>
+        <div class="content">
+            <form action="{{ url('admin.user-table/'.$users->id.'/edit') }}" method="POST">
+                @csrf
+                @method('PUT')
 
-                @if (session('status'))
-                    <div class="alert alert">{{session('status')}}</div>
-                @endif
-
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Update User Data 
-                            <a href="{{ url('admin.user-table')}}" class="btn btn-primary float-end">Back</a>
-                        </h4>
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Name</span>
+                        <input type="text" class="form-control form-control-sm" name="name" value="{{ $users->name }}" required>
                     </div>
-                    <div class="card-body">
-                        <form action="{{ url('admin.user-table/'.$users->id.'/edit') }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input type="email" class="form-control form-control-sm" name="email" value="{{ $users->email }}" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Birthday</span>
+                        <input type="date" class="form-control form-control-sm" name="birthday" value="{{ $users->birthday }}" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Gender</span>
+                        <input type="text" id="gender" class="form-control form-control-sm" name="gender" value="{{ $users->gender }}" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Height</span>
+                        <input type="text" class="form-control form-control-sm" name="height" value="{{ $users->height }}"required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Weight</span>
+                        <input type="text" class="form-control form-control-sm" name="weight"value="{{ $users->weight }}" required>
+                    </div>
 
-                            <div class="mb-3">
-                                <label>Name</label>
-                                <input type="text" name="name" value="{{ $users->name }}">
-                                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Email</label>
-                                <input type="email" name="email" value="{{ $users->email }}">
-                                @error('email') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Birthday</label>
-                                <input type="date" name="birthday" value="{{ $users->birthday }}">
-                                @error('birthday') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label>Gender</label>
-                                <input type="text" name="gender" value="{{ $users->gender }}">
-                                @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Height</label>
-                                <input type="text" name="height" value="{{ $users->height }}">
-                                @error('height') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Weight</label>
-                                <input type="text" name="weight" value="{{ $users->weight }}">
-                                @error('weight') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
+                    <div class="button">
+                        <input type="submit" value="Update">
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>

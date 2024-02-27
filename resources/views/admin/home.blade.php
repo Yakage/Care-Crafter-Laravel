@@ -47,7 +47,7 @@
 				<li>
 					<form id="logoutForm" action="{{ route('logout') }}" method="POST">
 						@csrf
-						<button type="submit">
+						<button type="submit" class="logout">
 							<a href="">
 								<i class='bx bxs-cog'></i>	
 								<span class="text">Logout</span>
@@ -65,17 +65,19 @@
 
 	<!-- CONTENT -->
 	<section id="content">
-		
-
-		<!-- MAIN -->
-		<main>
-			<section>
-				<div class="head-title">
+		<section>
+            <nav>
+                <div class="head-title">
 					<div class="left">
 						<h1>Dashboard</h1>
 					</div>
 				</div>
-	
+            </nav>
+        </section>
+
+		<!-- MAIN -->
+		<main>
+			<section>
 				<ul class="box-info">
 					<li>
 						<i class='bx bxs-calendar-check' ></i>
@@ -102,9 +104,9 @@
 						<i class='bx bxs-calendar-check' ></i>
 						<span class="text">
 							<h3>Total Users by Gender</h3>
-							<h2>Male</h2>
+							<h3>Male</h3>
 							<p>{{ $userCountsByMaleGender}}</p>
-							<h2>Female</h2>
+							<h3>Female</h3>
 							<p>{{ $userCountsByFemaleGender}}</p>
 						</span>
 					</li>

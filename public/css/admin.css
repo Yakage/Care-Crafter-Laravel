@@ -19,7 +19,7 @@ li {
 	--lato: 'Lato', sans-serif;
 
 	--light: #F9F9F9;
-	--blue: #3C91E6;
+	--blue: #458ff6;
 	--light-blue: #CFE8FF;
 	--grey: #eee;
 	--dark-grey: #AAAAAA;
@@ -73,13 +73,12 @@ body {
 #sidebar .brand {
 	font-size: 24px;
 	font-weight: 700;
-	height: 56px;
+	font-family: var(--poppins);
 	display: flex;
 	align-items: center;
 	color: var(--blue);
 	position: sticky;
-	top: 0;
-	left: 0;
+	margin-top: 10%;
 	background: var(--light);
 	z-index: 500;
 	padding-bottom: 20px;
@@ -154,6 +153,9 @@ body {
 	min-width: calc(60px  - ((4px + 6px) * 2));
 	display: flex;
 	justify-content: center;
+}
+.logout{
+	text-decoration: none;
 }
 /* SIDEBAR */
 
@@ -306,47 +308,20 @@ body {
 	max-height: calc(100vh - 56px);
 	overflow-y: auto;
 }
-#content main .head-title {
+.head-title {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	grid-gap: 16px;
 	flex-wrap: wrap;
 }
-#content main .head-title .left h1 {
-	font-size: 36px;
+.head-title .left h1 {
+	font-size: 26px;
 	font-weight: 600;
-	margin-bottom: 10px;
-	color: var(--dark);
-}
-#content main .head-title .left .breadcrumb {
-	display: flex;
-	align-items: center;
-	grid-gap: 16px;
-}
-#content main .head-title .left .breadcrumb li {
-	color: var(--dark);
-}
-#content main .head-title .left .breadcrumb li a {
-	color: var(--dark-grey);
-	pointer-events: none;
-}
-#content main .head-title .left .breadcrumb li a.active {
 	color: var(--blue);
-	pointer-events: unset;
 }
-#content main .head-title .btn-download {
-	height: 36px;
-	padding: 0 16px;
-	border-radius: 36px;
-	background: var(--blue);
-	color: var(--light);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	grid-gap: 10px;
-	font-weight: 500;
-}
+
+
 
 
 
