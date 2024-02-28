@@ -45,7 +45,10 @@ Route::get('/admin.user-table.{id}.delete', [AdminController::class, 'destroyUse
 //For Users
 Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
 //user dash
-Route::get('/user/user-ui/user', [UserController::class, 'userAccount'])->name('user.user-ui.user');
+Route::get('/user/user-ui/user', [UserController::class, 'userDashboard'])->name('user.user-ui.user');
+Route::get('/user/user-ui/user', 'UserController@index')->name('user.user-ui.user')->middleware('auth');
+Route::get('/user/user-ui/user', [UserController::class, 'userDashboard'])->name('user.user-ui.user');
+Route::post('/user/user-ui/user', 'UserController@update')->middleware('auth');
 Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('user.feedback');
 
 

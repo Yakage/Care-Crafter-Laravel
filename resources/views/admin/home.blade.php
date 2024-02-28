@@ -47,12 +47,7 @@
 				<li>
 					<form id="logoutForm" action="{{ route('logout') }}" method="POST">
 						@csrf
-						<button type="submit" class="logout">
-							<a href="">
-								<i class='bx bxs-cog'></i>	
-								<span class="text">Logout</span>
-							</a>
-						</button>
+						<button type="submit" class="btn btn-link">Logout</button>
 					</form>
 				</li>
 			</ul>
