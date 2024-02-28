@@ -45,5 +45,6 @@
         <div class="signup_link">Create a account?  <a href="{{ route('register')}}">Register</a></div>
     </div>
     <script src="js/loginandregister.js"></script>
+
 </body>
 </html>

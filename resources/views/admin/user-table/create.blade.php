@@ -4,83 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Students</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <title>Add Users</title>
+    <link rel="stylesheet" href="css/register.css">
+    
 </head>
-<body class="bg-primary">
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
+<body >
+    <div class="container">
+        @if (session('status'))
+            <div class="alert alert">{{session('status')}}</div>
+        @endif
 
-                @if (session('status'))
-                    <div class="alert alert">{{session('status')}}</div>
-                @endif
+        <div class="title">
+            <h4>Create User Data
+                <a href="{{ url('admin.user-table')}}" class="back">Back</a>
+            </h4>
+        </div>
+        <div class="content">
+            <form action="{{ url('admin.user-table.create')}}" method="POST">
+                @csrf
 
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Create User Data
-                            <a href="{{ url('admin.user-table')}}" class="btn btn-primary float-end">Back</a>
-                        </h4>
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Name</span>
+                        <input type="text" class="form-control form-control-sm" name="name" placeholder="Enter your name" required>
                     </div>
-                    <div class="card-body">
-                        <form action="{{ url('admin.user-table.create')}}" method="POST">
-                            @csrf
-
-                            <div class="mb-3">
-                                <label>Name</label>
-                                <input type="text" name="name" value="{{old('name')}}">
-                                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Email</label>
-                                <input type="email" name="email" value="{{old('email')}}">
-                                @error('email') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Birthday</label>
-                                <input type="date" name="birthday" value="{{old('birthday')}}">
-                                @error('birthday') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Gender</label>
-                                <input type="text" name="gender" value="{{old('gender')}}">
-                                @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Height</label>
-                                <input type="text" name="height" value="{{old('height')}}">
-                                @error('height') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Weight</label>
-                                <input type="text" name="weight" value="{{old('weight')}}">
-                                @error('weight') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Password</label>
-                                <input type="password" name="password" value="{{old('password')}}">
-                                @error('password') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Confirm Password</label>
-                                <input type="password" name="confirm_password" value="{{old('confirm_password')}}">
-                                @error('confirm_password') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                        </form>
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input type="email" class="form-control form-control-sm" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Birthday</span>
+                        <input type="date" class="form-control form-control-sm" name="birthday" placeholder="Enter your birthday" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Gender</span>
+                        <input type="text" id="gender" class="form-control form-control-sm" name="gender" placeholder="Enter your Gender [male or female]" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Height</span>
+                        <input type="text" class="form-control form-control-sm" name="height" placeholder='Enter your height in centimeter' required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Weight</span>
+                        <input type="text" class="form-control form-control-sm" name="weight" placeholder="Enter your weight in kilogram" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Password</span>
+                        <input type="password" class="form-control" name="password" placeholder="Enter your password [minimum 8 characters]" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Confirm Password</span>
+                        <input type="password" class="form-control form-control-sm" required name="confirm_password" placeholder="Enter your password to confirm">
+                    </div>
+                    </div>
+                    
+                    <div class="button">
+                        <input type="submit" value="Create">
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>
