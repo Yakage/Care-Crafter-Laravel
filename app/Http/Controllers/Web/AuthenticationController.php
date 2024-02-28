@@ -18,17 +18,22 @@ class AuthenticationController extends Controller{
             $user = Auth::user();
 
             // Check if the user is an admin
-            if ($user->role === 'admin') {
-                return redirect()->route('admin.home'); // Redirect to admin dashboard
-            }
+            //if ($user->role === 'admin') {
+                //return redirect()->route('admin.home'); // Redirect to admin dashboard
+            //}
              // Check if not already active and update
         if ($user->status !== 'online') {
             $user->status = 'online';
             $user->save();
         }
-                
-            return redirect()->route('user.home'); // Redirect to user dashboard
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.home'); // Redirect to admin dashboard
+        } else {
+            return view('user.home', compact('user')); // Pass user object to user dashboard view
         }
+    }
+            //return redirect()->route('user.home'); // Redirect to user dashboard
+        
 
         return redirect()->route('login')->with("error", "Invalid Credentials");
     }

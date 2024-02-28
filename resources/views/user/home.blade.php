@@ -8,34 +8,50 @@
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User Interface</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/user.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="css/user.css">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body>
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 sidebar d-flex flex-column justify-content-center align-items-center">
-                    <img src="{{ asset('download.jpg') }}" alt="Profile Picture" class="profile-picture mt-3">
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-2 col-xl-2 px-sm-1 px-0 bg-light">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
                 </a>
-
-                <h4 class="text-center mt-3 ">Juan Enrile</h4>
-
-                <ul class="nav flex-column mt-3 text-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
+                    <h4 class="text-center mt-3 ">Hi, {{ $user->name }}!</h4>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li>
+                        <a href="{{ route('user.user-ui.user')}}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Account</span> </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.feedback')}}">Feedbacks</a>
+                    <li>
+                        <a href="{{ route('user.feedback')}}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Feedback</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('admin.user-table.{id}.edit') }}">Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('welcome') }}">Logout</a>
+                    <li>
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
                     </li>
                 </ul>
+                <hr>
+                <div class="dropdown pb-4">
+                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="d-none d-sm-inline mx-1">{{ $user->name }}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li>
+                            <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-link">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
+        <div class="col py-3">
         <div class="col-md-9 content-container">
             <section id="features" class="section">
                 <div class="container">
@@ -333,10 +349,40 @@
         </div>
     </div>
 </div>
+        </div>
+    </div>
+</div>
+
+
+    <!--<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 sidebar d-flex flex-column justify-content-center align-items-center">
+                    <img src="{{ asset('download.jpg') }}" alt="Profile Picture" class="profile-picture mt-3">
+                </a>
+
+                <h4 class="text-center mt-3 ">Welcome, {{ $user->name }}!</h4>
+
+                <ul class="nav flex-column mt-3 text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.feedback')}}">Feedbacks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('admin.user-table.{id}.edit') }}">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('welcome') }}">Logout</a>
+                    </li>
+                </ul>
+        </div>-->
+       
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 <script src="js/user.js"></script>
 
 </body>

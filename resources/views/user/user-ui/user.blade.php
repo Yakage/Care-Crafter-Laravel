@@ -42,8 +42,8 @@
         </div>
 
         <div class="form-group">
-            <label for="age">Age</label>
-            <input type="number" name="age" id="age" value="{{ $userData['age'] }}" required>
+            <label for="age">Birthday</label>
+            <input type="date" name="birthday" id="birthday" value="{{ $userData['birthday'] }}" required>
         </div>
 
         <div class="form-group">
