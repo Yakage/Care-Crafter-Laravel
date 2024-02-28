@@ -31,8 +31,8 @@ Route::post('/login', [AuthenticationController::class, 'login']);
 
 //Private Routes URLS
 Route::group(['middleware' => ['auth:sanctum']], function(){
-    Route::get('/users', [UserController::class, 'getUser']);
-    Route::put('/updateUser', [AuthenticationController::class, 'updateUser']);
+    Route::get('/users', [UserController::class, 'getUserByToken']);
+    Route::put('/updateUser', [UserController::class, 'updateUser']);
     Route::post('/logout', [AuthenticationController::class, 'logout']);
 
     // Step Tracker CRUD API

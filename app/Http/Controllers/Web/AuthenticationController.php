@@ -36,7 +36,8 @@ class AuthenticationController extends Controller{
 
     public function logout(Request $request){
         $user = Auth::user();
-
+        $data['status'] = 'online';
+        $user->update($data);
     // Check if a user is authentic
         if (Auth::check()) {
             Auth::logout();
