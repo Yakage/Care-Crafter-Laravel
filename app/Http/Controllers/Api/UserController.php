@@ -15,8 +15,7 @@ class UserController extends Controller{
     //     return response()->json(['users' => $users], 200);
     // }
 
-    public function getUserByToken()
-    {
+    public function getUserByToken(){
         $user = Auth::user(); // Retrieve authenticated user based on the token
 
         return response()->json($user); // Return user data as JSON
