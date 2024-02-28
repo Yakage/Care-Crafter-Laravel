@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sleep_tracker', function (Blueprint $table) {
+        Schema::create('sleep_tracker_alarm', function (Blueprint $table) {
             $table->id();
-            
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->string('title')->nullable();
+            $table->text('message')->nullable();
+            $table->string('time')->nullable();
+            $table->string('date')->nullable();
             $table->timestamps();
         });
     }
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sleep_tracker');
+        Schema::dropIfExists('step_tracker_alarm');
     }
 };
