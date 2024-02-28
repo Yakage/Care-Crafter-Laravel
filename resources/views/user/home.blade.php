@@ -8,6 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User Interface</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!--<link rel="stylesheet" href="css/user.css">-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -24,17 +25,11 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li>
                         <a href="{{ route('user.user-ui.user')}}" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Account</span> </a>
+                            <i class="fs-4 bi-universal-access"></i> <span class="ms-1 d-none d-sm-inline">Account</span> </a>
                     </li>
                     <li>
                         <a href="{{ route('user.feedback')}}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Feedback</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('welcome') }}">Logout</a>
                     </li>
                 </ul>
                 <hr>
@@ -55,16 +50,55 @@
         </div>
         <div class="col py-3">
         <div class="col-md-9 content-container">
-            <section id="features" class="section">
                 <div class="container">
                     <h2 class="text-center" style="color: #458ff6;">Features</h2>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-gap-2">
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card">
+                            <img src="{{ asset('img\sleep tracking.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                            <span>Sleep Tracking</span>
+                                <div class="card-body">
+                                    <p class="card-text">Step Tracking is a feature we have to track your steps!</p>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card">
+                            <img src="{{ asset('img\step tracking.png') }}" class="img-fluid card-img-top" alt="Step Tracking">
+                            <span>Step Tracker</span>
+                                <div class="card-body">
+                                    <p class="card-text">Step Tracking is a feature we have to track your steps!</p>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card">
+                            <img src="{{ asset('img\water intake.jpg') }}" class="img-fluid card-img-top" alt="water intake">
+                            <span>Water intake</span>
+                                <div class="card-body">
+                                    <p class="card-text">Step Tracking is a feature we have to track your steps!</p>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <span>Step Tracker</span>
+                                <div class="card-body">
+                                    <p class="card-text">Step Tracking is a feature we have to track your steps!</p>
+                                </div>
+                        </div>
+                        </div>
+
+
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                             <div class="feature-box" data-section="step-tracker" style="background-color: #FFD700;">
                                 <img src="{{asset('whiterun.png')}}" alt="step-tracker">
                                 <p>Step Tracker</p>
                             </div>
                         </div>
+                
                         <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                             <div class="feature-box" data-section="sleep-tracker" style="background-color: #32CD32;">
                                 <img src="{{asset('whitesleep.png')}}" alt="step-tracker">
@@ -82,12 +116,11 @@
                                 <img src="{{asset('whiteeat.png')}}" alt="step-tracker">
                                 <p>Health Journal</p>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
-            </section>
 
-            <section id="step-tracker" class="section">
+            <!-- <section id="step-tracker" class="section">
                 <div class="container">
                     <h2 class="text-center" style="color: #458ff6;">Step Tracker</h2>
                     <div class="row">
@@ -179,7 +212,7 @@
                                     <h5 class="card-title">Wake Up Time</h5>
                                     <h5 class="card-title">Sleep Time</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                    <p class="card-text">  </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -192,7 +225,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Time Slept</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Total Sleep Time from your database --> </p>
+                                    <p class="card-text">  </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -205,7 +238,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Total Sleep</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Average Sleep Time from your database --> </p>
+                                    <p class="card-text">  </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -218,7 +251,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Sleep Score</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                    <p class="card-text">  </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -240,7 +273,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Daily Goal</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                    <p class="card-text">  </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -253,7 +286,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Total Intake</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Total Sleep Time from your database --> </p>
+                                    <p class="card-text">  </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -266,7 +299,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Current Intake</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Average Sleep Time from your database --> </p>
+                                    <p class="card-text">  </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -279,7 +312,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Reminder</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                    <p class="card-text">  </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -292,7 +325,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Reminder Interval</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                    <p class="card-text">  </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -305,7 +338,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Today Log</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                    <p class="card-text"> </p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -320,7 +353,7 @@
                                     <h5 class="card-title">Average Completion</h5>
                                     <h5 class="card-title">Drink Frequency</h5>
                                     <p>Content</p>
-                                    <p class="card-text"> <!-- Display Quality of Sleep from your database --> </p>
+                                    <p class="card-text"></p>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary edit-btn">Edit</button>
@@ -350,7 +383,7 @@
             </section>
         </div>
     </div>
-</div>
+</div> -->
         </div>
     </div>
 </div>
