@@ -23,7 +23,7 @@ class SleepTrackerController extends Controller{
         $request->validate([
             'title' => 'required',
             'message' => 'required',
-            'time' => 'required|date_format:H:i',
+            'time' => 'required|string',
             'date' => 'required|string',
         ]);
 
@@ -87,6 +87,8 @@ class SleepTrackerController extends Controller{
     
         return response()->json(['message' => 'Alarm deleted successfully']);
     }
+    
+
     
     public function getScoreLogs(SleepTrackerScore $sleepTrackerScore){
         $user = Auth::user(); // Retrieve authenticated user based on the token

@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\SleepTrackerController;
-use App\Http\Controllers\StepTrackerController;
+use App\Http\Controllers\Web\SleepTrackerController;
 use App\Http\Controllers\WaterIntakeController;
 use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\AuthenticationController;
@@ -55,27 +54,11 @@ Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('use
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
 
 //For Step Tracker
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('step-tracker', [StepTrackerController::class, 'index'])->name('step-tracker.index');
-    Route::get('step-tracker/create', [StepTrackerController::class, 'create'])->name('step-tracker.create');
-    Route::post('step-tracker', [StepTrackerController::class, 'store'])->name('step-tracker.store');
-    Route::get('step-tracker/{stepTracker}', [StepTrackerController::class, 'show'])->name('step-tracker.show');
-    Route::get('step-tracker/{stepTracker}/edit', [StepTrackerController::class, 'edit'])->name('step-tracker.edit');
-    Route::put('step-tracker/{stepTracker}', [StepTrackerController::class, 'update'])->name('step-tracker.update');
-    Route::delete('step-tracker/{stepTracker}', [StepTrackerController::class, 'destroy'])->name('step-tracker.destroy');
-});
+
 
 
 //For Sleep Tracker
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('sleep-tracker', [SleepTrackerController::class, 'index'])->name('sleep-tracker.index');
-    Route::get('sleep-tracker/create', [SleepTrackerController::class, 'create'])->name('sleep-tracker.create');
-    Route::post('sleep-tracker', [SleepTrackerController::class, 'store'])->name('sleep-tracker.store');
-    Route::get('sleep-tracker/{sleepTracker}', [SleepTrackerController::class, 'show'])->name('sleep-tracker.show');
-    Route::get('sleep-tracker/{sleepTracker}/edit', [SleepTrackerController::class, 'edit'])->name('sleep-tracker.edit');
-    Route::put('sleep-tracker/{sleepTracker}', [SleepTrackerController::class, 'update'])->name('sleep-tracker.update');
-    Route::delete('sleep-tracker/{sleepTracker}', [SleepTrackerController::class, 'destroy'])->name('sleep-tracker.destroy');
-});
+Route::get('/getHistoryOfSleepTracker', [SleepTrackerController::class, 'getHistoryOfSleepTracker']);
 
 
 //For Water Intake

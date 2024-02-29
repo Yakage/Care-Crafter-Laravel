@@ -43,9 +43,9 @@
                 <hr>
                 <div class="dropdown pb-4">
                     <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="d-none d-sm-inline mx-1">{{ $user->name }}</span>
+                        <span class="d-none d-sm-inline mx-1 text-primary">{{ $user->name }}</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <ul class="dropdown-menu dropdown-menu-white text-small shadow">
                         <li>
                             <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                             @csrf
@@ -114,7 +114,7 @@
                                         <h2 class="name">Sleep Tracker</h2>
                                         <p class="description">Sleep Tracker</p>
 
-                                        <button class="button">Get history</button>
+                                        <button class="button"><a href="{{url('getHistoryOfSleepTracker')}}" style="color: white">Get History</a></button>
                                     </div>
                                 </div><div class="card swiper-slide">
                                         <div class="image-content">
@@ -169,74 +169,6 @@
                                             <img src="{{ asset('img\bmicalcu.jpg') }}" class="card-img" alt="profile image">
                                         </div>
                                     </div>
-
-                                    <div class="card-content">
-                                        <h2 class="name">Sleep Tracker</h2>
-                                        <p class="description">Sleep Tracker</p>
-
-                                        <button class="button">Get history</button>
-                                    </div>
-                                </div><div class="card swiper-slide">
-                                        <div class="image-content">
-                                            <span class="overlay"></span>
-
-                                            <div class="card-image">
-                                            <img src="{{ asset('img\steptracker.jpg') }}" class="card-img" alt="profile image">
-                                        </div>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <h2 class="name">Step Tracker</h2>
-                                        <p class="description">Step Tracker</p>
-
-                                        <button class="button">Get history</button>
-                                    </div>
-                                </div><div class="card swiper-slide">
-                                        <div class="image-content">
-                                            <span class="overlay"></span>
-
-                                            <div class="card-image">
-                                            <img src="{{ asset('img\waterintake.jpg') }}" class="card-img" alt="profile image">
-                                        </div>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <h2 class="name">Water Intake</h2>
-                                        <p class="description">Water Intake</p>
-
-                                        <button class="button">Get history</button>
-                                    </div>
-                                </div><div class="card swiper-slide">
-                                        <div class="image-content">
-                                            <span class="overlay"></span>
-
-                                            <div class="card-image">
-                                            <img src="{{ asset('img\bmicalcu.jpg') }}" class="card-img" alt="profile image">
-                                        </div>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <h2 class="name">BMI Calculator</h2>
-                                        <p class="description">BMI Calculator</p>
-
-                                        <button class="button">Get History</button>
-                                    </div>
-                                </div><div class="card swiper-slide">
-                                        <div class="image-content">
-                                            <span class="overlay"></span>
-
-                                            <div class="card-image">
-                                            <img src="{{ asset('img\sleeptracker.jpg') }}" class="card-img" alt="profile image">
-                                        </div>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <h2 class="name">Sleep Tracker</h2>
-                                        <p class="description">Sleep Tracker</p>
-
-                                        <button class="button">Get history</button>
-                                    </div>
-                                </div>
                             </div>        
                         </div>
                     </div>
