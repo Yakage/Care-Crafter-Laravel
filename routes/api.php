@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthenticationController;
+use App\Http\Controllers\Api\BMIController;
 use App\Http\Controllers\Api\SleepTrackerController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -47,7 +48,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/createScore', [SleepTrackerController::class, 'createScore']);
 
     //For Water Intake
-    //For Daily Goal
+    //For BMI
+    Route::get('/getBMI', [BMIController::class, 'getBMI']);
+    Route::post('/createBMI', [BMIController::class, 'createBMI']);
  
 });
 
