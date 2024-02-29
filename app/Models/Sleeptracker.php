@@ -16,6 +16,7 @@ class SleepTracker extends Model
         'total_sleep_time',
         'sleep_score'
     ];
+    
 
     public function user()
     {

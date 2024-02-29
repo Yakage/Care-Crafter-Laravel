@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\StepTrackerController as ApiStepTrackerController;
+use App\Http\Controllers\StepTrackerController;
 use App\Http\Controllers\Web\SleepTrackerController;
 use App\Http\Controllers\WaterIntakeController;
 use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\AuthenticationController;
 use App\Http\Controllers\Web\BMIController;
+use App\Http\Controllers\Web\StepTrackerController as WebStepTrackerController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,8 +58,8 @@ Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('use
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
 
 //For Step Tracker
-
-
+Route::get('/getStepHistory', [WebStepTrackerController::class, 'getStepHistory']);
+Route::post('/createStepHistory', [WebStepTrackerController::class, 'createStepHistory']);
 
 //For Sleep Tracker
 Route::get('/getHistoryOfSleepTracker', [SleepTrackerController::class, 'getHistoryOfSleepTracker']);

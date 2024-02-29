@@ -13,7 +13,7 @@ class BMI extends Model
         'user_id',
         'results'
     ];
-
+    
     public function user()
     {
         return $this->belongsTo(User::class);

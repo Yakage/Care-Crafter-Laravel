@@ -63,12 +63,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card">
-                                    <img src="{{ asset('img/sleep tracking.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                                    <img src="{{ asset('img\sleeptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
                                     <div class="card-body text-center">
                                         <h5 class="card-title">Score Logs</h5>
                                         @foreach ($scores as $score)
                                             <div class="card border">
                                                 <div class="mb-2"> <!-- Add margin-bottom to create a small gap -->
+                                                    <p class="m-0">Created at: {{ $score->created_at }}</p>
                                                     <p class="m-0">{{ $score->score_logs }}</p> <!-- Use strong tag for titles -->
                                                 </div>
                                             </div>
@@ -78,16 +79,17 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="card">
-                                    <img src="{{ asset('img/sleep tracking.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                                    <img src="{{ asset('img\sleeptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
                                     <div class="card-body text-center">
                                         <h5 class="card-title">Alarm Logs</h5>
                                         @foreach ($alarms as $alarm)
                                         <div class="card border">
                                             <div class="mb-2"> <!-- Add margin-bottom to create a small gap -->
-                                                <p class="m-0"><strong>Title:</strong> {{ $alarm->title }}</p> <!-- Use strong tag for titles -->
-                                                <p class="m-0"><strong>Message:</strong> {{ $alarm->message }}</p>
-                                                <p class="m-0"><strong>Time:</strong> {{ $alarm->time }}</p>
-                                                <p class="m-0"><strong>Date:</strong> {{ $alarm->date }}</p>
+                                                <p class="m-0">Created at: {{ $alarm->created_at }}</p>
+                                                <p class="m-0">Title: {{ $alarm->title }}</p> <!-- Use strong tag for titles -->
+                                                <p class="m-0">Message: {{ $alarm->message }}</p>
+                                                <p class="m-0">Time: {{ $alarm->time }}</p>
+                                                <p class="m-0">Date: {{ $alarm->date }}</p>
                                             </div>
                                         </div>
                                         @endforeach

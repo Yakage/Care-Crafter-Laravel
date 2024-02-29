@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthenticationController;
 use App\Http\Controllers\Api\BMIController;
 use App\Http\Controllers\Api\SleepTrackerController;
+use App\Http\Controllers\Api\StepTrackerController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,8 +35,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('/updateUser', [UserController::class, 'updateUser']);
     Route::post('/logout', [AuthenticationController::class, 'logout']);
 
-    // Step Tracker CRUD API
     //For Step Tracker
+    Route::get('/getStepHistory', [StepTrackerController::class, 'getStepHistory']);
+    Route::post('/createStepHistory', [StepTrackerController::class, 'createStepHistory']);
 
 
     //For Sleep Tracker

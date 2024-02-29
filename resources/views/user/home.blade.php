@@ -130,7 +130,7 @@
                                         <h2 class="name">Step Tracker</h2>
                                         <p class="description">Step Tracker</p>
 
-                                        <button class="button">Get history</button>
+                                        <button class="button"><a href="{{url('getStepHistory')}}" style="color: white">Get History</a></button>
                                     </div>
                                 </div>
                                 <div class="card swiper-slide">
