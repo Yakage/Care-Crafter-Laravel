@@ -81,9 +81,9 @@
                         </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card">
+                        <div class="card" style="height: 250px; width:auto">
                             <img src="..." class="card-img-top" alt="...">
-                            <span>Step Tracker</span>
+                            <span>Health Journal</span>
                                 <div class="card-body">
                                     <p class="card-text">Step Tracking is a feature we have to track your steps!</p>
                                 </div>
