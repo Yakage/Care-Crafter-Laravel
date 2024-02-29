@@ -1,45 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
+use App\Models\SleepTrackerAlarm;
+use App\Models\SleepTrackerScore;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\SleepTracker;
-use Illuminate\Support\Facades\Auth;
 
-class SleepTrackerController extends Controller{
-    public function index(){
-        $user = Auth::user();
-        $sleepTracker = $user->sleepTracker;
-        return view('sleep-tracker.index', compact('sleepTracker'));
-    }
+class SleepTrackerController extends Controller
+{
+    public function getHistoryOfSleepTracker(SleepTrackerAlarm $sleepTrackerAlarm, SleepTrackerScore $sleepTrackerScore){
+        $user = User::all();
+        $alarms = SleepTrackerAlarm::where('user_id', auth()->id())->get();
+        $scores = SleepTrackerScore::where('user_id', auth()->id())->get();
 
-    public function create(){
-        return view('sleep-tracker.create');
-    }
 
-    public function store(Request $request){
-        $user = Auth::user();
-        $sleepTracker = new SleepTracker($request->all());
-        $user->sleepTracker()->save($sleepTracker);
-        return redirect()->route('sleep-tracker.index');
-    }
-
-    public function show(SleepTracker $sleepTracker){
-        return view('sleep-tracker.show', compact('sleepTracker'));
-    }
-
-    public function edit(SleepTracker $sleepTracker){
-        return view('sleep-tracker.edit', compact('sleepTracker'));
-    }
-
-    public function update(Request $request, SleepTracker $sleepTracker){
-        $sleepTracker->update($request->all());
-        return redirect()->route('sleep-tracker.index');
-    }
-
-    public function destroy(SleepTracker $sleepTracker){
-        $sleepTracker->delete();
-        return redirect()->route('sleep-tracker.index');
+        return view('user.sleep-tracker.history', compact('alarms', 'scores'));
     }
 }
-

@@ -34,14 +34,14 @@ class AuthenticationController extends Controller{
         }
     }
             //return redirect()->route('user.home'); // Redirect to user dashboard
-        
+
 
         return redirect()->route('login')->with("error", "Invalid Credentials");
     }
 
     public function logout(Request $request){
         $user = Auth::user();
-
+        
     // Check if a user is authentic
         if (Auth::check()) {
             Auth::logout();

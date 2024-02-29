@@ -36,14 +36,18 @@ class User extends Authenticatable
         return $this->hasOne(StepTracker::class);
     }
 
-    public function sleepTracker()
+    public function SleepTrackerAlarm()
     {
-        return $this->hasOne(SleepTracker::class);
+        return $this->hasMany(SleepTrackerAlarm::class, 'user_id');
     }
 
+    public function SleepTrackerScore()
+    {
+        return $this->hasMany(SleepTrackerScore::class, 'user_id');
+    }
     public function waterIntake()
     {
-        return $this->hasOne(WaterIntake::class);
+        return $this->hasMany(WaterIntake::class, 'user_id');
     }
 
     /**
