@@ -101,7 +101,7 @@
                         <div class="slide-container swiper">
                             <div class="slide-content">
                             <div class="card-wrapper swiper-wrapper">
-                            <div class="card swiper-slide">
+                                <div class="card swiper-slide">
                                         <div class="image-content">
                                             <span class="overlay"></span>
 
@@ -116,12 +116,13 @@
 
                                         <button class="button"><a href="{{url('getHistoryOfSleepTracker')}}" style="color: white">Get History</a></button>
                                     </div>
-                                </div><div class="card swiper-slide">
+                                </div>
+                                <div class="card swiper-slide">
                                         <div class="image-content">
                                             <span class="overlay"></span>
 
                                             <div class="card-image">
-                                            <img src="{{ asset('img\sleeptracker.jpg') }}" class="card-img" alt="profile image">
+                                            <img src="{{ asset('img\steptracker.jpg')}}" class="card-img" alt="profile image">
                                         </div>
                                     </div>
 
@@ -131,12 +132,13 @@
 
                                         <button class="button">Get history</button>
                                     </div>
-                                </div><div class="card swiper-slide">
+                                </div>
+                                <div class="card swiper-slide">
                                         <div class="image-content">
                                             <span class="overlay"></span>
 
                                             <div class="card-image">
-                                            <img src="{{ asset('img\steptracker.jpg') }}" class="card-img" alt="profile image">
+                                            <img src="{{ asset('img\waterintake.jpg') }}" class="card-img" alt="profile image">
                                         </div>
                                     </div>
 
@@ -151,7 +153,7 @@
                                             <span class="overlay"></span>
 
                                             <div class="card-image">
-                                            <img src="{{ asset('img\waterintake.jpg') }}" class="card-img" alt="profile image">
+                                            <img src="{{ asset('img\bmicalcu.jpg') }}" class="card-img" alt="profile image">
                                         </div>
                                     </div>
 
@@ -166,7 +168,7 @@
                                             <span class="overlay"></span>
 
                                             <div class="card-image">
-                                            <img src="{{ asset('img\bmicalcu.jpg') }}" class="card-img" alt="profile image">
+                                            <img src=" }}" class="card-img" alt="profile image">
                                         </div>
                                     </div>
                             </div>        
