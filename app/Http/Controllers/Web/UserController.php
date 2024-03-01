@@ -72,6 +72,8 @@ class UserController extends Controller
             'height' => 'required|numeric',
             'weight' => 'required|numeric',
             'gender' => 'required|in:male,female,other',
+            'password' => 'required|confirmed|min:8',
+            'password_confirmation' => 'required',
         ]);
 
         $user->update($validatedData);

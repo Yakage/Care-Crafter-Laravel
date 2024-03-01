@@ -126,7 +126,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'age' => 'required|integer',
+            'birthday' => 'required|date',
             'height' => 'required|numeric', // Validate as numeric (including decimals)
             'weight' => 'required|numeric', // Validate as numeric (including decimals)
             'gender' => 'required|string',
@@ -134,7 +134,7 @@ class AdminController extends Controller
         User::findOrFail($id)->update([
             'name' => $request->name,
             'email' => $request->email,
-            'age' => $request->age,
+            'birthday' => $request->birthday,
             'height' => $request->height,
             'weight' => $request->weight,
             'gender' => $request->gender,
