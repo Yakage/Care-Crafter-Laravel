@@ -130,7 +130,7 @@
                                         <h2 class="name">Step Tracker</h2>
                                         <p class="description">Step Tracker</p>
 
-                                        <button class="button">Get history</button>
+                                        <button class="button"><a href="{{url('getStepHistory')}}" style="color: white">Get History</a></button>
                                     </div>
                                 </div>
                                 <div class="card swiper-slide">
@@ -138,7 +138,7 @@
                                             <span class="overlay"></span>
 
                                             <div class="card-image">
-                                            <img src="{{ asset('img\waterintake.jpg') }}" class="card-img" alt="profile image">
+                                            <img src="{{ asset('img\waterintake.jpg') }}" class="card-img">
                                         </div>
                                     </div>
 
@@ -161,14 +161,14 @@
                                         <h2 class="name">BMI Calculator</h2>
                                         <p class="description">BMI Calculator</p>
 
-                                        <button class="button">Get history</button>
+                                        <button class="button"><a href="{{url('getHistoryOfBMI')}}" style="color: white">Get History</a></button>
                                     </div>
                                 </div><div class="card swiper-slide">
                                         <div class="image-content">
                                             <span class="overlay"></span>
 
                                             <div class="card-image">
-                                            <img src=" }}" class="card-img" alt="profile image">
+                                            <img src="" class="card-img" alt="">
                                         </div>
                                     </div>
                             </div>        

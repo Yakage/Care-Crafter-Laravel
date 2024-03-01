@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\StepTrackerController as ApiStepTrackerController;
+use App\Http\Controllers\StepTrackerController;
 use App\Http\Controllers\Web\SleepTrackerController;
 use App\Http\Controllers\WaterIntakeController;
 use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\AuthenticationController;
+use App\Http\Controllers\Web\BMIController;
+use App\Http\Controllers\Web\StepTrackerController as WebStepTrackerController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,23 +57,17 @@ Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('use
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
 
 //For Step Tracker
-
-
+Route::get('/getStepHistory', [WebStepTrackerController::class, 'getStepHistory']);
+Route::post('/createStepHistory', [WebStepTrackerController::class, 'createStepHistory']);
 
 //For Sleep Tracker
 Route::get('/getHistoryOfSleepTracker', [SleepTrackerController::class, 'getHistoryOfSleepTracker']);
 
 
 //For Water Intake
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('water-intake', [WaterIntakeController::class, 'index'])->name('water-intake.index');
-    Route::get('water-intake/create', [WaterIntakeController::class, 'create'])->name('water-intake.create');
-    Route::post('water-intake', [WaterIntakeController::class, 'store'])->name('water-intake.store');
-    Route::get('water-intake/{waterIntake}', [WaterIntakeController::class, 'show'])->name('water-intake.show');
-    Route::get('water-intake/{waterIntake}/edit', [WaterIntakeController::class, 'edit'])->name('water-intake.edit');
-    Route::put('water-intake/{waterIntake}', [WaterIntakeController::class, 'update'])->name('water-intake.update');
-    Route::delete('water-intake/{waterIntake}', [WaterIntakeController::class, 'destroy'])->name('water-intake.destroy');
-});
 
+//For BMI
+Route::get('/getHistoryOfBMI', [BMIController::class, 'getBMI']);
+Route::post('/createBMI', [BMIController::class, 'createBMI']);
 //For users logout
 Route::get('/welcome', function () {return view('welcome');})->name('welcome');

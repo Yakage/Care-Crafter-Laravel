@@ -45,7 +45,7 @@
                     <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="d-none d-sm-inline mx-1"></span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <ul class="dropdown-menu dropdown-menu-white text-small shadow">
                         <li>
                             <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                             @csrf
@@ -59,18 +59,18 @@
         <div class="col py-3">
             <div class="col-md-9 content-container">
                     <div class="container">
-                        <h2 class="text-center" style="color: #458ff6;">History Of Sleep Tracker</h2>
+                        <h2 class="text-center" style="color: #458ff6;">History Of BMI Calculator</h2>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card">
-                                    <img src="{{ asset('img\sleeptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                                    <img src="{{ asset('img/sleep tracking.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
                                     <div class="card-body text-center">
-                                        <h5 class="card-title">Score Logs</h5>
-                                        @foreach ($scores as $score)
+                                        <h5 class="card-title">MBI Logs</h5>
+                                        @foreach ($results as $result)
                                             <div class="card border">
                                                 <div class="mb-2"> <!-- Add margin-bottom to create a small gap -->
-                                                    <p class="m-0">Created at: {{ $score->created_at }}</p>
-                                                    <p class="m-0">{{ $score->score_logs }}</p> <!-- Use strong tag for titles -->
+                                                    <p class="m-0">Created at: {{ $result->created_at }}</p>
+                                                    <p class="m-0">Result: {{ $result->results }}</p> <!-- Use strong tag for titles -->
                                                 </div>
                                             </div>
                                         @endforeach
@@ -79,20 +79,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="card">
-                                    <img src="{{ asset('img\sleeptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                                    <img src="{{ asset('img\bmicalcu.jpg')  }}" class="img-fluid card-img-top " alt="Sleep Tracking" style="max-width: 320px; height: 210px;">
                                     <div class="card-body text-center">
-                                        <h5 class="card-title">Alarm Logs</h5>
-                                        @foreach ($alarms as $alarm)
+                                        <h5 class="card-title">BMI Calculator</h5>
+                                        {{-- @foreach ($alarms as $alarm)
                                         <div class="card border">
                                             <div class="mb-2"> <!-- Add margin-bottom to create a small gap -->
-                                                <p class="m-0">Created at: {{ $alarm->created_at }}</p>
-                                                <p class="m-0">Title: {{ $alarm->title }}</p> <!-- Use strong tag for titles -->
-                                                <p class="m-0">Message: {{ $alarm->message }}</p>
-                                                <p class="m-0">Time: {{ $alarm->time }}</p>
-                                                <p class="m-0">Date: {{ $alarm->date }}</p>
+                                                
                                             </div>
                                         </div>
-                                        @endforeach
+                                        @endforeach --}}
                                     </div>
                                 </div>
                             </div>

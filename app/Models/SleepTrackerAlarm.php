@@ -16,6 +16,7 @@ class SleepTrackerAlarm extends Model
         'time',
         'date',
     ];
+    
 
     public function user()
     {

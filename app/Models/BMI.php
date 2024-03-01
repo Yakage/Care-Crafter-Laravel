@@ -2,22 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SleepTracker extends Model
+class BMI extends Model
 {
-    protected $table = 'sleep_tracker';
+    use HasFactory;
+    protected $table = 'bmi';
     protected $fillable = [
         'user_id',
-        'time',
-        'wake_up_time',
-        'sleep_time', 
-        'time_slept', 
-        'total_sleep_time',
-        'sleep_score'
+        'results'
     ];
     
-
     public function user()
     {
         return $this->belongsTo(User::class);

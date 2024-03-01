@@ -33,7 +33,11 @@ class User extends Authenticatable
 
     public function stepTracker()
     {
-        return $this->hasOne(StepTracker::class);
+        return $this->hasMany(StepTracker::class, 'user_id');
+    }
+    public function stepTrackerLogs()
+    {
+        return $this->hasMany(StepTrackerLogs::class, 'user_id');
     }
 
     public function SleepTrackerAlarm()
