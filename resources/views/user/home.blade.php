@@ -36,6 +36,10 @@
                             <i class="fs-4 bi-universal-access"></i> <span class="ms-1 d-none d-sm-inline">Account</span> </a>
                     </li>
                     <li>
+                        <a href="{{ route('user.user-ui.user')}}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-universal-access"></i> <span class="ms-1 d-none d-sm-inline">Leaderboards</span> </a>
+                    </li>
+                    <li>
                         <a href="{{ route('user.feedback')}}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Feedback</span></a>
                     </li>
@@ -163,14 +167,7 @@
 
                                         <button class="button"><a href="{{url('getHistoryOfBMI')}}" style="color: white">Get History</a></button>
                                     </div>
-                                </div><div class="card swiper-slide">
-                                        <div class="image-content">
-                                            <span class="overlay"></span>
-
-                                            <div class="card-image">
-                                            <img src="" class="card-img" alt="">
-                                        </div>
-                                    </div>
+                                </div>
                             </div>        
                         </div>
                     </div>
@@ -184,14 +181,12 @@
     </div>
 </div>
 
-       
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script src="js/user.js"></script>
-    <!-- Swiper JS -->
+    
 <script src="js/swiper-bundle.min.js"></script>
 <script src="js/scripts.js"></script>
 
