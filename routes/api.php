@@ -38,7 +38,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     //For Step Tracker
     Route::get('/getStepHistory', [StepTrackerController::class, 'getStepHistory']);
     Route::post('/createStepHistory', [StepTrackerController::class, 'createStepHistory']);
-
+    Route::post('/createStep', [StepTrackerController::class, 'createSteps']);
+    Route::get('/getDailyStep', [StepTrackerController::class, 'showDailySteps']);
+    Route::get('/getWeeklyStep', [StepTrackerController::class, 'showWeeklySteps']);
+    Route::get('/getMonthlyStep', [StepTrackerController::class, 'showMonthlySteps']);
 
     //For Sleep Tracker
     Route::get('/getAlarm', [SleepTrackerController::class, 'getAlarm']);

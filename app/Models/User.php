@@ -31,10 +31,6 @@ class User extends Authenticatable
         'api_token'
     ];
 
-    public function stepTracker()
-    {
-        return $this->hasMany(StepTracker::class, 'user_id');
-    }
     public function stepTrackerLogs()
     {
         return $this->hasMany(StepTrackerLogs::class, 'user_id');

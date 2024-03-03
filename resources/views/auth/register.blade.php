@@ -29,7 +29,7 @@
     </div>
     
     <div class="container">
-        <div class="title">Registration Form</div>
+        <div class="title">Register an account for CareCrafter</div>
         <div class="content">
             <form id="registerForm" action="{{route('register.post')}}" method="POST">
                 @csrf

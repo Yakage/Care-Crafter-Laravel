@@ -19,7 +19,7 @@
         @endif
     </div>
     <div class="container">
-        <div class="title">Login</div>
+        <div class="title">Login to CareCrafter</div>
         <div class="content">
             <form id='loginForm' action="{{route('login')}}" method="POST">
                 @csrf

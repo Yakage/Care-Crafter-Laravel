@@ -72,49 +72,124 @@
                     </ul>
                 </div>
             </div>
-            </div>
-            </div>
-        </nav>
-            <div class="container-fluid" id="content">
-            <div id="carouselExampleCaptions" class="carousel slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('img\sleep tracking.jpg') }}" class="d-block w-100 h-100" alt="...">
-                            <div class="carousel-caption">
-                                <h5>Sleeptracking</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <p><a href="#" class="btn btn-primary mt-3">test</a></p>
-                            </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img\step tracking.png') }}" class="d-block w-100 h-100" alt="...">
-                            <div class="carousel-caption">
-                                <h5>Second slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <p><a href="#" class="btn btn-primary mt-3">test</a></p>
-                            </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img\water intake.jpg') }}" class="d-block w-100 h-100" alt="...">
-                            <div class="carousel-caption">
-                                <h5>Third slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <p><a href="#" class="btn btn-primary mt-3">test</a></p>
-                            </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img\bmicalcu.jpg') }}" class="d-block w-100 h-100" alt="...">
-                            <div class="carousel-caption">
-                                <h5>Fourth slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <p><a href="#" class="btn btn-primary mt-3">test</a></p>
-                            </div>
+        </div>
+        <div class="col py-3">
+        <div class="col-md-9 content-container">
+                <div class="container">
+                    <h2 class="text-center" style="color: #458ff6;">Features</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-gap-2">
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card">
+                        <img src="{{ asset('img\sleep tracking.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                            <span class="text-center">Sleep Tracking</span>
+                                <div class="card-body text-center">
+                                    <p class="card-text">Step Tracking is a feature we have to track your steps!</p>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card">
+                        <img src="{{ asset('img\step tracking.png') }}" class="img-fluid card-img-top" alt="Step Tracking">
+                            <span class="text-center">Step Tracker</span>
+                                <div class="card-body text-center">
+                                    <p class="card-text">Step Tracking is a feature we have to track your steps!</p>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card">
+                        <img src="{{ asset('img\water intake.jpg') }}" class="img-fluid card-img-top" alt="water intake">
+                            <span class="text-center">Water intake</span>
+                                <div class="card-body text-center">
+                                    <p class="card-text">Step Tracking is a feature we have to track your steps!</p>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card">
+                        <img src="{{ asset('img\bmi.png') }}" class="img-fluid card-img-top" alt="bmi">
+                            <span class="text-center">BMI</span>
+                                <div class="card-body text-center">
+                                    <p class="card-text">Step Tracking is a feature we have to track your steps!</p>
+                                </div>
+                        </div>
+                        </div>
+
+                        <div class="slide-container swiper">
+                            <div class="slide-content">
+                            <div class="card-wrapper swiper-wrapper">
+                                <div class="card swiper-slide">
+                                        <div class="image-content">
+                                            <span class="overlay"></span>
+
+                                            <div class="card-image">
+                                            <img src="{{ asset('img\sleeptracker.jpg') }}" class="card-img" alt="profile image">
+                                        </div>
+                                    </div>
+
+                                    <div class="card-content">
+                                        <h2 class="name">Sleep Tracker</h2>
+                                        <p class="description">Sleep Tracker</p>
+
+                                        <button class="button"><a href="{{url('getHistoryOfSleepTracker')}}" style="color: white">Get History</a></button>
+                                    </div>
+                                </div>
+                                <div class="card swiper-slide">
+                                        <div class="image-content">
+                                            <span class="overlay"></span>
+
+                                            <div class="card-image">
+                                            <img src="{{ asset('img\steptracker.jpg')}}" class="card-img" alt="profile image">
+                                        </div>
+                                    </div>
+
+                                    <div class="card-content">
+                                        <h2 class="name">Step Tracker</h2>
+                                        <p class="description">Step Tracker</p>
+
+                                        <button class="button"><a href="{{url('getStepHistory')}}" style="color: white">Get History</a></button>
+                                    </div>
+                                </div>
+                                <div class="card swiper-slide">
+                                        <div class="image-content">
+                                            <span class="overlay"></span>
+
+                                            <div class="card-image">
+                                            <img src="{{ asset('img\waterintake.jpg') }}" class="card-img">
+                                        </div>
+                                    </div>
+
+                                    <div class="card-content">
+                                        <h2 class="name">Water Intake</h2>
+                                        <p class="description">Water Intake</p>
+
+                                        <button class="button">Get history</button>
+                                    </div>
+                                </div><div class="card swiper-slide">
+                                        <div class="image-content">
+                                            <span class="overlay"></span>
+
+                                            <div class="card-image">
+                                            <img src="{{ asset('img\bmicalcu.jpg') }}" class="card-img" alt="profile image">
+                                        </div>
+                                    </div>
+
+                                    <div class="card-content">
+                                        <h2 class="name">BMI Calculator</h2>
+                                        <p class="description">BMI Calculator</p>
+
+                                        <button class="button"><a href="{{url('getHistoryOfBMI')}}" style="color: white">Get History</a></button>
+                                    </div>
+                                </div><div class="card swiper-slide">
+                                        <div class="image-content">
+                                            <span class="overlay"></span>
+
+                                            <div class="card-image">
+                                            <img src="" class="card-img" alt="">
+                                        </div>
+                                    </div>
+                            </div>        
+                        </div>
                     </div>
             </div>
             </div>
@@ -135,6 +210,9 @@
                         <li class="list-group-item">And a fifth one</li>
                     </ul>
     </div>
+</div>
+
+       
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
