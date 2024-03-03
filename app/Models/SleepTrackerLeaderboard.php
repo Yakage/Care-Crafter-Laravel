@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SleepTrackerScore extends Model
+class SleepTrackerLeaderboard extends Model
 {
     use HasFactory;
-    protected $table = 'sleep_tracker_score';
+    protected $table = 'sleep_tracker_leaderboard';
     protected $fillable = [
         'user_id',
-        'score_logs',
+        'name',
+        'sleeps',
+        'date',
     ];
-    
-    public function user()
-    {
+
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }
