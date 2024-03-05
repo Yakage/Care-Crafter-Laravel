@@ -5,21 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SleepTrackerAlarm extends Model
+class WaterIntakeLeaderboard extends Model
 {
     use HasFactory;
-    protected $table = 'sleep_tracker_alarm';
+    protected $table = 'water_intake_leaderboard';
     protected $fillable = [
         'user_id',
-        'daily_goal',
-        'time',
+        'name',
+        'water',
         'date',
     ];
-    
-
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class);
     }
-
 }
