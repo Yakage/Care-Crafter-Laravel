@@ -82,41 +82,33 @@
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="{{ asset('img\sleep tracking.jpg') }}" class="d-block w-100 h-100" alt="...">
                             <div class="carousel-caption">
                                 <h5>Sleeptracking</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <p><a href="#Sleeptracking" class="btn btn-primary mt-3">test</a></p>
+                                <p>Embark on a journey of nocturnal self-discovery with the illuminating power of sleep tracking, unlocking insights into your sleep patterns and paving the way for rejuvenated days ahead.</p>
+                                <p><a href="#Sleeptracking" class="btn btn-primary mt-3">Go</a></p>
                             </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('img\step tracking.png') }}" class="d-block w-100 h-100" alt="...">
+                        <img src="{{ asset('img\stepp.jpg') }}" class="d-block w-100 h-100" alt="...">
                             <div class="carousel-caption">
-                                <h5>Second slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <p><a href="#Steptracking" class="btn btn-primary mt-3">test</a></p>
+                                <h5>Steptracking</h5>
+                                <p>Embark on a fitness odyssey as you conquer daily milestones and unlock a healthier you through the seamless integration of step tracking, turning every stride into a step towards vitality.</p>
+                                <p><a href="#Steptracking" class="btn btn-primary mt-3">Go</a></p>
                             </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ asset('img\water intake.jpg') }}" class="d-block w-100 h-100" alt="...">
                             <div class="carousel-caption">
-                                <h5>Third slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <p><a href="#Waterintake" class="btn btn-primary mt-3">test</a></p>
+                                <h5>Water Intake</h5>
+                                <p>Quench your well-being with mindful hydration, as tracking your water intake becomes the liquid compass guiding you towards optimal health and vitality.</p>
+                                <p><a href="#Waterintake" class="btn btn-primary mt-3">Go</a></p>
                             </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img\bmicalcu.jpg') }}" class="d-block w-100 h-100" alt="...">
-                            <div class="carousel-caption">
-                                <h5>Fourth slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <p><a href="#" class="btn btn-primary mt-3">test</a></p>
-                            </div>
-                    </div>
+
                 </div>
             </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -133,21 +125,21 @@
                     <div class="container statcon gap-3">
                     <div class="stats shadow">
                         <div class="stat">
-                            <div class="stat-title">Test</div>
+                            <div class="stat-title">This Day</div>
                             <div class="stat-value">89,400</div>
                             <div class="stat-desc">21% more than last month</div>
                         </div>
                     </div>
                     <div class="stats shadow">
                         <div class="stat">
-                            <div class="stat-title">Test</div>
+                            <div class="stat-title">This week</div>
                             <div class="stat-value">89,400</div>
                             <div class="stat-desc">21% more than last month</div>
                         </div>
                     </div>
                     <div class="stats shadow">
                         <div class="stat">
-                            <div class="stat-title">Test</div>
+                            <div class="stat-title">This month</div>
                             <div class="stat-value">89,400</div>
                             <div class="stat-desc">21% more than last month</div>
                         </div>
@@ -159,21 +151,21 @@
                     <div class="container statcon gap-3">
                     <div class="stats shadow">
                         <div class="stat">
-                            <div class="stat-title">Test</div>
+                            <div class="stat-title">This day</div>
                             <div class="stat-value">89,400</div>
                             <div class="stat-desc">21% more than last month</div>
                         </div>
                     </div>
                     <div class="stats shadow">
                         <div class="stat">
-                            <div class="stat-title">Test</div>
+                            <div class="stat-title">This week</div>
                             <div class="stat-value">89,400</div>
                             <div class="stat-desc">21% more than last month</div>
                         </div>
                     </div>
                     <div class="stats shadow">
                         <div class="stat">
-                            <div class="stat-title">Test</div>
+                            <div class="stat-title">This month</div>
                             <div class="stat-value">89,400</div>
                             <div class="stat-desc">21% more than last month</div>
                         </div>
@@ -185,27 +177,27 @@
                     <div class="container statcon gap-3">
                     <div class="stats shadow">
                         <div class="stat">
-                            <div class="stat-title">Test</div>
+                            <div class="stat-title">This day</div>
                             <div class="stat-value">89,400</div>
                             <div class="stat-desc">21% more than last month</div>
                         </div>
                     </div>
                     <div class="stats shadow">
                         <div class="stat">
-                            <div class="stat-title">Test</div>
+                            <div class="stat-title">This week</div>
                             <div class="stat-value">89,400</div>
                             <div class="stat-desc">21% more than last month</div>
                         </div>
                     </div>
                     <div class="stats shadow">
                         <div class="stat">
-                            <div class="stat-title">Test</div>
+                            <div class="stat-title">This month</div>
                             <div class="stat-value">89,400</div>
                             <div class="stat-desc">21% more than last month</div>
                         </div>
                     </div>
-                    </div>
-                    </section>
+                </div>
+            </section>
         </div>
             
     </div>
