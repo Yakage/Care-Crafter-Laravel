@@ -78,12 +78,12 @@ button{
 }
 
 /* header section  & navbar */
-.header{
+.header {
     position: relative;
     min-height: 100vh;
     background-color: var(--clr-blue);
-    
 }
+
 .header *{
     color: var(--clr-white);
 }
