@@ -132,12 +132,7 @@
                                             <canvas id="barchart3" width="700" height="500"></canvas>
                                         </div>
                                     </div>
-                                    <div class="myCharts"> //fasj
-                                        <div class="myChart">
-                                            <h3>Water Score</h3>
-                                            <canvas id="barchart4" width="700" height="500"></canvas>
-                                        </div>
-                                    </div> // fasj
+                                
                                 </div>
                         </section>
                 </div>
