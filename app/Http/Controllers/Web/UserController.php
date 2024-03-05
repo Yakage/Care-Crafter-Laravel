@@ -80,4 +80,15 @@ class UserController extends Controller
 
         return redirect()->route('user.user-ui.user')->with('success', 'Profile updated successfully!');
     }
+    public function leaderboard(){
+        $user = Auth::user();
+        
+        if (Auth::check()) {
+            // User is authenticated
+            return view('user.leaderboard', ['user' => $user]);
+        }else{
+            
+        }
+    
+    }
 }

@@ -53,6 +53,7 @@ Route::get('/user/user-ui/user', [UserController::class, 'userDashboard'])->name
 Route::post('/user/user-ui/user', [UserController::class, 'update']);
 Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('user.feedback');
 Route::get('/user-home', [UserController::class, 'userHome'])->name('user.home');
+Route::get('/user-leaderboard', [UserController::class, 'leaderboard'])->name(('user.leaderboards'));
 
 
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */

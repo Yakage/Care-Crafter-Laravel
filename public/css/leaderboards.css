@@ -1,0 +1,10 @@
+*{
+    font-family: 'Poppins',sans-serif;
+}
+body {
+    background-color: rgb(255, 255, 255);
+    
+}
+#content{
+    padding-top: 150px;
+}

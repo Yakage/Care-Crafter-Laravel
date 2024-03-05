@@ -52,7 +52,7 @@
                             <a class="nav-link" href="{{ route('user.user-ui.user')}}">Account</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Leaderboards</a>
+                            <a class="nav-link" href="{{ route('user.leaderboards')}}">Leaderboards</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.feedback')}}">Feedback</a>
