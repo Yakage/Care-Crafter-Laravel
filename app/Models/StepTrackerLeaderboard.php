@@ -12,6 +12,7 @@ class StepTrackerLeaderboard extends Model
     protected $fillable = [
         'user_id',
         'name',
+        'score',
         'steps',
         'date',
     ];

@@ -92,9 +92,10 @@ class SleepTrackerController extends Controller{
     
     public function getScoreLogs(SleepTrackerScore $sleepTrackerScore){
         $user = Auth::user(); // Retrieve authenticated user based on the token
-        $score = $sleepTrackerScore->get();
+        $score = $sleepTrackerScore->where('user_id', $user->id)->latest()->first();
         return response()->json($score);
     }
+    
 
     public function createScore(Request $request){
         $user = Auth::user();
@@ -114,16 +115,29 @@ class SleepTrackerController extends Controller{
 
     }
     
-
+    public function getSleepTime(SleepTrackerLeaderboard $sleepTrackerLeaderboard){
+        $user = Auth::user(); // Retrieve authenticated user based on the token
+        $sleepTime = $sleepTrackerLeaderboard::where('user_id', $user->id)
+                                             ->latest() // Order by created_at in descending order
+                                             ->selectRaw('*, sleeps as total_sleeps') // Select and rename the sleeps column
+                                             ->first(); // Retrieve the latest record
+        return response()->json($sleepTime);
+    }
+    
+    
+    
+    
     public function createSleeps(Request $request){
         $user = Auth::user();
         $request->validate([
-            'sleeps' => 'required|integer',
+            'score' => 'required',
+            'sleeps' => 'required|numeric',
         ]);
     
         $sleepTrackerLeaderBoard = new SleepTrackerLeaderboard();
         $sleepTrackerLeaderBoard->user_id = $user->id;
         $sleepTrackerLeaderBoard->name = $user->name;
+        $sleepTrackerLeaderBoard->score = $request->score;
         $sleepTrackerLeaderBoard->sleeps = $request->sleeps;
         $sleepTrackerLeaderBoard->date = now();
         $sleepTrackerLeaderBoard->save();
