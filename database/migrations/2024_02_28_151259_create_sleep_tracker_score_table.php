@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('score_logs')->nullable();
+            $table->string('total_time')->nullable();
             $table->timestamps();
         });
     }

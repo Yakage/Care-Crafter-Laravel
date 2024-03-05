@@ -7,33 +7,33 @@ use App\Models\SleepTracker;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\SleepTrackerAlarm;
+use App\Models\SleepTrackerLeaderboard;
 use App\Models\SleepTrackerScore;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class SleepTrackerController extends Controller{
     
     public function getAlarm(SleepTrackerAlarm $sleepTrackerAlarm){
         $user = Auth::user(); // Retrieve authenticated user based on the token
-        $alarm = $sleepTrackerAlarm->get();
+        $alarm = $sleepTrackerAlarm->where('user_id', $user->id)->latest()->first();
         return response()->json($alarm);
     }
+    
 
     public function createAlarm(Request $request){
         $user = Auth::user();
         $request->validate([
-            'title' => 'required',
-            'message' => 'required',
+            'daily_goal' => 'required',
             'time' => 'required|string',
-            'date' => 'required|string',
         ]);
 
         $alarm = SleepTrackerAlarm::create([
             //'user_id' => $user->id,
             'user_id' => $user->id,
-            'title' => $request->input('title'),
-            'message' => $request->input('message'),
+            'daily_goal' => $request->input('daily_goal'),
             'time' => $request->input('time'),
-            'date' => $request->input('date'),
+            'date' => now(),
             
         ]);
 
@@ -100,17 +100,67 @@ class SleepTrackerController extends Controller{
         $user = Auth::user();
         $request->validate([
             'score_logs' => 'required',
+            'total_time' => 'required',
         ]);
 
         $score = SleepTrackerScore::create([
             //'user_id' => $user->id,
             'user_id' => $user->id,
             'score_log' => $request->input('score_logs'),
+            'total_time' => $request->input('total_time')
         ]);
 
         return response()->json(['message' => 'Score_logs for Sleep Tracker is created for this user', $score]);
 
     }
+    
+
+    public function createSleeps(Request $request){
+        $user = Auth::user();
+        $request->validate([
+            'sleeps' => 'required|integer',
+        ]);
+    
+        $sleepTrackerLeaderBoard = new SleepTrackerLeaderboard();
+        $sleepTrackerLeaderBoard->user_id = $user->id;
+        $sleepTrackerLeaderBoard->name = $user->name;
+        $sleepTrackerLeaderBoard->sleeps = $request->sleeps;
+        $sleepTrackerLeaderBoard->date = now();
+        $sleepTrackerLeaderBoard->save();
+    
+        return response()->json(['message' => 'Sleeps tracked successfully']);
+    }
+    
+    public function showDailySleeps(){
+        $dailySleeps = SleepTrackerLeaderboard::select('name', DB::raw('SUM(sleeps) as total_sleeps'))
+                    ->where('date', now()->format('Y-m-d'))
+                    ->groupBy('name')
+                    ->orderByDesc('total_sleeps')
+                    ->get();
+    
+        return response()->json($dailySleeps);
+    }
+    
+    public function showWeeklySleeps(){
+        $weeklySleeps = SleepTrackerLeaderboard::select('name', DB::raw('SUM(sleeps) as total_sleeps'))
+                        ->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()])
+                        ->groupBy('name')
+                        ->orderByDesc('total_sleeps')
+                        ->get();
+    
+        return response()->json($weeklySleeps);
+    }
+    
+    public function showMonthlySleeps(){
+        $monthlySleeps = SleepTrackerLeaderboard::select('name', DB::raw('SUM(sleeps) as total_sleeps'))
+                        ->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])
+                        ->groupBy('name')
+                        ->orderByDesc('total_sleeps')
+                        ->get();
+    
+        return response()->json($monthlySleeps);
+    }
+    
     
     
 }

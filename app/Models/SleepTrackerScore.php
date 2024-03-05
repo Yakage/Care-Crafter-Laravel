@@ -12,6 +12,7 @@ class SleepTrackerScore extends Model
     protected $fillable = [
         'user_id',
         'score_logs',
+        'total_time',
     ];
     
     public function user()
