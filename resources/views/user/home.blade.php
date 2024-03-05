@@ -78,7 +78,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('img\water intake.jpg') }}" alt="...">
+                        <img src="{{ asset('img\sleep tracking.png') }}" alt="...">
                             <div class="carousel-caption">
                                 <h5>Sleeptracking</h5>
                                 <p>Embark on a journey of nocturnal self-discovery with the illuminating power of sleep tracking, unlocking insights into your sleep patterns and paving the way for rejuvenated days ahead.</p>
@@ -86,7 +86,7 @@
                             </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('img\water intake.jpg') }}" alt="...">
+                        <img src="{{ asset('img\step tracking.png') }}" alt="...">
                             <div class="carousel-caption">
                                 <h5>Steptracking</h5>
                                 <p>Embark on a fitness odyssey as you conquer daily milestones and unlock a healthier you through the seamless integration of step tracking, turning every stride into a step towards vitality.</p>
