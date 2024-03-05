@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sleep_tracker', function (Blueprint $table) {
+        Schema::create('sleep_tracker_home_stats', function (Blueprint $table) {
             $table->id();
-            
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->string('score');
+            $table->integer('total_hours');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sleep_tracker');
+        Schema::dropIfExists('sleep_tracker_home_stats');
     }
 };

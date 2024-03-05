@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('step_tracker_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
-            $table->string('step_history')->nullable();
+            $table->string('daily_goal')->nullable();
+            $table->string('current_steps')->nullable();
             $table->timestamps();
         });
     }

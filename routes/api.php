@@ -51,12 +51,13 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('getMonthlyStep', [StepTrackerController::class, 'getMonthlySteps']);
 
     //For Sleep Tracker
+    Route::get('/getSleepTime', [SleepTrackerController::class, 'getSleepTime']);
     Route::get('/getAlarm', [SleepTrackerController::class, 'getAlarm']);
     Route::post('/createAlarm', [SleepTrackerController::class, 'createAlarm']);
     Route::put('/updateAlarm', [SleepTrackerController::class, 'updateAlarm']);
     Route::delete('/deleteAlarm/{id}', [SleepTrackerController::class, 'deleteAlarm']);
 
-    Route::get('/getScore', [SleepTrackerController::class, 'getScore']);
+    Route::get('/getScore', [SleepTrackerController::class, 'getScoreLogs']);
     Route::post('/createScore', [SleepTrackerController::class, 'createScore']);
         //For LeaderBoard
     Route::post('/createSleep', [SleepTrackerController::class, 'createSleeps']);
