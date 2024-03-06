@@ -11,7 +11,8 @@ class BMI extends Model
     protected $table = 'bmi';
     protected $fillable = [
         'user_id',
-        'results'
+        'bmi',
+        'category'
     ];
     
     public function user()

@@ -10,22 +10,24 @@ use Illuminate\Support\Facades\Auth;
 class BMIController extends Controller{
     public function getBMI(BMI $bMI){
         $user = Auth::user(); // Retrieve authenticated user based on the token
-        $results = $bMI->get();
-        return response()->json($results);
+        $latestBMI = $bMI->where('user_id', $user->id)->latest()->first();
+        return response()->json($latestBMI);
     }
 
     public function createBMI(Request $request){
         $user = Auth::user();
         $request->validate([
-            'results' => 'required',
+            'bmi' => 'required',
+            'category' => 'required',
         ]);
 
         $results = BMI::create([
             //'user_id' => $user->id,
             'user_id' => $user->id,
-            'results' => $request->input('results'),
+            'bmi' => $request->input('bmi'),
+            'category' => $request->input('category'),
         ]);
 
-        return response()->json($results);
+        return response()->json(['message' => 'Calculating']);
     }
 }

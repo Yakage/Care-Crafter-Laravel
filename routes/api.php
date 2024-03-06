@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     //For Step Tracker
     Route::get('/getStepHistory', [StepTrackerController::class, 'getStepHistory']);
+    Route::get('/getStepHistory2', [StepTrackerController::class, 'getStepHistory2']);
     Route::post('/createStepHistory', [StepTrackerController::class, 'createStepHistory']);
         
         //FOr Leaderboards
