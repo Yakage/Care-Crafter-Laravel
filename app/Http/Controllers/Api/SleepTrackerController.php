@@ -116,8 +116,10 @@ class SleepTrackerController extends Controller{
     }
     
     public function getSleepTime() {
+        $user = Auth::user();
         $latestSleep = SleepTrackerLeaderboard::select('name', 'score', DB::raw('SUM(sleeps) as total_sleeps'))
                                                 ->where('date', now()->format('Y-m-d'))
+                                                ->where('user_id', $user->id)
                                                 ->groupBy('name', 'score')
                                                 ->orderByDesc('total_sleeps')
                                                 ->first();
