@@ -112,8 +112,11 @@
 
     <div class="content-container">
         <h2>Feedback Form</h2>
-        <form method="post">
+        <form method="post" action="{{ route('store.Feedback') }}">
             @csrf
+            @if (Auth::check())
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            @endif
             <div class="form-group">
                 <label for="message">Message:</label>
                 <textarea class="form-control" id="message" name="message" rows="5" required></textarea>

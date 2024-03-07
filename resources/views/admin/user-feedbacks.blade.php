@@ -56,7 +56,38 @@
         </section>
     </header>
     <main id="content">
+        <h1>Feedback</h1>
 
+        @if (session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>Submitted by</th>
+                    <th>Submitted at</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($feedbacks as $feedback)
+                    <tr>
+                        <td>{{ $feedback->message }}</td>
+                        <td>
+                            @if ($feedback->user)
+                                {{ $feedback->user->name }}
+                            @else
+                            -
+                        @endif
+                        </td> 
+                    <td>{{ $feedback->created_at->format('d-M-Y H:i') }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     
     </main>
 
