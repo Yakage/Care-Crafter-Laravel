@@ -115,6 +115,18 @@ class SleepTrackerController extends Controller{
 
     }
     
+    public function getSleepHistory(SleepTrackerLeaderboard $sleepTrackerLeaderboard){
+        $user = Auth::user(); // Retrieve authenticated user based on the token
+        $results = $sleepTrackerLeaderboard::select('score', 'sleeps', 'date')
+                                    ->where('user_id', $user->id)
+                                    ->latest() // Order by created_at in descending order
+                                    ->get(); // Retrieve specified fields
+
+                                  
+        return response()->json($results);
+    
+    }
+
     public function getSleepTime() {
         $user = Auth::user();
         $latestSleep = SleepTrackerLeaderboard::select('name', 'score', DB::raw('SUM(sleeps) as total_sleeps'))

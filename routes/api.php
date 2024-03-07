@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('getMonthlyStep', [StepTrackerController::class, 'getMonthlySteps']);
 
     //For Sleep Tracker
+    Route::get('/getSleepHistory', [SleepTrackerController::class, 'getSleepHistory']);
     Route::get('/getSleepTime', [SleepTrackerController::class, 'getSleepTime']);
     Route::get('/getAlarm', [SleepTrackerController::class, 'getAlarm']);
     Route::post('/createAlarm', [SleepTrackerController::class, 'createAlarm']);
@@ -79,6 +80,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('getMonthlyWater', [WaterIntakeController::class, 'getMonthlyWater']);
 
     Route::get('/getWaterHistory', [WaterIntakeController::class, 'getWaterHistory']);
+    Route::get('/getWaterHistory2', [WaterIntakeController::class, 'getWaterHistory2']);
     Route::post('/createWaterHistory', [WaterIntakeController::class, 'createWaterHistory']);
     //For BMI
     Route::get('/getBMI', [BMIController::class, 'getBMI']);

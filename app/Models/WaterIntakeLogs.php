@@ -13,6 +13,6 @@ class WaterIntakeLogs extends Model
         'user_id',
         'daily_goal',
         'current_water',
-        'history'
+        'history',
     ];
 }

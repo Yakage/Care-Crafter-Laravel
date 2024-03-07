@@ -72,6 +72,25 @@ class WaterIntakeController extends Controller{
 
         return response()->json([$latestWaterLog, 'water_sum' => $waterSum]);
     }
+
+    public function getWaterHistory2(WaterIntakeLogs $waterIntakeLogs){
+        $user = Auth::user(); // Retrieve authenticated user based on the token
+        $results = $waterIntakeLogs::where('user_id', $user->id)
+                                    ->latest() // Order by created_at in descending order
+                                    ->get(['created_at', 'daily_goal', 'current_water', 'history']) // Retrieve specified fields
+                                    ->map(function($result) {
+                                        return [
+                                            'date' => $result->created_at->format('Y-m-d'),
+                                            'daily_goal' => $result->daily_goal,
+                                            'current_water' => $result->current_water,
+                                            'history' => $result->history // Ensure 'history' field is included
+                                        ];
+                                    });
+        return response()->json($results);
+    
+    }
+    
+    
     public function createWaterHistory(Request $request){
         $user = Auth::user();
         $request->validate([
