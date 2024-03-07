@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('daily_goal')->nullable();
-            $table->string('current_water')->nullable();
+            $table->integer('current_water')->nullable();
             $table->string('history')->nullable();
             $table->timestamps();
         });
