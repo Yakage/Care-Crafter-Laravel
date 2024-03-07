@@ -72,6 +72,14 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/showDailyWater', [WaterIntakeController::class, 'showDailyWater']);
     Route::get('/showWeeklyWater', [WaterIntakeController::class, 'showWeeklyWater']);
     Route::get('/showMonthlyWater', [WaterIntakeController::class, 'showMonthlyWater']);
+
+        //FOR Statistics
+    Route::get('getDailyWater', [WaterIntakeController::class, 'getDailyWater']);
+    Route::get('getWeeklyWater', [WaterIntakeController::class, 'getWeeklyWater']);
+    Route::get('getMonthlyWater', [WaterIntakeController::class, 'getMonthlyWater']);
+
+    Route::get('/getWaterHistory', [WaterIntakeController::class, 'getWaterHistory']);
+    Route::post('/createWaterHistory', [WaterIntakeController::class, 'createWaterHistory']);
     //For BMI
     Route::get('/getBMI', [BMIController::class, 'getBMI']);
     Route::post('/createBMI', [BMIController::class, 'createBMI']);
