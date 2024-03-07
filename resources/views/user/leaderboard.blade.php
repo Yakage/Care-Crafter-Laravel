@@ -76,7 +76,7 @@
         </nav>
     </header>
     
-    <main>
+    <main style="padding-top: 150px;">
         <section id="StepTracker">
         <h1>StepTracker Leaderboard</h1>
             <table>
@@ -85,7 +85,7 @@
                         <th>Rank</th>
                         <th>Name</th>
                         <th>Steps</th>
-                        <th>Date</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -98,6 +98,50 @@
                     @endforeach
                 </tbody>
             </table>
+        </section>
+
+        <section id="SleepTracker">
+            <h1>Sleep Leaderboard</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($topSleepers as $key => $user)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->score }}</td>  
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+        </section>
+        <section id="WaterIntake">
+            <h1>Water Intake Leaderboard</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Water Intake (mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($topWaterDrinkers as $key => $user)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->water }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>    
+        </section>
     </main>
         
 
