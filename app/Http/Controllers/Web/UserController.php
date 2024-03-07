@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\StepTrackerLeaderboard;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,7 +86,9 @@ class UserController extends Controller
         
         if (Auth::check()) {
             // User is authenticated
-            return view('user.leaderboard', ['user' => $user]);
+            $topUsers = StepTrackerLeaderboard::orderBy('steps', 'desc')->limit(10)->get();
+
+            return view('user.leaderboard',compact('topUsers', 'user'));
         }else{
             
         }

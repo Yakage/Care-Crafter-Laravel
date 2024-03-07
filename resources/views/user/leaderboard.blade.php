@@ -76,37 +76,29 @@
         </nav>
     </header>
     
-    <div class="container" id="content">
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+    <main>
+        <section id="StepTracker">
+        <h1>StepTracker Leaderboard</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Steps</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($topUsers as $key => $user) 
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->steps }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+    </main>
         
 
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\BMIController;
 use App\Http\Controllers\Web\StepTrackerController as WebStepTrackerController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\LeaderboardController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -58,6 +59,10 @@ Route::get('/user-leaderboard', [UserController::class, 'leaderboard'])->name(('
 
 //feedback
 Route::post('/user-feedback', [FeedbackController::class, 'store'])->name('store.Feedback');
+
+//For Leaderboard
+Route::get('/leaderboard', [LeaderboardController::class, 'showLeaderboard'])->name('leaderboard');
+
 
 
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
