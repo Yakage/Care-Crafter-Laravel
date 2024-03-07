@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BMI extends Model
+class WaterIntakeLogs extends Model
 {
     use HasFactory;
-    protected $table = 'bmi';
+    protected $table = 'water_intake_logs';
     protected $fillable = [
         'user_id',
-        'bmi',
-        'category'
+        'daily_goal',
+        'current_water',
+        'history'
     ];
-    
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

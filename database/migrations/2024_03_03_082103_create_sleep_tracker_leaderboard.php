@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('name');
             $table->string('score');
-            $table->decimal('sleeps', 2, 2);
+            $table->integer('sleeps');
             $table->date('date');
             $table->timestamps();
         });

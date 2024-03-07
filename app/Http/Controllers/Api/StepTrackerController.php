@@ -20,6 +20,25 @@ class StepTrackerController extends Controller{
                                          ->first(); // Retrieve the latest record
     return response()->json($results);
     }
+    public function getStepHistory2(StepTrackerLogs $stepTrackerLogs) {
+        $user = Auth::user(); // Retrieve authenticated user based on the token
+        $results = $stepTrackerLogs::where('user_id', $user->id)
+                                    ->latest() // Order by created_at in descending order
+                                    ->get(['created_at', 'daily_goal', 'current_steps']) // Retrieve specified fields
+                                    ->map(function($result) {
+                                        return [
+                                            'date' => $result->created_at->format('Y-m-d'),
+                                            'daily_goal' => $result->daily_goal,
+                                            'current_steps' => $result->current_steps
+                                        ];
+                                    });
+    
+        return response()->json($results);
+    }
+    
+    
+
+
 
     public function createStepHistory(Request $request){
         $user = Auth::user();
@@ -36,7 +55,7 @@ class StepTrackerController extends Controller{
             'current_steps' => $request->input('current_steps'),
         ]);
 
-        return response()->json($results);
+        return response()->json(['message' => 'Steps tracked successfully']);
     }
     
     // FOR LEaderboard
