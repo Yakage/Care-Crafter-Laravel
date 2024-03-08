@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\WaterIntake;
-use Illuminate\Support\Facades\Auth;
+use App\Models\WaterIntakeLeaderboard;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Auth;
 
 class WaterIntakeController extends Controller{
     public function index(){
@@ -41,4 +44,28 @@ class WaterIntakeController extends Controller{
         $waterIntake->delete();
         return redirect()->route('water-intake.index');
     }
+
+    public function chartData3() {
+        $user = Auth::user();
+    
+        // Get the current date
+        $today = Carbon::today();
+        
+        // Retrieve the sum of 'water' for the authenticated user and today's date
+        $waterHistory = WaterIntakeLeaderboard::where('user_id', $user->id)
+            ->whereDate('date', $today)
+            ->sum('water');
+        
+        $waterHistoryData = [
+            [
+                'label' => 'DRINKS',
+                'value' => $waterHistory
+            ]
+        ];
+        
+        return response()->json([
+            'waterHistoryData' => $waterHistoryData
+        ]);
+    }
+
 }

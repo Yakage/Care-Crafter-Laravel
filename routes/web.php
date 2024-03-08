@@ -7,9 +7,9 @@ use App\Http\Controllers\WaterIntakeController;
 use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\AuthenticationController;
 use App\Http\Controllers\Web\BMIController;
-use App\Http\Controllers\Web\StepTrackerController as WebStepTrackerController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -58,11 +58,17 @@ Route::get('/user-home', [UserController::class, 'userHome'])->name('user.home')
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
 
 //For Step Tracker
-Route::get('/getStepHistory', [WebStepTrackerController::class, 'getStepHistory']);
-Route::post('/createStepHistory', [WebStepTrackerController::class, 'createStepHistory']);
+Route::get('/getStepHistory', [\App\Http\Controllers\Web\StepTrackerController::class, 'getStepHistory']);
+Route::post('/createStepHistory', [\App\Http\Controllers\Web\StepTrackerController::class, 'createStepHistory']);
 
 //For Sleep Tracker
 Route::get('/getHistoryOfSleepTracker', [SleepTrackerController::class, 'getHistoryOfSleepTracker']);
+
+//Chart Step Tracker
+Route::get('/chart-data', [\App\Http\Controllers\Web\StepTrackerController::class, 'chartData']);
+
+//Chart Water Intake
+Route::get('/chart-data3', [\App\Http\Controllers\Web\WaterIntakeController::class, 'chartData3']);
 
 
 //For Water Intake
@@ -71,4 +77,5 @@ Route::get('/getHistoryOfSleepTracker', [SleepTrackerController::class, 'getHist
 Route::get('/getHistoryOfBMI', [BMIController::class, 'getBMI']);
 Route::post('/createBMI', [BMIController::class, 'createBMI']);
 //For users logout
+//For sleep controller
 Route::get('/welcome', function () {return view('welcome');})->name('welcome');

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\StepTrackerLeaderboard;
 use App\Models\StepTrackerLogs;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class StepTrackerController extends Controller
 {
@@ -31,5 +34,28 @@ class StepTrackerController extends Controller
         ]);
 
         return response()->json($results);
+    }
+
+    public function chartData() {
+        $user = Auth::user();
+        
+        // Get the current date
+        $today = Carbon::today();
+    
+        // Retrieve the sum of 'steps' for the authenticated user and today's date
+        $stepHistory = StepTrackerLeaderboard::where('user_id', $user->id)
+            ->whereDate('date', $today)
+            ->sum('steps');
+    
+        $stepHistoryData = [
+            [
+                'label' => 'STEPS',
+                'value' => $stepHistory
+            ]
+        ];
+    
+        return response()->json([
+            'stepHistoryData' => $stepHistoryData
+        ]);
     }
 }

@@ -132,15 +132,101 @@
                                             <canvas id="barchart3" width="700" height="500"></canvas>
                                         </div>
                                     </div>
-                                    <div class="myCharts"> //fasj
-                                        <div class="myChart">
-                                            <h3>Water Score</h3>
-                                            <canvas id="barchart4" width="700" height="500"></canvas>
-                                        </div>
-                                    </div> // fasj
                                 </div>
                         </section>
                 </div>
+
+                <!-- script js sa graphs-->
+<script> 
+
+async function fetchData() {
+
+    const response = await fetch('/chart-data');
+    const data = await response.json();
+    return data;
+
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+
+    const response = await fetch('/chart-data');
+    const response2 = await fetch('/chart-data3')
+    const data = await response.json();
+    const data2 = await response2.json();
+
+    const stepHistoryData = data.stepHistoryData;
+    const waterHistoryData = data2.waterHistoryData;
+
+
+    const ctx = document.getElementById('barchart');
+
+    new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Drink frequency', 'Current intake', 'Average volume', 'Average completion', 'Completed goals', 'Saturday' ],
+        datasets: [{
+        label: 'Water score',
+        data: [0, 0, 0, 0, 0, 0],
+        borderWidth: 3
+        }]
+    },
+    options: {
+        scales: {
+        y: {
+                beginAtZero: true
+            }
+        }
+    }
+    });
+
+    const ctx2 = document.getElementById('barchart2');
+
+    new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: 'M T W T F S S',
+        datasets: [
+            {
+                label: 'Steps',
+                data: stepHistoryData.map(data => data.value),
+                borderWidth: 3
+            }
+    ]
+    },
+    options: {
+        scales: {
+        y: {
+            beginAtZero: true
+        }
+        }
+    }
+    });
+
+    const ctx3 = document.getElementById('barchart3');
+
+    new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: 'M T W T F S S',
+        datasets: [
+            {
+                label: 'Drinks',
+                data: waterHistoryData.map(data2 => data2.value),
+                borderWidth: 3
+            }
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+});
+</script>
 
 
        
@@ -151,11 +237,7 @@
 
 <!-- script ng graphs -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-<script src="js/chart1.js"></script>
-<script src="js/chart2.js"></script>
-<script src="js/chart3.js"></script>
-<script src="js/chart4.js"></script>
-<script src="js/user.js"></script>
+
 
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\StepTrackerLeaderboard;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -148,4 +149,21 @@ class AdminController extends Controller
 
         return redirect()->back()->with('status', 'Users Data Deleted');
     }
+
+    // public function chartData() {
+
+    //     $stepHistory = StepTrackerLeaderboard::where('step_tracker_leaderboard', 'steps')
+    //                                             ->count();
+
+    //     $stepHistoryData = [
+    //         [
+    //             'label' => 'STEPS',
+    //             'value' => $stepHistory
+    //         ]
+    //     ];
+
+    //     return response() -> json([
+    //         'stepHistoryData' => $stepHistoryData
+    //     ]);
+    // }
 }

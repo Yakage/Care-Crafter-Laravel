@@ -69,4 +69,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+    // User model
+    public function sleepRecords() {
+        return $this->hasMany(SleepRecord::class);
+}
+
 }

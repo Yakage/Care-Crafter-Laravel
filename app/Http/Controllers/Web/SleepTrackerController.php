@@ -18,4 +18,21 @@ class SleepTrackerController extends Controller
 
         return view('user.sleep-tracker.history', compact('alarms', 'scores'));
     }
+
+    // public function chartData() {
+
+
+    //     $sleepScore = SleepTrackerScore::count();
+
+    //     $sleepScoreData = [
+    //         [
+    //             'label' => 'STEPS',
+    //             'value' => $sleepScore
+    //         ]
+    //     ];
+
+    //     return response() -> json([
+    //         'sleepScoreData' => $sleepScoreData
+    //     ]);
+    // }
 }
