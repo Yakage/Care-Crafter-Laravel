@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('bmi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
-            $table->string('results')->nullable();
+            $table->string('bmi')->nullable();
+            $table->string('category')->nullable();
             $table->timestamps();
         });
     }

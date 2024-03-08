@@ -19,7 +19,10 @@
 <body>
         <nav class="navbar bg-body-tertiary fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand">CareCrafter</a>
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('img/CareCrafter-removebg-preview.png')}}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    CareCrafter
+                </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -45,7 +48,7 @@
                             <a class="nav-link" href="{{ route('user.user-ui.user')}}">Account</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Leaderboards</a>
+                            <a class="nav-link" href="{{ route('user.leaderboards')}}">Leaderboards</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.feedback')}}">Feedback</a>
@@ -132,6 +135,7 @@
                                             <canvas id="barchart3" width="700" height="500"></canvas>
                                         </div>
                                     </div>
+                                
                                 </div>
                         </section>
                 </div>
@@ -151,6 +155,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     const response = await fetch('/chart-data');
     const response2 = await fetch('/chart-data3')
+    
     const data = await response.json();
     const data2 = await response2.json();
 

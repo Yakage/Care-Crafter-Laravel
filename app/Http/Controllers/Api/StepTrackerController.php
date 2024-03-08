@@ -15,23 +15,47 @@ class StepTrackerController extends Controller{
 
     public function getStepHistory(StepTrackerLogs $stepTrackerLogs){
         $user = Auth::user(); // Retrieve authenticated user based on the token
-        $results = $stepTrackerLogs->get();
+        $results = $stepTrackerLogs::where('user_id', $user->id)
+                                         ->latest() // Order by created_at in descending order
+                                         ->first(); // Retrieve the latest record
+    return response()->json($results);
+    }
+    public function getStepHistory2(StepTrackerLogs $stepTrackerLogs) {
+        $user = Auth::user(); // Retrieve authenticated user based on the token
+        $results = $stepTrackerLogs::where('user_id', $user->id)
+                                    ->latest() // Order by created_at in descending order
+                                    ->get(['created_at', 'daily_goal', 'current_steps']) // Retrieve specified fields
+                                    ->map(function($result) {
+                                        return [
+                                            'date' => $result->created_at->format('Y-m-d'),
+                                            'daily_goal' => $result->daily_goal,
+                                            'current_steps' => $result->current_steps
+                                        ];
+                                    });
+    
         return response()->json($results);
     }
+    
+    
+
+
 
     public function createStepHistory(Request $request){
         $user = Auth::user();
         $request->validate([
-            'step_history' => 'required',
+            'daily_goal' => 'required',
+            'current_steps' => 'required',
+            
         ]);
 
         $results = StepTrackerLogs::create([
             //'user_id' => $user->id,
             'user_id' => $user->id,
-            'step_history' => $request->input('step_history'),
+            'daily_goal' => $request->input('daily_goal'),
+            'current_steps' => $request->input('current_steps'),
         ]);
 
-        return response()->json($results);
+        return response()->json(['message' => 'Steps tracked successfully']);
     }
     
     // FOR LEaderboard

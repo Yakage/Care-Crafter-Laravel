@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sleep_tracker_score', function (Blueprint $table) {
+        Schema::create('water_intake_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
-            $table->string('score_logs')->nullable();
-            $table->integer('total_time')->nullable();
+            $table->string('daily_goal')->nullable();
+            $table->integer('current_water')->nullable();
+            $table->string('history')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sleep_tracker_score');
+        Schema::dropIfExists('water_intake_logs');
     }
 };

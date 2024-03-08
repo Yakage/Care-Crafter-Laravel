@@ -11,6 +11,7 @@ class SleepTrackerLeaderboard extends Model
     protected $table = 'sleep_tracker_leaderboard';
     protected $fillable = [
         'user_id',
+        'score',
         'name',
         'sleeps',
         'date',

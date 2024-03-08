@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sleep_tracker', function (Blueprint $table) {
+        Schema::create('user_feedbacks', function (Blueprint $table) {
             $table->id();
-            
+            $table-> string('message');
+            $table->unsignedBigInteger('user_id')->nullable(); // Assuming you have users
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Optional foreign key
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sleep_tracker');
+        Schema::dropIfExists('user_feedbacks');
     }
 };

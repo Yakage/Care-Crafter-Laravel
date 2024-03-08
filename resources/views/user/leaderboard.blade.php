@@ -12,12 +12,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <!--<link rel="stylesheet" href="css/user.css">-->
+    <link rel="stylesheet" href="css/leaderboards.css">
 </head>
 
 <body>
+    <header>
         <nav class="navbar bg-body-tertiary fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand">CareCrafter</a>
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('img/CareCrafter-removebg-preview.png')}}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    CareCrafter
+                </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -30,6 +35,9 @@
                     <h4>Hi, {{ $user->name }}!</h4>
 
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.home')}}">Home</a>
+                    </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Features</a>
                             <ul class="dropdown-menu">
@@ -66,3 +74,78 @@
                 </div>
             </div>
         </nav>
+    </header>
+    
+    <main style="padding-top: 150px;">
+        <section id="StepTracker">
+        <h1>StepTracker Leaderboard</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Steps</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($topUsers as $key => $user) 
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->steps }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </section>
+
+        <section id="SleepTracker">
+            <h1>Sleep Leaderboard</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($topSleepers as $key => $user)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->score }}</td>  
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+        </section>
+        <section id="WaterIntake">
+            <h1>Water Intake Leaderboard</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Water Intake (mL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($topWaterDrinkers as $key => $user)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->water }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>    
+        </section>
+    </main>
+        
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

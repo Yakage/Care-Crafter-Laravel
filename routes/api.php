@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     //For Step Tracker
     Route::get('/getStepHistory', [StepTrackerController::class, 'getStepHistory']);
+    Route::get('/getStepHistory2', [StepTrackerController::class, 'getStepHistory2']);
     Route::post('/createStepHistory', [StepTrackerController::class, 'createStepHistory']);
         
         //FOr Leaderboards
@@ -51,12 +52,14 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('getMonthlyStep', [StepTrackerController::class, 'getMonthlySteps']);
 
     //For Sleep Tracker
+    Route::get('/getSleepHistory', [SleepTrackerController::class, 'getSleepHistory']);
+    Route::get('/getSleepTime', [SleepTrackerController::class, 'getSleepTime']);
     Route::get('/getAlarm', [SleepTrackerController::class, 'getAlarm']);
     Route::post('/createAlarm', [SleepTrackerController::class, 'createAlarm']);
     Route::put('/updateAlarm', [SleepTrackerController::class, 'updateAlarm']);
     Route::delete('/deleteAlarm/{id}', [SleepTrackerController::class, 'deleteAlarm']);
 
-    Route::get('/getScore', [SleepTrackerController::class, 'getScore']);
+    Route::get('/getScore', [SleepTrackerController::class, 'getScoreLogs']);
     Route::post('/createScore', [SleepTrackerController::class, 'createScore']);
         //For LeaderBoard
     Route::post('/createSleep', [SleepTrackerController::class, 'createSleeps']);
@@ -70,6 +73,15 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/showDailyWater', [WaterIntakeController::class, 'showDailyWater']);
     Route::get('/showWeeklyWater', [WaterIntakeController::class, 'showWeeklyWater']);
     Route::get('/showMonthlyWater', [WaterIntakeController::class, 'showMonthlyWater']);
+
+        //FOR Statistics
+    Route::get('getDailyWater', [WaterIntakeController::class, 'getDailyWater']);
+    Route::get('getWeeklyWater', [WaterIntakeController::class, 'getWeeklyWater']);
+    Route::get('getMonthlyWater', [WaterIntakeController::class, 'getMonthlyWater']);
+
+    Route::get('/getWaterHistory', [WaterIntakeController::class, 'getWaterHistory']);
+    Route::get('/getWaterHistory2', [WaterIntakeController::class, 'getWaterHistory2']);
+    Route::post('/createWaterHistory', [WaterIntakeController::class, 'createWaterHistory']);
     //For BMI
     Route::get('/getBMI', [BMIController::class, 'getBMI']);
     Route::post('/createBMI', [BMIController::class, 'createBMI']);

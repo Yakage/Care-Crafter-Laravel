@@ -11,7 +11,8 @@ class StepTrackerLogs extends Model
     protected $table = 'step_tracker_logs';
     protected $fillable = [
         'user_id',
-        'step_history'
+        'daily_goal',
+        'current_steps'
     ];
 
     

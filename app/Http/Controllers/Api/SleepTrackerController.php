@@ -92,9 +92,10 @@ class SleepTrackerController extends Controller{
     
     public function getScoreLogs(SleepTrackerScore $sleepTrackerScore){
         $user = Auth::user(); // Retrieve authenticated user based on the token
-        $score = $sleepTrackerScore->get();
+        $score = $sleepTrackerScore->where('user_id', $user->id)->latest()->first();
         return response()->json($score);
     }
+    
 
     public function createScore(Request $request){
         $user = Auth::user();
@@ -114,16 +115,51 @@ class SleepTrackerController extends Controller{
 
     }
     
+    public function getSleepHistory(SleepTrackerLeaderboard $sleepTrackerLeaderboard){
+        $user = Auth::user(); // Retrieve authenticated user based on the token
+        $results = $sleepTrackerLeaderboard::select('score', 'sleeps', 'date')
+                                    ->where('user_id', $user->id)
+                                    ->latest() // Order by created_at in descending order
+                                    ->get(); // Retrieve specified fields
 
+                                  
+        return response()->json($results);
+    
+    }
+
+    public function getSleepTime() {
+        $user = Auth::user();
+        $latestSleep = SleepTrackerLeaderboard::select('name', 'score', DB::raw('SUM(sleeps) as total_sleeps'))
+                                                ->where('date', now()->format('Y-m-d'))
+                                                ->where('user_id', $user->id)
+                                                ->groupBy('name', 'score')
+                                                ->orderByDesc('total_sleeps')
+                                                ->first();
+    
+        // Convert total_sleeps from seconds to hours:minutes:seconds format
+        if ($latestSleep) {
+            $totalSleeps = $latestSleep->total_sleeps;
+            $hours = floor($totalSleeps / 3600);
+            $minutes = floor(($totalSleeps % 3600) / 60);
+            $seconds = $totalSleeps % 60;
+            $latestSleep->total_sleeps = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+        }
+    
+        return response()->json($latestSleep);
+    }
+    
+    
     public function createSleeps(Request $request){
         $user = Auth::user();
         $request->validate([
-            'sleeps' => 'required|integer',
+            'score' => 'required',
+            'sleeps' => 'required|numeric',
         ]);
     
         $sleepTrackerLeaderBoard = new SleepTrackerLeaderboard();
         $sleepTrackerLeaderBoard->user_id = $user->id;
         $sleepTrackerLeaderBoard->name = $user->name;
+        $sleepTrackerLeaderBoard->score = $request->score;
         $sleepTrackerLeaderBoard->sleeps = $request->sleeps;
         $sleepTrackerLeaderBoard->date = now();
         $sleepTrackerLeaderBoard->save();
@@ -131,15 +167,25 @@ class SleepTrackerController extends Controller{
         return response()->json(['message' => 'Sleeps tracked successfully']);
     }
     
-    public function showDailySleeps(){
+    public function showDailySleeps() {
         $dailySleeps = SleepTrackerLeaderboard::select('name', DB::raw('SUM(sleeps) as total_sleeps'))
-                    ->where('date', now()->format('Y-m-d'))
-                    ->groupBy('name')
-                    ->orderByDesc('total_sleeps')
-                    ->get();
+                        ->where('date', now()->format('Y-m-d'))
+                        ->groupBy('name')
+                        ->orderByDesc('total_sleeps')
+                        ->get();
+    
+        // Convert total_sleeps from seconds to hours:minutes:seconds format
+        foreach ($dailySleeps as $sleep) {
+            $totalSleeps = $sleep->total_sleeps;
+            $hours = floor($totalSleeps / 3600);
+            $minutes = floor(($totalSleeps % 3600) / 60);
+            $seconds = $totalSleeps % 60;
+            $sleep->total_sleeps = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+        }
     
         return response()->json($dailySleeps);
     }
+    
     
     public function showWeeklySleeps(){
         $weeklySleeps = SleepTrackerLeaderboard::select('name', DB::raw('SUM(sleeps) as total_sleeps'))
@@ -148,6 +194,14 @@ class SleepTrackerController extends Controller{
                         ->orderByDesc('total_sleeps')
                         ->get();
     
+        // Convert total_sleeps from seconds to hours:minutes:seconds format
+        foreach ($weeklySleeps as $sleep) {
+            $totalSleeps = $sleep->total_sleeps;
+            $hours = floor($totalSleeps / 3600);
+            $minutes = floor(($totalSleeps % 3600) / 60);
+            $seconds = $totalSleeps % 60;
+            $sleep->total_sleeps = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+        }
         return response()->json($weeklySleeps);
     }
     
@@ -157,6 +211,15 @@ class SleepTrackerController extends Controller{
                         ->groupBy('name')
                         ->orderByDesc('total_sleeps')
                         ->get();
+
+        // Convert total_sleeps from seconds to hours:minutes:seconds format
+        foreach ($monthlySleeps as $sleep) {
+            $totalSleeps = $sleep->total_sleeps;
+            $hours = floor($totalSleeps / 3600);
+            $minutes = floor(($totalSleeps % 3600) / 60);
+            $seconds = $totalSleeps % 60;
+            $sleep->total_sleeps = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+        }
     
         return response()->json($monthlySleeps);
     }

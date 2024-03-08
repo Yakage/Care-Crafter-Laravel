@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\StepTrackerLeaderboard;
+use App\Models\SleepTrackerLeaderboard;
 use App\Models\User;
+use App\Models\WaterIntakeLeaderboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -79,5 +82,23 @@ class UserController extends Controller
         $user->update($validatedData);
 
         return redirect()->route('user.user-ui.user')->with('success', 'Profile updated successfully!');
+    }
+    public function leaderboard(){
+        $user = Auth::user();
+        
+        if (Auth::check()) {
+            // User is authenticated
+            $topUsers = StepTrackerLeaderboard::orderBy('steps', 'desc')->limit(10)->get();
+
+            $topSleepers = SleepTrackerLeaderboard::orderBy('score', 'desc')->limit(10)->get();
+
+            $topWaterDrinkers = WaterIntakeLeaderboard::orderBy('water', 'desc')->limit(10)->get();
+
+
+            return view('user.leaderboard',compact('topUsers', 'user', 'topSleepers', 'topWaterDrinkers'));
+        }else{
+            
+        }
+    
     }
 }

@@ -8,6 +8,8 @@ use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\AuthenticationController;
 use App\Http\Controllers\Web\BMIController;
 use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\LeaderboardController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -53,6 +55,14 @@ Route::get('/user/user-ui/user', [UserController::class, 'userDashboard'])->name
 Route::post('/user/user-ui/user', [UserController::class, 'update']);
 Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('user.feedback');
 Route::get('/user-home', [UserController::class, 'userHome'])->name('user.home');
+Route::get('/user-leaderboard', [UserController::class, 'leaderboard'])->name(('user.leaderboards'));
+
+//feedback
+Route::post('/user-feedback', [FeedbackController::class, 'store'])->name('store.Feedback');
+
+//For Leaderboard
+Route::get('/leaderboard', [LeaderboardController::class, 'showLeaderboard'])->name('leaderboard');
+
 
 
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
@@ -69,6 +79,7 @@ Route::get('/chart-data', [\App\Http\Controllers\Web\StepTrackerController::clas
 
 //Chart Water Intake
 Route::get('/chart-data3', [\App\Http\Controllers\Web\WaterIntakeController::class, 'chartData3']);
+
 
 
 //For Water Intake
