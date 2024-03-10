@@ -75,9 +75,14 @@ class UserController extends Controller
             'height' => 'required|numeric',
             'weight' => 'required|numeric',
             'gender' => 'required|in:male,female,other',
-            'password' => 'required|confirmed|min:8',
-            'password_confirmation' => 'required',
+            'password' => 'nullable|confirmed|min:8',
+            
         ]);
+
+         // Remove password fields from the validated data if they are not provided
+        if (empty($validatedData['password'])) {
+            unset($validatedData['password']);
+        }
 
         $user->update($validatedData);
 

@@ -176,23 +176,17 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Update Profile</button>
-
-            </div>
-
-            <div>
                 <h3>Change Password</h3>
-            <div class="form-group password-fields">
-                <label for="password">New Password</label>
-                <input type="password" name="password" id="password" class="form-control" required>
-            </div>
+                    <div class="form-group password-fields">
+                        <label for="password">New Password</label>
+                        <input type="password" name="password" id="password" class="form-control">
+                    </div>
+                    <div class="form-group password-fields">
+                        <label for="password_confirmation">Confirm New Password</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                    </div>
 
-            <div class="form-group password-fields">
-                <label for="password_confirmation">Confirm New Password</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
-            </div>
-                <button type="submit" class="btn btn-primary">Update Password</button>
-            </div>
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
 
             
         </form>
