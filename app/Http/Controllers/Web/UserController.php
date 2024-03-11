@@ -111,12 +111,14 @@ class UserController extends Controller
     
     }
 
-    public function stepTracker(StepTrackerLogs $stepTrackerLogs){
+    public function stepTracker(StepTrackerLogs $stepTrackerLogs)
+    {
         $user = Auth::user();
         $stepHistory = StepTrackerLogs::where('user_id', auth()->id())->get();
 
         $createdAt = $stepTrackerLogs->created_at; // Accessing the created_at timestamp
-        $updatedAt = $stepTrackerLogs->updated_at; 
+        $updatedAt = $stepTrackerLogs->updated_at;
+
         return view('user.step-tracker.home', compact('user', 'stepHistory'));
     }
 

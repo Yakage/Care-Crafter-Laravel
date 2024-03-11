@@ -27,7 +27,7 @@
                         <div class="navbar-content d-flex justify-content-between align-items-center">
                             <div class = "brand-and-toggler d-flex align-items-center justify-content-between">
                                 <a href = "#" class = "navbar-brand d-flex align-items-center">
-                                    <span class="brand-shape d-inline-block text-white">CC</span>
+                                <img src="{{ asset('img/CareCrafter-removebg-preview.png') }}" class="meow" alt="Sleep Tracking">
                                     <span class="brand-text fw-7">CareCrafter</span>
                                 </a>
                                 <button type = "button" class = "d-none navbar-show-btn">
