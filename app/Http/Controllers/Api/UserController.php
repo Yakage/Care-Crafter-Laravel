@@ -39,11 +39,6 @@ class UserController extends Controller{
             'weight.required' => 'Please enter your weight',
         ]);
 
-
-        // Find the user by ID
-        //$user = User::find($id);
-
-        // Check if user exists
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }

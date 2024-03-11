@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\StepTrackerController as ApiStepTrackerController;
-use App\Http\Controllers\StepTrackerController;
 use App\Http\Controllers\Web\SleepTrackerController;
-use App\Http\Controllers\WaterIntakeController;
 use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\AuthenticationController;
 use App\Http\Controllers\Web\BMIController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\Web\StepTrackerController;
+use App\Http\Controllers\Web\WaterIntakeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -56,6 +55,10 @@ Route::post('/user/user-ui/user', [UserController::class, 'update']);
 Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('user.feedback');
 Route::get('/user-home', [UserController::class, 'userHome'])->name('user.home');
 Route::get('/user-leaderboard', [UserController::class, 'leaderboard'])->name(('user.leaderboards'));
+Route::get('/user-stepTracker', [UserController::class, 'stepTracker'])->name(('user.stepTracker'));
+Route::get('/user-sleepTracker', [UserController::class, 'sleepsTracker'])->name(('user.sleepsTracker'));
+Route::get('/user-waterIntake', [UserController::class, 'waterIntake'])->name(('user.waterIntake'));
+
 
 //feedback
 Route::post('/user-feedback', [FeedbackController::class, 'store'])->name('store.Feedback');
@@ -68,17 +71,21 @@ Route::get('/leaderboard', [LeaderboardController::class, 'showLeaderboard'])->n
 //Route::get('/admin-home', [AuthenticationController::class, 'showUserCount']);/**line where admin-home is being called to display total number of users in the admin dashboard */
 
 //For Step Tracker
-Route::get('/getStepHistory', [\App\Http\Controllers\Web\StepTrackerController::class, 'getStepHistory']);
-Route::post('/createStepHistory', [\App\Http\Controllers\Web\StepTrackerController::class, 'createStepHistory']);
+Route::get('/getStepHistory', [StepTrackerController::class, 'getStepHistory']);
+Route::post('/createStepHistory', [StepTrackerController::class, 'createStepHistory']);
 
 //For Sleep Tracker
-Route::get('/getHistoryOfSleepTracker', [SleepTrackerController::class, 'getHistoryOfSleepTracker']);
+Route::get('/chartDataSleepsWeekly', [SleepTrackerController::class, 'chartDataSleepsWeekly']);
+Route::get('/chartDataSleepsMonthly', [SleepTrackerController::class, 'chartDataSleepsMonthly']);
 
 //Chart Step Tracker
-Route::get('/chart-data', [\App\Http\Controllers\Web\StepTrackerController::class, 'chartData']);
+Route::get('/chartDataStepsWeekly', [StepTrackerController::class, 'chartDataStepsWeekly']);
+Route::get('/chartDataStepsMonthly', [StepTrackerController::class, 'chartDataStepsMonthly']);
+
 
 //Chart Water Intake
-Route::get('/chart-data3', [\App\Http\Controllers\Web\WaterIntakeController::class, 'chartData3']);
+Route::get('/chartDataWaterWeekly', [WaterIntakeController::class, 'chartDataWaterWeekly']);
+Route::get('/chartDataWaterMonthly', [WaterIntakeController::class, 'chartDataWaterMonthly']);
 
 
 

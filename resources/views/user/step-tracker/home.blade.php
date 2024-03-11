@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CareCrafter Home</title>
+    <title>CareCrafter Step Tracker</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -80,7 +80,7 @@
                     <div class="myCharts">
                         <div class="myChart">
                             <h3>Weekly Steps Statistics</h3>
-                            <canvas id="barchart1" width="600" height="400"></canvas>
+                            <canvas id="barchart1" width="600" height="450"></canvas>
                         </div>
                     </div>
                 </div>
@@ -88,44 +88,36 @@
                     <div class="myCharts">
                         <div class="myChart">
                             <h3>Monthly Steps Statistics</h3>
-                            <canvas id="barchart2" width="600" height="400"></canvas>
+                            <canvas id="barchart2" width="600" height="460"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="myCharts">
-                        <div class="myChart">
-                            <h3>Weekly Sleeps Statistics</h3>
-                            <canvas id="barchart3" width="600" height="500"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="myCharts">
-                        <div class="myChart">
-                            <h3>Monthly Sleeps Statistics</h3>
-                            <canvas id="barchart4" width="600" height="500"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="myCharts">
-                        <div class="myChart">
-                            <h3>Weekly Water Statistics</h3>
-                            <canvas id="barchart5" width="600" height="500"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="myCharts">
-                        <div class="myChart">
-                            <h3>Monthly Water Statistics</h3>
-                            <canvas id="barchart6" width="600" height="500"></canvas>
-                        </div>
+        </section>
+
+        <section>
+            <div class="col py-3">
+                <div class="col-md-9 content-container">
+                    <div class="container">
+                        <h2 class="text-center" style="color: #458ff6;">History Of Step Tracker</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img src="{{ asset('img\steptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Step Logs</h5>
+                                        @foreach ($stepHistory as $history)
+                                            <div class="card border">
+                                                <div class="mb-2"> <!-- Add margin-bottom to create a small gap -->
+                                                    <p class="m-0">Created at: {{ $history->created_at }}</p>
+                                                    <p class="m-0">Logs: {{ $history->step_history }}</p> <!-- Use strong tag for titles -->
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -135,39 +127,59 @@
         <!-- script js for graphs -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
         <script>
-            async function fetchWaterDataWeekly() {
+            async function fetchStepsDataWeekly() {
                 try {
-                    const response = await fetch('/chartDataWaterWeekly'); // Use the correct API endpoint
+                    const response = await fetch('/chartDataStepsWeekly');
                     if (!response.ok) {
-                        throw new Error('Failed to fetch data');
+                        throw new Error('Failed to fetch weekly steps data');
                     }
-                    const data = await response.json();
-                    return data;
+                    return await response.json();
                 } catch (error) {
-                    console.error('Error fetching water data:', error);
+                    console.error('Error fetching weekly steps data:', error);
                     return [];
                 }
             }
-
+        
+            async function fetchStepsDataMonthly() {
+                try {
+                    const response = await fetch('/chartDataStepsMonthly');
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch monthly steps data');
+                    }
+                    return await response.json();
+                } catch (error) {
+                    console.error('Error fetching monthly steps data:', error);
+                    return [];
+                }
+            }
+        
             document.addEventListener('DOMContentLoaded', async function() {
-                const waterData = await fetchWaterDataWeekly();
-
-                const labels = [];
-                const values = [];
-
-                waterData.forEach(entry => {
-                    labels.push(entry.label);
-                    values.push(entry.value);
+                const weeklyStepsData = await fetchStepsDataWeekly();
+                const monthlyStepsData = await fetchStepsDataMonthly();
+        
+                const weeklyLabels = [];
+                const weeklyValues = [];
+                const monthlyLabels = [];
+                const monthlyValues = [];
+        
+                weeklyStepsData.forEach(entry => {
+                    weeklyLabels.push(entry.label);
+                    weeklyValues.push(entry.value);
                 });
-
-                const ctx3 = document.getElementById('barchart5').getContext('2d');
-                new Chart(ctx3, {
+        
+                monthlyStepsData.forEach(entry => {
+                    monthlyLabels.push(entry.week);
+                    monthlyValues.push(entry.steps);
+                });
+        
+                const ctx1 = document.getElementById('barchart1').getContext('2d');
+                new Chart(ctx1, {
                     type: 'bar',
                     data: {
-                        labels: labels,
+                        labels: weeklyLabels,
                         datasets: [{
-                            label: 'Water Intake',
-                            data: values,
+                            label: 'Weekly Steps Tracker',
+                            data: weeklyValues,
                             borderWidth: 3
                         }]
                     },
@@ -179,42 +191,15 @@
                         }
                     }
                 });
-            });
-
-            
-            async function fetchWaterDataMonthly() {
-                try {
-                    const response = await fetch('/chartDataWaterMonthly'); // Use the correct API endpoint
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch data');
-                    }
-                    const data = await response.json();
-                    return data;
-                } catch (error) {
-                    console.error('Error fetching water data:', error);
-                    return [];
-                }
-            }
-
-            document.addEventListener('DOMContentLoaded', async function() {
-                const waterData = await fetchWaterDataMonthly();
-
-                const labels = [];
-                const values = [];
-
-                waterData.forEach(entry => {
-                    labels.push(entry.week);
-                    values.push(entry.water);
-                });
-
-                const ctx6 = document.getElementById('barchart6').getContext('2d');
-                new Chart(ctx6, {
+        
+                const ctx2 = document.getElementById('barchart2').getContext('2d');
+                new Chart(ctx2, {
                     type: 'bar',
                     data: {
-                        labels: labels,
+                        labels: monthlyLabels,
                         datasets: [{
-                            label: 'Water Intake',
-                            data: values,
+                            label: 'Monthly Steps Tracker',
+                            data: monthlyValues,
                             borderWidth: 3
                         }]
                     },
@@ -228,6 +213,7 @@
                 });
             });
         </script>
+        
 
 
        

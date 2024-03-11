@@ -74,49 +74,13 @@
 
         
 
-        <section class="mt-5">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="myCharts">
-                        <div class="myChart">
-                            <h3>Weekly Steps Statistics</h3>
-                            <canvas id="barchart1" width="600" height="400"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="myCharts">
-                        <div class="myChart">
-                            <h3>Monthly Steps Statistics</h3>
-                            <canvas id="barchart2" width="600" height="400"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="myCharts">
-                        <div class="myChart">
-                            <h3>Weekly Sleeps Statistics</h3>
-                            <canvas id="barchart3" width="600" height="500"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="myCharts">
-                        <div class="myChart">
-                            <h3>Monthly Sleeps Statistics</h3>
-                            <canvas id="barchart4" width="600" height="500"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section class="mt-5 ">
             <div class="row">
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
                             <h3>Weekly Water Statistics</h3>
-                            <canvas id="barchart5" width="600" height="500"></canvas>
+                            <canvas id="barchart1" width="600" height="450"></canvas>
                         </div>
                     </div>
                 </div>
@@ -124,7 +88,7 @@
                     <div class="myCharts">
                         <div class="myChart">
                             <h3>Monthly Water Statistics</h3>
-                            <canvas id="barchart6" width="600" height="500"></canvas>
+                            <canvas id="barchart2" width="600" height="460"></canvas>
                         </div>
                     </div>
                 </div>
@@ -160,7 +124,7 @@
                     values.push(entry.value);
                 });
 
-                const ctx3 = document.getElementById('barchart5').getContext('2d');
+                const ctx3 = document.getElementById('barchart1').getContext('2d');
                 new Chart(ctx3, {
                     type: 'bar',
                     data: {
@@ -207,7 +171,7 @@
                     values.push(entry.water);
                 });
 
-                const ctx6 = document.getElementById('barchart6').getContext('2d');
+                const ctx6 = document.getElementById('barchart2').getContext('2d');
                 new Chart(ctx6, {
                     type: 'bar',
                     data: {

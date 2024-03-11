@@ -70,12 +70,7 @@ body {
     border-radius: 30px;
 }
 
-.myChart2 {
-    padding: 30px;
-    border: 1px solid #0c9eff;
-    background-color: #f5f5f548;
-    border-radius: 30px;
-}
+
 
 .myChart h3, .myChart2 h3 { 
     text-align: center;
