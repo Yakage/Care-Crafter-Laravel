@@ -77,28 +77,27 @@
 					<li>
 						<i class='bx bxs-calendar-check' ></i>
 						<span class="text">
-							<h3>Total Users</h3>
 							<p>{{ $userCount}}</p>
+							<h3>Total Users</h3>
 						</span>
 					</li>
 					<li>
 						<i class='bx bxs-group' ></i>
 						<span class="text">
-							<h3>Online Users</h3>
 							<p>{{ $activeUsersCount}}</p>
+							<h3>Online Users</h3>
 						</span>
 					</li>
 					<li>
 						<i class='bx bxs-dollar-circle' ></i>
 						<span class="text">
-							<h3>Offline Users</h3>
 							<p>{{ $unactiveUsersCount}}</p>
+							<h3>Offline Users</h3>
 						</span>
 					</li>
 					<li>
 						<i class='bx bxs-calendar-check' ></i>
 						<span class="text">
-							<h3>Total Users by Gender</h3>
 							<h3>Male</h3>
 							<p>{{ $userCountsByMaleGender}}</p>
 							<h3>Female</h3>
@@ -108,8 +107,17 @@
 				</ul>
 			</section>
 
-			<section>
-				<canvas id="myChart"></canvas>
+			<section class="mt-5">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="myCharts">
+							<div class="myChart">
+								<h3>Users Statistics</h3>
+								<canvas id="barchart1"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
 			</section>
 
 			
@@ -120,29 +128,54 @@
 	<!-- CONTENT -->
 	
 
+	<!-- script js for graphs -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 	<script>
-		const xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday", "Sunday"];
-		const yValues = [20, 20, 20, 20, 20];
-
-		new Chart("myChart", {
-		type: "bar",
-		data: {
-			labels: xValues,
-			datasets: [{
-			backgroundColor: "#b1eafa",
-			data: yValues
-			}]
-		},
-		options: {
-			legend: {display: false},
-			title: {
-				display: true,
-				text: "User Statistics",
-				fontSize: 36,
-				fontFamily: "poppins, sans-serif"
-				
+		async function fetchStepsDataWeekly() {
+			try {
+				const response = await fetch('/chartDataStepsWeekly');
+				if (!response.ok) {
+					throw new Error('Failed to fetch weekly steps data');
+				}
+				return await response.json();
+			} catch (error) {
+				console.error('Error fetching weekly steps data:', error);
+				return [];
 			}
 		}
+	
+	
+		document.addEventListener('DOMContentLoaded', async function() {
+			const weeklyStepsData = await fetchStepsDataWeekly();
+		
+			const weeklyLabels = [];
+			const weeklyValues = [];
+	
+			weeklyStepsData.forEach(entry => {
+				weeklyLabels.push(entry.label);
+				weeklyValues.push(entry.value);
+			});
+	
+	
+			const ctx1 = document.getElementById('barchart1').getContext('2d');
+			new Chart(ctx1, {
+				type: 'bar',
+				data: {
+					labels: weeklyLabels,
+					datasets: [{
+						label: 'Users Login',
+						data: weeklyValues,
+						borderWidth: 3
+					}]
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
 		});
 	</script>
 </body>

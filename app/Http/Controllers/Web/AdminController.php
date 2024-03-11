@@ -21,8 +21,7 @@ class AdminController extends Controller
 
     public function userFeedbacks(){
         $feedbacks = UserFeedback::all();
-
-        return view('admin\user-feedbacks', compact('feedbacks'));
+        return view('admin.user-feedbacks', compact('feedbacks'));
     }
     
 

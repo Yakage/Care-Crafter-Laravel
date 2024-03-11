@@ -4,58 +4,93 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\StepTrackerLeaderboard;
-use App\Models\StepTrackerLogs;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Carbon;
 
 class StepTrackerController extends Controller
 {
-    public function getStepHistory(StepTrackerLogs $stepTrackerLogs){
-        $user = Auth::user(); // Retrieve authenticated user based on the token
-        $stepHistory = StepTrackerLogs::where('user_id', auth()->id())->get();
-
-        $createdAt = $stepTrackerLogs->created_at; // Accessing the created_at timestamp
-        $updatedAt = $stepTrackerLogs->updated_at; 
-        return view('user.step-tracker.history', compact('user', 'stepHistory'));
-    }
-
-    public function createStepHistory(Request $request){
+    // For Statistics
+    public function chartDataStepsWeekly() {
         $user = Auth::user();
-        $request->validate([
-            'step_history' => 'required',
-        ]);
-
-        $results = StepTrackerLogs::create([
-            //'user_id' => $user->id,
-            'user_id' => $user->id,
-            'step_history' => $request->input('step_history'),
-        ]);
-
-        return response()->json($results);
+    
+        // Get the current date
+        $today = date('Y-m-d');
+    
+        // Calculate the start and end of the current week
+        $startOfWeek = date('Y-m-d', strtotime('monday this week', strtotime($today)));
+        $endOfWeek = date('Y-m-d', strtotime('sunday this week', strtotime($today)));
+    
+        // Initialize an array to store water intake data for each day
+        $stepHistoryData = [];
+    
+        // Loop through each day of the week
+        $currentDate = $startOfWeek;
+        while ($currentDate <= $endOfWeek) {
+            // Retrieve the sum of 'Step' for the authenticated user and the current date
+            $stepHistory = StepTrackerLeaderboard::where('user_id', $user->id)
+                ->whereDate('date', $currentDate)
+                ->sum('steps');
+    
+            // Add water intake data for the current day to the array
+            $stepHistoryData[] = [
+                'label' => date('l', strtotime($currentDate)), // Format day name (e.g., Monday, Tuesday)
+                'value' => $stepHistory
+            ];
+    
+            // Move to the next day
+            $currentDate = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
+        }
+    
+        // Return the water intake data array
+        return response()->json($stepHistoryData);
     }
 
-    public function chartData() {
+    public function chartDataStepsMonthly() {
         $user = Auth::user();
         
         // Get the current date
-        $today = Carbon::today();
+        $today = date('Y-m-d');
+        
+        // Get the first day of the current month
+        $firstDayOfMonth = date('Y-m-01');
+        
+        // Get the last day of the current month
+        $lastDayOfMonth = date('Y-m-t');
+        
+        // Initialize an array to store water intake data for each week
+        $weeklyStepsData = [];
+        
+        // Get the start date of the current week
+        $currentDate = $firstDayOfMonth;
+        $currentWeekStart = date('Y-m-d', strtotime('monday this week', strtotime($currentDate)));
+        
+        // Loop through each day of the month
+        while ($currentDate <= $lastDayOfMonth) {
+            // If the current date is a Monday or the last day of the month, calculate the total water intake for the current week
+            if (date('N', strtotime($currentDate)) == 1 || $currentDate == $lastDayOfMonth) {
+                // Get the end date of the current week (Sunday)
+                $currentWeekEnd = date('Y-m-d', strtotime('sunday this week', strtotime($currentDate)));
+                
+                // Retrieve the sum of 'water' for the authenticated user within the current week
+                $stepsForWeek = StepTrackerLeaderboard::where('user_id', $user->id)
+                    ->whereBetween('date', [$currentWeekStart, $currentWeekEnd])
+                    ->sum('steps');
+                
+                // Add water intake data for the current week to the array
+                $weeklyStepsData[] = [
+                    'week' => 'Week ' . count($weeklyStepsData) + 1,
+                    'steps' => $stepsForWeek
+                ];
     
-        // Retrieve the sum of 'steps' for the authenticated user and today's date
-        $stepHistory = StepTrackerLeaderboard::where('user_id', $user->id)
-            ->whereDate('date', $today)
-            ->sum('steps');
-    
-        $stepHistoryData = [
-            [
-                'label' => 'STEPS',
-                'value' => $stepHistory
-            ]
-        ];
-    
-        return response()->json([
-            'stepHistoryData' => $stepHistoryData
-        ]);
+                // Move the start date of the next week to the next day
+                $currentWeekStart = date('Y-m-d', strtotime('+1 day', strtotime($currentWeekEnd)));
+            }
+            
+            // Move to the next day
+            $currentDate = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
+        }
+        
+        // Return the water intake data array
+        return response()->json($weeklyStepsData);
     }
 }

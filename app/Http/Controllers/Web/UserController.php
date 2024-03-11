@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\SleepTrackerAlarm;
 use App\Models\StepTrackerLeaderboard;
 use App\Models\SleepTrackerLeaderboard;
+use App\Models\SleepTrackerScore;
+use App\Models\StepTrackerLogs;
 use App\Models\User;
+use App\Models\UserFeedback;
 use App\Models\WaterIntakeLeaderboard;
+use App\Models\WaterIntakeLogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +46,7 @@ class UserController extends Controller
     }
     public function userFeedback(){
         $user = Auth::user();
+        
 
         // Check if a user is authenticated
         if (Auth::check()) {
@@ -54,15 +60,15 @@ class UserController extends Controller
     public function userDashboard(Request $request)
     {
         $user = Auth::user();
-    $userData = [
-        'name' => $user->name,
-        'birthday' => $user->birthday,
-        'height' => $user->height,
-        'weight' => $user->weight,
-        'email' => $user->email,
-        'gender' => $user->gender,
-        'user_id' => $user->id,
-    ];
+        $userData = [
+            'name' => $user->name,
+            'birthday' => $user->birthday,
+            'height' => $user->height,
+            'weight' => $user->weight,
+            'email' => $user->email,
+            'gender' => $user->gender,
+            'user_id' => $user->id,
+        ];
 
     return view('user.user-ui.user', compact('userData'));
 }
@@ -106,4 +112,30 @@ class UserController extends Controller
         }
     
     }
+
+    public function stepTracker(StepTrackerLogs $stepTrackerLogs){
+        $user = Auth::user();
+        $stepHistory = StepTrackerLogs::where('user_id', auth()->id())->get();
+
+        $createdAt = $stepTrackerLogs->created_at; // Accessing the created_at timestamp
+        $updatedAt = $stepTrackerLogs->updated_at; 
+        return view('user.step-tracker.home', compact('user', 'stepHistory'));
+    }
+
+    public function sleepsTracker(){
+        $user = Auth::user();
+        $scores = SleepTrackerLeaderboard::where('user_id', auth()->id())->get();
+        return view('user.sleep-tracker.home', compact('user', 'scores'));
+    }
+
+
+    public function waterIntake(WaterIntakeLogs $waterIntakeLogs){
+        $user = Auth::user();
+        // $stepHistory = StepTrackerLogs::where('user_id', auth()->id())->get();
+
+        // $createdAt = $stepTrackerLogs->created_at; // Accessing the created_at timestamp
+        // $updatedAt = $stepTrackerLogs->updated_at; 
+        return view('user.water-intake.home', compact('user'));
+    }
+    
 }
