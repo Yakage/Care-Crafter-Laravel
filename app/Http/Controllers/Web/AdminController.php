@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\StepTrackerLeaderboard;
 use App\Models\User;
+use App\Models\UserFeedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,8 +20,10 @@ class AdminController extends Controller
     }
 
     public function userFeedbacks(){
-        return view('admin.user-feedbacks');
+        $feedbacks = UserFeedback::all();
+        return view('admin.user-feedbacks', compact('feedbacks'));
     }
+    
 
     public function getUser(Request $request){
         $users = User::all();
