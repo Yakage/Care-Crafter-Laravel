@@ -9,6 +9,7 @@ use App\Models\SleepTrackerLeaderboard;
 use App\Models\SleepTrackerScore;
 use App\Models\StepTrackerLogs;
 use App\Models\User;
+use App\Models\UserFeedback;
 use App\Models\WaterIntakeLeaderboard;
 use App\Models\WaterIntakeLogs;
 use Illuminate\Http\Request;
@@ -45,6 +46,7 @@ class UserController extends Controller
     }
     public function userFeedback(){
         $user = Auth::user();
+        
 
         // Check if a user is authenticated
         if (Auth::check()) {
