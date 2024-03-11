@@ -79,7 +79,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Weekly Water Statistics</h3>
+                            <h3>Weekly Sleeps Statistics</h3>
                             <canvas id="barchart1" width="600" height="450"></canvas>
                         </div>
                     </div>
@@ -87,10 +87,38 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Monthly Water Statistics</h3>
+                            <h3>Monthly Sleeps Statistics</h3>
                             <canvas id="barchart2" width="600" height="460"></canvas>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="col py-3">
+                <div class="col-md-9 content-container">
+                        <div class="container">
+                            <h2 class="text-center" style="color: #458ff6;">History Of Sleep Tracker</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <img src="{{ asset('img\sleeptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Sleep Tracker Logs</h5>
+                                            @foreach ($scores as $score)
+                                            <div class="card border">
+                                                <div class="mb-2"> <!-- Add margin-bottom to create a small gap -->
+                                                    <p class="m-0">Date: {{ $score->date }}</p>
+                                                    <p class="m-0">Score: {{ $score->score }}</p> 
+                                                    <p class="m-0">Sleeps: {{ $score->sleeps }}</p>
+      
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                        
+                        </div>
                 </div>
             </div>
         </section>

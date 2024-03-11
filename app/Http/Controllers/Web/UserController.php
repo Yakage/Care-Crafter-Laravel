@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\SleepTrackerAlarm;
 use App\Models\StepTrackerLeaderboard;
 use App\Models\SleepTrackerLeaderboard;
 use App\Models\SleepTrackerScore;
@@ -119,13 +120,10 @@ class UserController extends Controller
         return view('user.step-tracker.home', compact('user', 'stepHistory'));
     }
 
-    public function sleepsTracker(SleepTrackerScore $sleepTrackerScore){
+    public function sleepsTracker(){
         $user = Auth::user();
-        $stepHistory = StepTrackerLogs::where('user_id', auth()->id())->get();
-
-        // $createdAt = $sleepTrackerScore->created_at; // Accessing the created_at timestamp
-        // $updatedAt = $sleepTrackerScore->updated_at; 
-        return view('user.sleep-tracker.home', compact('user'));
+        $scores = SleepTrackerLeaderboard::where('user_id', auth()->id())->get();
+        return view('user.sleep-tracker.home', compact('user', 'scores'));
     }
 
 
