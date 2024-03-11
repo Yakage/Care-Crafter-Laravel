@@ -253,6 +253,7 @@ body {
 
 .card {
     margin-bottom: 30px;
+    align-items: center;
 }
 
 .card-footer {
