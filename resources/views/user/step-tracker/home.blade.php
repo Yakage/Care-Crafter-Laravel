@@ -97,20 +97,20 @@
 
         <section>
             <div class="col py-3">
-                <div class="col-md-9 content-container">
+                <div class="col-md-9 content-container mx-auto"> <!-- Center the content container -->
                     <div class="container">
                         <h2 class="text-center" style="color: #458ff6;">History Of Step Tracker</h2>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 mx-auto"> <!-- Center the column -->
                                 <div class="card">
-                                    <img src="{{ asset('img\steptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                                    <img src="{{ asset('img/steptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
                                     <div class="card-body text-center">
                                         <h5 class="card-title">Step Logs</h5>
                                         @foreach ($stepHistory as $history)
                                             <div class="card border">
                                                 <div class="mb-2"> <!-- Add margin-bottom to create a small gap -->
-                                                    <p class="m-0">Created at: {{ $history->created_at }}</p>
                                                     <p class="m-0">Logs: {{ $history->step_history }}</p> <!-- Use strong tag for titles -->
+                                                    <p class="m-0">Created at: {{ $history->created_at }}</p>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -122,6 +122,7 @@
                 </div>
             </div>
         </section>
+
         
         
         <!-- script js for graphs -->

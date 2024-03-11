@@ -73,7 +73,6 @@
         </nav>
 
         
-
         <section class="mt-5 ">
             <div class="row">
                 <div class="col-md-6">
@@ -94,34 +93,36 @@
                 </div>
             </div>
 
-            <div class="col py-3">
-                <div class="col-md-9 content-container">
+            <section class="d-flex justify-content-center align-items-center">
+                <div class="col py-3">
+                    <div class="col-md-9 content-container mx-auto">
                         <div class="container">
-                            <h2 class="text-center" style="color: #458ff6;">History Of Sleep Tracker</h2>
+                            <h2 style="color: #458ff6; text-align: center;">History Of Sleep Tracker</h2>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="card">
-                                        <img src="{{ asset('img\sleeptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
+                                <div class="col-md-6 mx-auto">
+                                    <div class="card mx-auto"> <!-- Center the card horizontally -->
+                                        <img src="{{ asset('img/sleeptracker.jpg') }}" class="img-fluid card-img-top" alt="Sleep Tracking">
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Sleep Tracker Logs</h5>
                                             @foreach ($scores as $score)
-                                            <div class="card border">
-                                                <div class="mb-2"> <!-- Add margin-bottom to create a small gap -->
-                                                    <p class="m-0">Date: {{ $score->date }}</p>
-                                                    <p class="m-0">Score: {{ $score->score }}</p> 
-                                                    <p class="m-0">Sleeps: {{ $score->sleeps }}</p>
-      
+                                                <div class="card border">
+                                                    <div class="mb-2"> <!-- Add margin-bottom to create a small gap -->
+                                                        <p class="m-0">Date: {{ $score->date }}</p>
+                                                        <p class="m-0">Score: {{ $score->score }}</p> 
+                                                        <p class="m-0">Sleeps: {{ $score->sleeps }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             @endforeach
                                         </div>
                                     </div>
                                 </div>
                             </div>                        
                         </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+
         
         
         <!-- script js for graphs -->
