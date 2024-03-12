@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserLogin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,46 +14,53 @@ class AuthenticationController extends Controller{
     public function showLoginForm(){
         return view('auth.login');
     }
+
     public function login(Request $request){
         $credentials = $request->only('email', 'password');
+        
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            // Check if the user is an admin
-            //if ($user->role === 'admin') {
-                //return redirect()->route('admin.home'); // Redirect to admin dashboard
-            //}
-             // Check if not already active and update
-        if ($user->status !== 'online') {
-            $user->status = 'online';
-            $user->save();
-        }
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.home'); // Redirect to admin dashboard
-        } else {
-            return view('user.home', compact('user')); // Pass user object to user dashboard view
-        }
-    }
-            //return redirect()->route('user.home'); // Redirect to user dashboard
+            // Check if the user status is not already set to 'online'
+            if ($user->status !== 'online') {
+                $user->status = 'online';
+                $user->save(); // Use save() instead of update() to trigger model events
+            }
 
+            UserLogin::create([
+                'user_id' => $user->id,
+                'login_at' => now(),
+            ]);
+
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.home'); // Redirect to admin dashboard
+            } else {
+                return view('user.home', compact('user')); // Pass user object to user dashboard view
+            }
+        }
 
         return redirect()->route('login')->with("error", "Invalid Credentials");
     }
 
-    public function logout(Request $request){
-        $user = Auth::user();
-        
-    // Check if a user is authentic
+
+    public function logout(Request $request)
+    {
+        // Check if a user is authenticated
         if (Auth::check()) {
+            $user = Auth::user();
+
+            // Update the user status to 'offline'
+            $user->status = 'offline';
+            $user->save();
+
             Auth::logout();
-            return redirect('/')->with("success", "Successfully Logout");
+            return redirect('/')->with("success", "Successfully Logged Out");
         } else {
             // User is not authenticated
             return redirect('/login');
         }
-
-       
     }
+
 
     function register(){
         return view('auth.register');
@@ -60,22 +68,26 @@ class AuthenticationController extends Controller{
 
     function registerPost(Request $request){
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'name' => 'required|string|max:255', // Limit name to 255 characters
+            'email' => 'required|email|unique:users|max:255', // Limit email to 255 characters
             'birthday' => 'required|date',
-            'gender' => 'required|string',
-            'height' => 'required|numeric', // Validate as numeric (including decimals)
-            'weight' => 'required|numeric', // Validate as numeric (including decimals)
+            'gender' => 'required|in:male,female', // Specify allowed gender values
+            'height' => 'required|numeric|min:1|max:300', // Limit height between 1 and 300 cm
+            'weight' => 'required|numeric|min:1|max:300', // Limit weight between 1 and 300 kg
             'password' => 'required|string|min:8',
             'confirm_password' => 'required|string|same:password',
         ], [
-            'name' => 'Please enter your name',
-            'birthday' => 'Please enter your birthday',
-            'gender' => 'Please enter your gender [male or female Only]',
-            'height' => 'Please enter your heigh in kilograms',
-            'weight' => 'Please enter your weight in kilograms',
+            'name.max' => 'Name must not exceed 255 characters.',
+            'email.max' => 'Email must not exceed 255 characters.',
+            'gender.in' => 'Gender must be either male or female.',
+            'height.numeric' => 'Height must be a numeric value.',
+            'height.min' => 'Height must be at least 1 cm.',
+            'height.max' => 'Height cannot exceed 300 cm.',
+            'weight.numeric' => 'Weight must be a numeric value.',
+            'weight.min' => 'Weight must be at least 1 kg.',
+            'weight.max' => 'Weight cannot exceed 300 kg.',
             'password.min' => 'The password must be at least 8 characters.',
-            'confirm_password.same' => 'The password and password confirmation does not match.',
+            'confirm_password.same' => 'The password and password confirmation do not match.',
         ]);
 
         $data['name'] = $request->name;

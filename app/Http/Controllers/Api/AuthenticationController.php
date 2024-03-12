@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\SleepTrackerLeaderboard;
+use App\Models\StepTrackerLeaderboard;
 use App\Models\User;
+use App\Models\UserLogin;
+use App\Models\WaterIntakeLeaderboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -19,17 +23,22 @@ class AuthenticationController extends Controller{
         $user = Auth::user();
         $tokenResult = $user->createToken('Personal Access Token');
         $accessToken = $tokenResult->plainTextToken;
+         // Check if the user status is not already set to 'online'
+         if ($user->status !== 'online') {
+            $user->status = 'online';
+            $user->save(); // Use save() instead of update() to trigger model events
+        }
 
+        UserLogin::create([
+            'user_id' => $user->id,
+            'login_at' => now(),
+        ]);
         
         // Check if the user is an admin
         if ($user->role === 'admin') {
             return response()->json(['message' => 'Admin logged in', 'access_token' => $accessToken], 200);
         }
-    
-        // If not admin, mark the user as active
-        $user->status = 'online';
-        $user->update();
-    
+       
         return response()->json(['message' => 'User logged in', 'access_token' => $accessToken], 200);
     }
     
@@ -88,10 +97,18 @@ class AuthenticationController extends Controller{
 
     public function logout(Request $request){
         auth()->user()->currentAccessToken()->delete();
+        // Check if a user is authenticated
+        if (Auth::check()) {
+            $user = Auth::user();
 
+            // Update the user status to 'offline'
+            $user->status = 'offline';
+            $user->save();
+
+            Auth::logout();
+        }
         return response()->json(['message' => 'Logged out successfully'], 200);
     }
-
-   
+    
 }
 

@@ -46,6 +46,10 @@ Route::get('/admin.user-table.{id}.edit', [AdminController::class, 'editUsers'])
 Route::put('/admin.user-table/{id}/edit', [AdminController::class, 'updateUsers']);
 Route::get('/admin.user-table.{id}.delete', [AdminController::class, 'destroyUsers']);
 
+//For statistics
+Route::get('/admin.users-logged-in', [AdminController::class, 'getUsersLoggedInPerWeek']);
+Route::get('/admin.users-features', [AdminController::class, 'featuresStatistics']);
+
 //For Users
 Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
 //user dash
