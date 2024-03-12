@@ -41,7 +41,6 @@
                                 <li><a class="dropdown-item" href="{{ route('user.stepTracker')}}">Step Tracking</a></li>
                                 <li><a class="dropdown-item" href="{{ route('user.sleepsTracker')}}">Sleep Tracking</a></li>
                                 <li><a class="dropdown-item" href="{{ route('user.waterIntake')}}">Water Intake Reminder</a></li>
-                                <li><a class="dropdown-item" href="#">BMI Calculator</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
