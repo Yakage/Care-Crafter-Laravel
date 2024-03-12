@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
+
 
 
 class UserController extends Controller
@@ -100,30 +100,6 @@ class UserController extends Controller
 
     public function leaderboard() {
         if (Auth::check()) {
-<<<<<<< HEAD
-            $user = Auth::user();
-
-            // Get top users by total steps
-            $topUsers = StepTrackerLeaderboard::select('user_id', DB::raw('SUM(steps) as total_steps'))
-                ->groupBy('user_id')
-                ->orderByDesc('total_steps')
-                ->limit(10)
-                ->get();
-
-            // Get top users by total sleep score
-            $topSleepers = SleepTrackerLeaderboard::select('user_id', DB::raw('SUM(score) as total_score'))
-                ->groupBy('user_id')
-                ->orderByDesc('total_score')
-                ->limit(10)
-                ->get();
-
-            // Get top users by total water intake
-            $topWaterDrinkers = WaterIntakeLeaderboard::select('user_id', DB::raw('SUM(water) as total_water'))
-                ->groupBy('user_id')
-                ->orderByDesc('total_water')
-                ->limit(10)
-                ->get();
-=======
             // User is authenticated
             //$topUsers = StepTrackerLeaderboard::orderBy('steps', 'desc')->limit(10)->get();
             $topUsers = StepTrackerLeaderboard::select('user_id', 'name', DB::raw('SUM(steps) AS total_score'))
@@ -145,7 +121,6 @@ class UserController extends Controller
             ->orderByDesc('total_water')
             ->limit(10)
             ->get();
->>>>>>> 7a71b7c19404415cb2007c53755d291f079db2bb
 
             return view('user.leaderboard', compact('topUsers', 'user', 'topSleepers', 'topWaterDrinkers'));
         } else {
