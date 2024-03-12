@@ -78,10 +78,10 @@
     
     <main style="padding-top: 150px;">
         <section id="StepTracker">
-        <h1 class="text-center">StepTracker Leaderboard</h1>
-            <div class="container">
+        <h1><span>StepTracker Leaderboard</span></h1>
+            <div class="tbl-container bdr">
             <table class="table">
-                <thead class="table-dark">
+                <thead class="table-info">
                     <tr>
                         <th>Rank</th>
                         <th>Name</th>
@@ -103,10 +103,10 @@
         </section>
 
         <section id="SleepTracker">
-            <h1 class="text-center">Sleep Leaderboard</h1>
-                <div class="container">
+            <h1><span> Leaderboard</span></h1>
+                <div class="tbl-container bdr">
                 <table class="table">
-                    <thead class="table-dark">
+                    <thead class="table-info">
                         <tr>
                             <th>Rank</th>
                             <th>Name</th>
@@ -126,10 +126,10 @@
                 </div>
         </section>
         <section id="WaterIntake">
-            <h1 class="text-center">Water Intake Leaderboard</h1>
-                <div class="container">
+            <h1><span> Intake Leaderboard</span></h1>
+                <div class="tbl-container bdr">
                 <table class="table">
-                    <thead class="table-dark">
+                    <thead class="table-info">
                         <tr>
                             <th>Rank</th>
                             <th>Name</th>
