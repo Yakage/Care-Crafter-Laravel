@@ -109,7 +109,7 @@ class UserController extends Controller
             ->get();
 
             //$topSleepers = SleepTrackerLeaderboard::orderBy('score', 'desc')->limit(10)->get();
-            $topSleepers = SleepTrackerLeaderboard::select('user_id', 'name', DB::raw('SUM(score) AS total_score'))
+            $topSleepers = SleepTrackerLeaderboard::select('user_id', 'name', DB::raw('SUM(sleeps) AS total_score'))
             ->groupBy('user_id', 'name')
             ->orderByDesc('total_score')
             ->limit(10)
