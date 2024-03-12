@@ -10,8 +10,10 @@ class UserFeedback extends Model
     use HasFactory;
 
     protected $table = 'user_feedbacks';
-
-    protected $fillable = ['user_id'.'message'];
+    protected $fillable = [
+        'user_id',
+        'name',
+        'message'];
 
     public function user()
     {

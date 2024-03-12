@@ -14,6 +14,7 @@ use App\Models\WaterIntakeLeaderboard;
 use App\Models\WaterIntakeLogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -94,24 +95,38 @@ class UserController extends Controller
 
         return redirect()->route('user.user-ui.user')->with('success', 'Profile updated successfully!');
     }
-    public function leaderboard(){
-        $user = Auth::user();
-        
+
+    public function leaderboard() {
         if (Auth::check()) {
-            // User is authenticated
-            $topUsers = StepTrackerLeaderboard::orderBy('steps', 'desc')->limit(10)->get();
+            $user = Auth::user();
 
-            $topSleepers = SleepTrackerLeaderboard::orderBy('score', 'desc')->limit(10)->get();
+            // Get top users by total steps
+            $topUsers = StepTrackerLeaderboard::select('user_id', DB::raw('SUM(steps) as total_steps'))
+                ->groupBy('user_id')
+                ->orderByDesc('total_steps')
+                ->limit(10)
+                ->get();
 
-            $topWaterDrinkers = WaterIntakeLeaderboard::orderBy('water', 'desc')->limit(10)->get();
+            // Get top users by total sleep score
+            $topSleepers = SleepTrackerLeaderboard::select('user_id', DB::raw('SUM(score) as total_score'))
+                ->groupBy('user_id')
+                ->orderByDesc('total_score')
+                ->limit(10)
+                ->get();
 
+            // Get top users by total water intake
+            $topWaterDrinkers = WaterIntakeLeaderboard::select('user_id', DB::raw('SUM(water) as total_water'))
+                ->groupBy('user_id')
+                ->orderByDesc('total_water')
+                ->limit(10)
+                ->get();
 
-            return view('user.leaderboard',compact('topUsers', 'user', 'topSleepers', 'topWaterDrinkers'));
-        }else{
-            
+            return view('user.leaderboard', compact('topUsers', 'user', 'topSleepers', 'topWaterDrinkers'));
+        } else {
+            // Handle unauthenticated user case if needed
         }
-    
     }
+
 
     public function stepTracker(StepTrackerLogs $stepTrackerLogs)
     {
