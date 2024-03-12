@@ -99,6 +99,7 @@ class UserController extends Controller
     }
 
     public function leaderboard() {
+        $user = Auth::user();
         if (Auth::check()) {
             // User is authenticated
             //$topUsers = StepTrackerLeaderboard::orderBy('steps', 'desc')->limit(10)->get();
