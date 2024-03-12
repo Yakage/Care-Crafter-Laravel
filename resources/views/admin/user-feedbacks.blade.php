@@ -33,6 +33,8 @@
                         <span class="text">User Feedbacks</span>
                     </a>
                 </li>
+            </ul>
+            <ul class="side-menu">
                 <li>
                     <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                         @csrf
