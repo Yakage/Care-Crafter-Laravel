@@ -48,9 +48,6 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.user-ui.user')}}">Account</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#">Leaderboards</a>
                         </li>
                         <li class="nav-item">
@@ -129,7 +126,7 @@
                 </div>
         </section>
         <section id="WaterIntake">
-            <h1><span style="color: #000000;"> Intake Leaderboard</span></h1>
+            <h1><span> Intake Leaderboard</span></h1>
                 <div class="tbl-container bdr">
                 <table class="table">
                     <thead class="table-info">
