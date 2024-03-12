@@ -96,7 +96,14 @@ button{
 .navbar-content{
     height: 41px;
 }
-.navbar-brand .brand-shape{
+
+.meow{
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+    
+}
+/* .navbar-brand .brand-shape{
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -108,7 +115,7 @@ button{
     font-weight: 700;
     margin-right: 12px;
     color: var(--clr-blue);
-}
+} */
 
 .navbar-brand .brand-text{
     color: var(--clr-white);
