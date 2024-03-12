@@ -9,45 +9,39 @@
 </head>
 <body>
     <header>
-        <section id="sidebar">
-            <a href="#" class="brand">
-                <i class='bx bxs-smile'></i>
-                <span class="text">AdminCrafter</span>
-            </a>
-            <ul class="side-menu top">
-                <li class="">
-                    <a href="{{ route('admin.home')}}">
-                        <i class='bx bxs-dashboard' ></i>
-                        <span class="text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="{{ route('admin.user.table')}}">
-                        <i class='bx bxs-doughnut-chart' ></i>
-                        <span class="text">User Table</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.user.feedbacks')}}">
-                        <i class='bx bxs-group' ></i>
-                        <span class="text">User Feedbacks</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="side-menu">
-                <li>
-                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit">
-                            <a href="">
-                                <i class='bx bxs-cog'></i>	
-                                <span class="text">Logout</span>
-                            </a>
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </section>
+        <!-- SIDEBAR -->
+		<section id="sidebar">
+			<a href="#" class="brand">
+				<i class='bx bxs-smile'></i>
+				<span class="text">AdminCrafter</span>
+			</a>
+			<ul class="side-menu top">
+				<li>
+					<a href="{{ route('admin.home')}}">
+						<i class='bx bxs-dashboard' ></i>
+						<span class="text">Dashboard</span>
+					</a>
+				</li>
+				<li class="active">
+					<a href="{{ route('admin.user.table')}}">
+						<i class='bx bxs-doughnut-chart' ></i>
+						<span class="text">User Table</span>
+					</a>
+				</li>
+				<li>
+					<a href="{{ route('admin.user.feedbacks')}}">
+						<i class='bx bxs-group' ></i>
+						<span class="text">User Feedbacks</span>
+					</a>
+				</li>
+				<li>
+					<form id="logoutForm" action="{{ route('logout') }}" method="POST">
+						@csrf
+						<button type="submit" class="btn btn-link text-decoration-none ms-4">Logout</button>
+					</form>
+				</li>
+			</ul>
+		</section>
     </header>
     <main id="content">
         <section>
@@ -62,7 +56,7 @@
             </nav>
         </section>
         <section>
-            <div class="container mt-5 ms-auto">
+            <div class="container mt-3 ms-auto" >
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -101,9 +95,7 @@
                                             <td>{{$items->status}}</td>
                                             <td>
                                                 <a href="{{ url('admin.user-table.'.$items->id.'.edit')}}" class="btn btn-success mx-2">Edit</a>
-                                                <a 
-                                                href="{{ url('admin.user-table.'.$items->id.'.delete')}}" 
-                                                class="btn btn-success mx-2"
+                                                <a href="{{ url('admin.user-table.'.$items->id.'.delete')}}" class="btn btn-danger mx-2"
                                                 onclick="return confirm('Are you Sure?')">Delete</a>
                                             </td>
                                         </tr>

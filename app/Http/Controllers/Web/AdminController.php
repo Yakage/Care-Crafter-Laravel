@@ -21,11 +21,6 @@ class AdminController extends Controller
     public function userTable(){
         return view('admin.user-table');
     }
-
-    public function userFeedbacks(){
-        $feedbacks = UserFeedback::all();
-        return view('admin.user-feedbacks', compact('feedbacks'));
-    }
     
 
     public function getUser(Request $request){
@@ -73,12 +68,65 @@ class AdminController extends Controller
             
     }
     
-    public function userSearch(Request $request)
-    {
+
+    // For Statistics Home
+    public function getUsersLoggedInPerWeek() {
+        // Get the current date
+        $today = date('Y-m-d');
+    
+        // Calculate the start and end of the current week
+        $startOfWeek = date('Y-m-d', strtotime('monday this week', strtotime($today)));
+        $endOfWeek = date('Y-m-d', strtotime('sunday this week', strtotime($today)));
+    
+        // Initialize an array to store the result
+        $usersLoggedInPerWeek = [];
+    
+        // Loop through each day of the week
+        $currentDate = $startOfWeek;
+        while ($currentDate <= $endOfWeek) {
+            // Query to count distinct users who logged in on the current day
+            $totalLoggedInUsers = UserLogin::whereDate('login_at', $currentDate)
+                ->distinct('user_id')
+                ->count();
+    
+            // Get the name of the weekday for the current date
+            $weekday = date('l', strtotime($currentDate));
+    
+            // Add the count to the result array with the weekday name as the key
+            $usersLoggedInPerWeek[$weekday] = $totalLoggedInUsers;
+    
+            // Move to the next day
+            $currentDate = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
+        }
+    
+        return $usersLoggedInPerWeek;
+    }
+
+    public function featuresStatistics(){
+        $totalUsersInWater= WaterIntakeLeaderboard::distinct('user_id')->count();
+        $totalUsersInSteps = StepTrackerLeaderboard::distinct('user_id')->count();
+        $totalUsersInSleeps = SleepTrackerLeaderboard::distinct('user_id')->count();
+        
+        return [
+            'totalUsersInSteps' => $totalUsersInSteps,
+            'totalUsersInSleeps' => $totalUsersInSleeps,
+            'totalUsersInWater' => $totalUsersInWater,
+        ];
+    }
+
+
+    //For USer Table
+
+    public function userSearch(Request $request){
         $searchTerm = $request->input('searchTerm');
-        $users = User::where('name', 'like', '%'.$searchTerm.'%')->get();
+        $users = User::where(function ($query) use ($searchTerm) {
+                        $query->where('name', 'like', '%'.$searchTerm.'%')
+                              ->orWhere('email', 'like', '%'.$searchTerm.'%');
+                    })
+                    ->get();
         return view('admin.user-table', compact('users'));
     }
+    
 
     public function indexUsers(){
         $users = User::get();
@@ -159,49 +207,21 @@ class AdminController extends Controller
 
         return redirect()->back()->with('status', 'Users Data Deleted');
     }
-
-    public function getUsersLoggedInPerWeek() {
-        // Get the current date
-        $today = date('Y-m-d');
     
-        // Calculate the start and end of the current week
-        $startOfWeek = date('Y-m-d', strtotime('monday this week', strtotime($today)));
-        $endOfWeek = date('Y-m-d', strtotime('sunday this week', strtotime($today)));
-    
-        // Initialize an array to store the result
-        $usersLoggedInPerWeek = [];
-    
-        // Loop through each day of the week
-        $currentDate = $startOfWeek;
-        while ($currentDate <= $endOfWeek) {
-            // Query to count distinct users who logged in on the current day
-            $totalLoggedInUsers = UserLogin::whereDate('login_at', $currentDate)
-                ->distinct('user_id')
-                ->count();
-    
-            // Get the name of the weekday for the current date
-            $weekday = date('l', strtotime($currentDate));
-    
-            // Add the count to the result array with the weekday name as the key
-            $usersLoggedInPerWeek[$weekday] = $totalLoggedInUsers;
-    
-            // Move to the next day
-            $currentDate = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
-        }
-    
-        return $usersLoggedInPerWeek;
+     // For Feedbacks
+     public function userFeedbacks(){
+        $users = User::all();
+        $feedbacks = UserFeedback::all();
+        return view('admin.user-feedbacks', compact('feedbacks', 'users'));
     }
 
-    public function featuresStatistics(){
-        $totalUsersInWater= WaterIntakeLeaderboard::distinct('user_id')->count();
-        $totalUsersInSteps = StepTrackerLeaderboard::distinct('user_id')->count();
-        $totalUsersInSleeps = SleepTrackerLeaderboard::distinct('user_id')->count();
-        
-        return [
-            'totalUsersInSteps' => $totalUsersInSteps,
-            'totalUsersInSleeps' => $totalUsersInSleeps,
-            'totalUsersInWater' => $totalUsersInWater,
-        ];
+    public function feedbackSearch(Request $request){
+        $searchTerm = $request->input('searchTerm');
+        $feedbacks = UserFeedback::where(function ($query) use ($searchTerm) {
+                        $query->where('name', 'like', '%'.$searchTerm.'%')
+                              ->orWhere('message', 'like', '%'.$searchTerm.'%');
+                    })
+                    ->get();
+        return view('admin.user-feedbacks', compact('feedbacks'));
     }
-    
 }

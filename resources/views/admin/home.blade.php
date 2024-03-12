@@ -10,7 +10,7 @@
 
 </head>
 <body>
-	<main>
+	<header>
 		<!-- SIDEBAR -->
 		<section id="sidebar">
 			<a href="#" class="brand">
@@ -45,7 +45,7 @@
 			</ul>
 		</section>
 		<!-- SIDEBAR -->
-	</main>
+	</header>
 	
 
 
