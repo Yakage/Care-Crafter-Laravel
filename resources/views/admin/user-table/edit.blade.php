@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="button">
-                        <input type="submit" value="Update">
+                        <input type="submit" value="Update" style="margin-left: 250px">
                     </div>
                 </div>
             </form>

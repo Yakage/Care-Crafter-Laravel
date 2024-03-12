@@ -9,83 +9,98 @@
 </head>
 <body>
     <header>
-        <section id="sidebar">
-            <a href="#" class="brand">
-                <i class='bx bxs-smile'></i>
-                <span class="text">AdminCrafter</span>
-            </a>
-            <ul class="side-menu top">
-                <li class="">
-                    <a href="{{ route('admin.home')}}">
-                        <i class='bx bxs-dashboard' ></i>
-                        <span class="text">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.user.table')}}">
-                        <i class='bx bxs-doughnut-chart' ></i>
-                        <span class="text">User Table</span>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="{{ route('admin.user.feedbacks')}}">
-                        <i class='bx bxs-group' ></i>
-                        <span class="text">User Feedbacks</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="side-menu">
-                <li>
-                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit">
-                            <a href="">
-                                <span class="text text-decoration-none">Logout</span>
-                            </a>
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </section>
+        <!-- SIDEBAR -->
+		<section id="sidebar">
+			<a href="#" class="brand">
+				<i class='bx bxs-smile'></i>
+				<span class="text">AdminCrafter</span>
+			</a>
+			<ul class="side-menu top">
+				<li>
+					<a href="{{ route('admin.home')}}">
+						<i class='bx bxs-dashboard' ></i>
+						<span class="text">Dashboard</span>
+					</a>
+				</li>
+				<li>
+					<a href="{{ route('admin.user.table')}}">
+						<i class='bx bxs-doughnut-chart' ></i>
+						<span class="text">User Table</span>
+					</a>
+				</li>
+				<li class="active">
+					<a href="{{ route('admin.user.feedbacks')}}">
+						<i class='bx bxs-group' ></i>
+						<span class="text">User Feedbacks</span>
+					</a>
+				</li>
+				<li>
+					<form id="logoutForm" action="{{ route('logout') }}" method="POST">
+						@csrf
+						<button type="submit" class="btn btn-link text-decoration-none ms-4">Logout</button>
+					</form>
+				</li>
+			</ul>
+		</section>
     </header>
-    <main id="content">
-        <h1>Feedback</h1>
-
-        @if (session('success'))
-            <div class="alert alert-success mt-3">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Message</th>
-                    <th>Submitted by</th>
-                    <th>Submitted at</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($feedbacks as $feedback)
-                    <tr>
-                        <td>{{ $feedback->message }}</td>
-                        <td>
-                            @if ($feedback->user)
-                                {{ $feedback->user->name }}
-                            @else
-                            -
-                        @endif
-                        </td> 
-                    <td>{{ $feedback->created_at->format('d-M-Y H:i') }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
     
+    <main id="content">
+         <section>
+            <nav>
+                <i class='bx bx-menu' ></i>
+                <form action="{{ route('feedbacks.search') }}" method="GET">
+                    <div class="form-input">
+                        <input type="search" name="searchTerm" placeholder="Search...">
+                        <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                    </div>
+                </form>
+            </nav>
+        </section>
+        <section>
+            <div id="messageDialog" class="dialog">
+                @if(session()->has('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+                @if(session()->has('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+            </div>
+            <div class="container mt-3 ms-auto">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h4>Users Feedback Table</h4>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table -bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Message</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($feedbacks as $items)
+                                        <tr>
+                                            <td>{{$items->id}}</td>
+                                            <td>{{$items->name}}</td>
+                                            <td>{{$items->message}}</td>
+                                            <td>{{$items->created_at}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-
-        
-   
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

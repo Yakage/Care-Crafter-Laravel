@@ -12,7 +12,7 @@ return new class extends Migration{
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('name');
-            $table->string('message');
+            $table->string('message', 500);
             $table->timestamps();
         });
     }
