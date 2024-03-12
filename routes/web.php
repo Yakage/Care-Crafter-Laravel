@@ -99,6 +99,5 @@ Route::get('/chartDataWaterMonthly', [WaterIntakeController::class, 'chartDataWa
 //For BMI
 Route::get('/getHistoryOfBMI', [BMIController::class, 'getBMI']);
 Route::post('/createBMI', [BMIController::class, 'createBMI']);
-//For users logout
 //For sleep controller
 Route::get('/welcome', function () {return view('welcome');})->name('welcome');
