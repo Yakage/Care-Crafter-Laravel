@@ -14,9 +14,10 @@ body {
 h1{
     text-align: center; 
     padding: 5px;
+    color: white;
+    margin-bottom: 10px;
 }
 h1 span { 
-    background-color: rgb(255, 255, 255);
     border-radius: 15px;
     padding-left: 8px;
     padding-right: 8px;

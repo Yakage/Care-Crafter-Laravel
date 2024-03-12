@@ -6,6 +6,7 @@
     max-width: calc(1273px - 32px);
 }
 
+
 /* text stylings and colors */
 .text{
     color: var(--clr-gray);

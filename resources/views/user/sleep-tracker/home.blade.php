@@ -99,7 +99,7 @@
                 <div class="col py-3">
                     <div class="col-md-9 content-container mx-auto">
                         <div class="container">
-                            <h2 style="color: #458ff6; text-align: center;">History Of Sleep Tracker</h2>
+                            <h2 style="color: #FFFFFF; text-align: center;">History Of Sleep Tracker</h2>
                             <div class="row">
                                 <div class="col-md-6 mx-auto">
                                     <div class="card mx-auto"> <!-- Center the card horizontally -->

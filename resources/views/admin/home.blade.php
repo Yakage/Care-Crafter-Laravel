@@ -36,18 +36,10 @@
 						<span class="text">User Feedbacks</span>
 					</a>
 				</li>
-			</ul>
-			<ul class="side-menu">
-				<li>
-					<a href="#">
-						<i class='bx bxs-cog' ></i>
-						<span class="text">Settings</span>
-					</a>
-				</li>
 				<li>
 					<form id="logoutForm" action="{{ route('logout') }}" method="POST">
 						@csrf
-						<button type="submit" class="btn btn-link">Logout</button>
+						<button type="submit" class="btn btn-link text-decoration-none ms-4">Logout</button>
 					</form>
 				</li>
 			</ul>
@@ -61,16 +53,37 @@
 	<!-- CONTENT -->
 	<section id="content">
 		<section>
-            <nav>
-                <div class="head-title">
-					<div class="left">
-						<h1>Dashboard</h1>
+			<nav>
+				<div class="head-title">
+						<div class="left">
+							<h1>Dashboard</h1>
+						</div>
 					</div>
-				</div>
-            </nav>
-        </section>
+			</nav>
+     </section>
 
 		<!-- MAIN -->
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="myCharts">
+					<div class="myChart">
+						<h3>Users Statistics</h3>
+						<canvas id="barchart1" height="80px" width="120px"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="myCharts">
+					<div class="myChart">
+						<h3>Users Statistics</h3>
+						<canvas id="barchart2" height="80px" width="120px"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<main>
 			<section>
 				<ul class="box-info">
@@ -95,37 +108,22 @@
 							<h3>Offline Users</h3>
 						</span>
 					</li>
-					<li>
-						<i class='bx bxs-calendar-check' ></i>
-						<span class="text">
-							<h3>Male</h3>
-							<p>{{ $userCountsByMaleGender}}</p>
-							<h3>Female</h3>
-							<p>{{ $userCountsByFemaleGender}}</p>
-						</span>
+					<li class="box-info-item">
+						<i class='bx bxs-calendar-check'></i>
+						<div class="text">
+							<div class="male-data">
+								<p>{{ $userCountsByMaleGender}}</p>
+								<h3>Male</h3>
+							</div>
+							<div class="female-data">
+								<p>{{ $userCountsByFemaleGender}}</p>
+								<h3>Female</h3>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
-
-			<section class="mt-5">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="myCharts">
-							<div class="myChart">
-								<h3>Users Statistics</h3>
-								<canvas id="barchart1"></canvas>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			
 		</main>
-
-		<!-- MAIN -->
-	</section>
-	<!-- CONTENT -->
 	
 
 	<!-- script js for graphs -->
@@ -167,6 +165,33 @@
 						data: weeklyValues,
 						borderWidth: 3
 					}]
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
+
+			const ctx2 = document.getElementById('barchart2').getContext('2d');
+			new Chart(ctx2, {
+				type: 'bar',
+				data: {
+					labels: weeklyLabels,
+					datasets: [{
+						label: 'Users Login',
+						data: [10, 20, 30, 40, 50, 60, 70],
+						borderWidth: 3,
+						backgroundColor: [
+							'rgb(15, 99, 32)',
+							'rgb(54, 162, 15)',
+							'rgb(255, 205, 86)',
+							'rgb(25, 5, 86)',
+							'rgb(115, 225, 86)',
+						],
+					}],
 				},
 				options: {
 					scales: {

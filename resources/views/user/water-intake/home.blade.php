@@ -100,7 +100,7 @@
             <div class="col py-3">
                 <div class="col-md-9 content-container mx-auto"> <!-- Center the content container -->
                     <div class="container">
-                        <h2 class="text-center" style="color: #458ff6;">History Of Water Intake</h2>
+                        <h2 class="text-center" style="color: #FFFFFF;">History Of Water Intake</h2>
                         <div class="row">
                             <div class="col-md-6 mx-auto"> <!-- Center the column -->
                                 <div class="card">
