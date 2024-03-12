@@ -35,13 +35,15 @@
                     <h4>Hi, {{ $user->name }}!</h4>
 
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.home')}}">Home</a>
+                    </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Features</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('user.stepTracker')}}">Step Tracking</a></li>
                                 <li><a class="dropdown-item" href="{{ route('user.sleepsTracker')}}">Sleep Tracking</a></li>
                                 <li><a class="dropdown-item" href="{{ route('user.waterIntake')}}">Water Intake Reminder</a></li>
-                                <li><a class="dropdown-item" href="#">BMI Calculator</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

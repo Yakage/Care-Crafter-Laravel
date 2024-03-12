@@ -44,7 +44,7 @@
                                 <li><a class="dropdown-item" href="#">Step Tracking</a></li>
                                 <li><a class="dropdown-item" href="#">Sleep Tracking</a></li>
                                 <li><a class="dropdown-item" href="#">Water Intake Reminder</a></li>
-                                <li><a class="dropdown-item" href="#">BMI Calculator</a></li>
+                    
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -110,7 +110,7 @@
                         <tr>
                             <th>Rank</th>
                             <th>Name</th>
-                            <th>Score</th>
+                            <th> Sleep Score</th>
                         </tr>
                     </thead>
                     <tbody>
