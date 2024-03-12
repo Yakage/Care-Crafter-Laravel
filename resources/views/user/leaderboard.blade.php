@@ -48,9 +48,6 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.user-ui.user')}}">Account</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#">Leaderboards</a>
                         </li>
                         <li class="nav-item">
@@ -62,10 +59,13 @@
                             <span class="d-none d-sm-inline mx-1 text-primary">{{ $user->name }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-white text-small shadow">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.user-ui.user')}}" style="margin-left: 9px;">Account</a>
+                            </li>
                             <li>
                                 <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-link">Logout</button>
+                                <button type="submit" class="btn btn-link" style="text-decoration: none;">Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -78,7 +78,7 @@
     
     <main style="padding-top: 150px;">
         <section id="StepTracker">
-        <h1><span>StepTracker Leaderboard</span></h1>
+        <h1><span>Step Leaderboard</span></h1>
             <div class="tbl-container bdr">
             <table class="table">
                 <thead class="table-info">
@@ -103,14 +103,14 @@
         </section>
 
         <section id="SleepTracker">
-            <h1><span> Leaderboard</span></h1>
+            <h1><span>Sleeps Leaderboard</span></h1>
                 <div class="tbl-container bdr">
                 <table class="table">
                     <thead class="table-info">
                         <tr>
                             <th>Rank</th>
                             <th>Name</th>
-                            <th> Sleep Score</th>
+                            <th> Sleeps </th>
                         </tr>
                     </thead>
                     <tbody>
