@@ -78,7 +78,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Weekly Steps Statistics</h3>
+                            <h3 style="color: #000000;">Weekly Steps Statistics</h3>
                             <canvas id="barchart1" width="600" height="400"></canvas>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Monthly Steps Statistics</h3>
+                            <h3 style="color: #000000;">Monthly Steps Statistics</h3>
                             <canvas id="barchart2" width="600" height="400"></canvas>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Weekly Sleeps Statistics</h3>
+                            <h3 style="color: #000000;">Weekly Sleeps Statistics</h3>
                             <canvas id="barchart3" width="600" height="500"></canvas>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Monthly Sleeps Statistics</h3>
+                            <h3 style="color: #000000;">Monthly Sleeps Statistics</h3>
                             <canvas id="barchart4" width="600" height="500"></canvas>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Weekly Water Statistics</h3>
+                            <h3 style="color: #000000;">Weekly Water Statistics</h3>
                             <canvas id="barchart5" width="600" height="500"></canvas>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Monthly Water Statistics</h3>
+                            <h3 style="color: #000000;">Monthly Water Statistics</h3>
                             <canvas id="barchart6" width="600" height="500"></canvas>
                         </div>
                     </div>

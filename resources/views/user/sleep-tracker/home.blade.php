@@ -80,7 +80,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Weekly Sleeps Statistics</h3>
+                            <h3 style="color: #000000;">Weekly Sleeps Statistics</h3>
                             <canvas id="barchart1" width="600" height="450"></canvas>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Monthly Sleeps Statistics</h3>
+                            <h3 style="color: #000000;">Monthly Sleeps Statistics</h3>
                             <canvas id="barchart2" width="600" height="460"></canvas>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                 <div class="col py-3">
                     <div class="col-md-9 content-container mx-auto">
                         <div class="container">
-                            <h2 style="color: #458ff6; text-align: center;">History Of Sleep Tracker</h2>
+                            <h2 style="color: #000000; text-align: center;">History Of Sleep Tracker</h2>
                             <div class="row">
                                 <div class="col-md-6 mx-auto">
                                     <div class="card mx-auto"> <!-- Center the card horizontally -->

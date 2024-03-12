@@ -14,8 +14,9 @@ use App\Models\WaterIntakeLeaderboard;
 use App\Models\WaterIntakeLogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class UserController extends Controller
@@ -96,9 +97,9 @@ class UserController extends Controller
 
         return redirect()->route('user.user-ui.user')->with('success', 'Profile updated successfully!');
     }
-    public function leaderboard(){
+
+    public function leaderboard() {
         $user = Auth::user();
-        
         if (Auth::check()) {
             // User is authenticated
             //$topUsers = StepTrackerLeaderboard::orderBy('steps', 'desc')->limit(10)->get();
@@ -122,12 +123,12 @@ class UserController extends Controller
             ->limit(10)
             ->get();
 
-            return view('user.leaderboard',compact('topUsers', 'user', 'topSleepers', 'topWaterDrinkers'));
-        }else{
-            
+            return view('user.leaderboard', compact('topUsers', 'user', 'topSleepers', 'topWaterDrinkers'));
+        } else {
+            // Handle unauthenticated user case if needed
         }
-    
     }
+
 
     public function stepTracker(StepTrackerLogs $stepTrackerLogs)
     {

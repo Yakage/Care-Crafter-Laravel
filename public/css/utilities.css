@@ -6,6 +6,7 @@
     max-width: calc(1273px - 32px);
 }
 
+
 /* text stylings and colors */
 .text{
     color: var(--clr-gray);
@@ -95,13 +96,13 @@
     justify-content: center;
     font-weight: 700;
     font-size: 18px;
-    color: var(--clr-white);
+    color: #56C2F2;
     transition: var(--transition-default);
 }
 
 .btn:hover{
     color: var(--clr-white);
-    background-color: #1472f4;
+    background-color: #56C2F2;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 .btn-primary{

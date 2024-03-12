@@ -36,18 +36,10 @@
 						<span class="text">User Feedbacks</span>
 					</a>
 				</li>
-			</ul>
-			<ul class="side-menu">
-				<li>
-					<a href="#">
-						<i class='bx bxs-cog' ></i>
-						<span class="text">Settings</span>
-					</a>
-				</li>
 				<li>
 					<form id="logoutForm" action="{{ route('logout') }}" method="POST">
 						@csrf
-						<button type="submit" class="btn btn-link">Logout</button>
+						<button type="submit" class="btn btn-link text-decoration-none ms-4">Logout</button>
 					</form>
 				</li>
 			</ul>
@@ -61,16 +53,37 @@
 	<!-- CONTENT -->
 	<section id="content">
 		<section>
-            <nav>
-                <div class="head-title">
-					<div class="left">
-						<h1>Dashboard</h1>
+			<nav>
+				<div class="head-title">
+						<div class="left">
+							<h1>Dashboard</h1>
+						</div>
 					</div>
-				</div>
-            </nav>
-        </section>
+			</nav>
+     </section>
 
 		<!-- MAIN -->
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="myCharts">
+					<div class="myChart">
+						<h3>Users Statistics</h3>
+						<canvas id="userStatistics" height="80px" width="120px"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="myCharts">
+					<div class="myChart">
+						<h3>Features Statistics</h3>
+						<canvas id="featuresChart" height="80px" width="120px"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<main>
 			<section>
 				<ul class="box-info">
@@ -95,88 +108,126 @@
 							<h3>Offline Users</h3>
 						</span>
 					</li>
-					<li>
-						<i class='bx bxs-calendar-check' ></i>
-						<span class="text">
-							<h3>Male</h3>
-							<p>{{ $userCountsByMaleGender}}</p>
-							<h3>Female</h3>
-							<p>{{ $userCountsByFemaleGender}}</p>
-						</span>
+					<li class="box-info-item">
+						<i class='bx bxs-calendar-check'></i>
+						<div class="text">
+							<div class="male-data">
+								<p>{{ $userCountsByMaleGender}}</p>
+								<h3>Male</h3>
+							</div>
+							<div class="female-data">
+								<p>{{ $userCountsByFemaleGender}}</p>
+								<h3>Female</h3>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
-
-			<section class="mt-5">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="myCharts">
-							<div class="myChart">
-								<h3>Users Statistics</h3>
-								<canvas id="barchart1"></canvas>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			
 		</main>
-
-		<!-- MAIN -->
-	</section>
-	<!-- CONTENT -->
 	
 
 	<!-- script js for graphs -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 	<script>
-		async function fetchStepsDataWeekly() {
+		// Fetch data from Laravel backend
+		async function fetchData() {
 			try {
-				const response = await fetch('/chartDataStepsWeekly');
+				const response = await fetch('/admin.users-logged-in');
 				if (!response.ok) {
-					throw new Error('Failed to fetch weekly steps data');
+					throw new Error('Failed to fetch data');
 				}
-				return await response.json();
+				const data = await response.json();
+				return data;
 			} catch (error) {
-				console.error('Error fetching weekly steps data:', error);
-				return [];
+				console.error('Error fetching data:', error);
+				return {};
 			}
 		}
-	
-	
+
+		async function fetchFeaturesStatistics() {
+			try {
+				const response = await fetch('/admin.users-features');
+				if (!response.ok) {
+					throw new Error('Failed to fetch data');
+				}
+				const data = await response.json();
+				return data;
+			} catch (error) {
+				console.error('Error fetching features statistics:', error);
+				return {};
+			}
+		}
+
 		document.addEventListener('DOMContentLoaded', async function() {
-			const weeklyStepsData = await fetchStepsDataWeekly();
-		
-			const weeklyLabels = [];
-			const weeklyValues = [];
-	
-			weeklyStepsData.forEach(entry => {
-				weeklyLabels.push(entry.label);
-				weeklyValues.push(entry.value);
-			});
-	
-	
-			const ctx1 = document.getElementById('barchart1').getContext('2d');
-			new Chart(ctx1, {
+			// Fetch data for the "Users Statistics" chart
+			const userData = await fetchData();
+			const userLabels = Object.keys(userData);
+			const userValues = Object.values(userData);
+
+			// Fetch data for the "Features Statistics" chart
+			const featuresData = await fetchFeaturesStatistics();
+			const featureLabels = ['Step Tracker', 'Sleep Tracker', 'Water Intake'];
+			const featureValues = [
+				featuresData.totalUsersInSteps,
+				featuresData.totalUsersInSleeps,
+				featuresData.totalUsersInWater
+			];
+
+			// Create the "Users Statistics" chart
+			const userCtx = document.getElementById('userStatistics').getContext('2d');
+			new Chart(userCtx, {
 				type: 'bar',
 				data: {
-					labels: weeklyLabels,
+					labels: userLabels,
 					datasets: [{
-						label: 'Users Login',
-						data: weeklyValues,
-						borderWidth: 3
+						label: 'Users Logged In',
+						data: userValues,
+						backgroundColor: 'rgba(54, 162, 235, 0.5)', // Blue color
+						borderColor: 'rgba(54, 162, 235, 1)', // Border color
+						borderWidth: 1
 					}]
 				},
 				options: {
+            		responsive: true, // Allow the chart to be responsive
 					scales: {
 						y: {
-							beginAtZero: true
+							beginAtZero: true,
+							ticks: {
+								precision: 0
+							}
+						}
+					}
+				}
+			});
+
+			// Create the "Features Statistics" chart
+			const featureCtx = document.getElementById('featuresChart').getContext('2d');
+			new Chart(featureCtx, {
+				type: 'bar',
+				data: {
+					labels: featureLabels,
+					datasets: [{
+						label: 'Number of Users',
+						data: featureValues,
+						backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(255, 205, 86, 0.5)', 'rgba(54, 162, 235, 0.5)' ], // Colors for each segment
+                		borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 205, 86, 1)', 'rgba(54, 162, 235, 1)'],
+						borderWidth: 1
+					}]
+				},
+				options: {
+            		responsive: true, // Allow the chart to be responsive
+					scales: {
+						y: {
+							beginAtZero: true,
+							ticks: {
+								precision: 0
+							}
 						}
 					}
 				}
 			});
 		});
+
 	</script>
 </body>
 </html>

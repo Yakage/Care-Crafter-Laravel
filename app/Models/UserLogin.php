@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserFeedback extends Model
+class UserLogin extends Model
 {
     use HasFactory;
-
-    protected $table = 'user_feedbacks';
+    protected $table = 'login_logs';
     protected $fillable = [
         'user_id',
-        'name',
-        'message'];
+        'login_at',
+    ];
 
     public function user()
     {

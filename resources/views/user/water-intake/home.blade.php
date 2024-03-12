@@ -81,7 +81,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Weekly Water Statistics (mL)</h3>
+                            <h3 style="color: #000000;">Weekly Water Statistics (mL)</h3>
                             <canvas id="barchart1" width="600" height="450"></canvas>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                 <div class="col-md-6">
                     <div class="myCharts">
                         <div class="myChart">
-                            <h3>Monthly Water Statistics (mL)</h3>
+                            <h3 style="color: #000000;">Monthly Water Statistics (mL)</h3>
                             <canvas id="barchart2" width="600" height="460"></canvas>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
             <div class="col py-3">
                 <div class="col-md-9 content-container mx-auto"> <!-- Center the content container -->
                     <div class="container">
-                        <h2 class="text-center" style="color: #458ff6;">History Of Water Intake</h2>
+                        <h2 class="text-center" style="color: #00000;">History Of Water Intake</h2>
                         <div class="row">
                             <div class="col-md-6 mx-auto"> <!-- Center the column -->
                                 <div class="card">

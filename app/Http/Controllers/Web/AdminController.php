@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\SleepTrackerLeaderboard;
 use App\Models\StepTrackerLeaderboard;
 use App\Models\User;
 use App\Models\UserFeedback;
+use App\Models\UserLogin;
+use App\Models\WaterIntakeLeaderboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -46,8 +49,12 @@ class AdminController extends Controller
         $adminCount = User::where('role', 'admin')->count();
 
         // Count users by gender
-        $userCountsByMaleGender = User::where('gender', 'male')->count();
-        $userCountsByFemaleGender = User::where('gender', 'female')->count();
+        $userCountsByMaleGender = User::where('gender', 'male')
+                                        ->where('role', 'user')
+                                        ->count();
+        $userCountsByFemaleGender = User::where('gender', 'female')
+                                        ->where('role', 'user')
+                                        ->count();
         
         $activeAdminsCount = User::where('status', 'online')->count();
         
@@ -153,20 +160,48 @@ class AdminController extends Controller
         return redirect()->back()->with('status', 'Users Data Deleted');
     }
 
-    // public function chartData() {
+    public function getUsersLoggedInPerWeek() {
+        // Get the current date
+        $today = date('Y-m-d');
+    
+        // Calculate the start and end of the current week
+        $startOfWeek = date('Y-m-d', strtotime('monday this week', strtotime($today)));
+        $endOfWeek = date('Y-m-d', strtotime('sunday this week', strtotime($today)));
+    
+        // Initialize an array to store the result
+        $usersLoggedInPerWeek = [];
+    
+        // Loop through each day of the week
+        $currentDate = $startOfWeek;
+        while ($currentDate <= $endOfWeek) {
+            // Query to count distinct users who logged in on the current day
+            $totalLoggedInUsers = UserLogin::whereDate('login_at', $currentDate)
+                ->distinct('user_id')
+                ->count();
+    
+            // Get the name of the weekday for the current date
+            $weekday = date('l', strtotime($currentDate));
+    
+            // Add the count to the result array with the weekday name as the key
+            $usersLoggedInPerWeek[$weekday] = $totalLoggedInUsers;
+    
+            // Move to the next day
+            $currentDate = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
+        }
+    
+        return $usersLoggedInPerWeek;
+    }
 
-    //     $stepHistory = StepTrackerLeaderboard::where('step_tracker_leaderboard', 'steps')
-    //                                             ->count();
-
-    //     $stepHistoryData = [
-    //         [
-    //             'label' => 'STEPS',
-    //             'value' => $stepHistory
-    //         ]
-    //     ];
-
-    //     return response() -> json([
-    //         'stepHistoryData' => $stepHistoryData
-    //     ]);
-    // }
+    public function featuresStatistics(){
+        $totalUsersInWater= WaterIntakeLeaderboard::distinct('user_id')->count();
+        $totalUsersInSteps = StepTrackerLeaderboard::distinct('user_id')->count();
+        $totalUsersInSleeps = SleepTrackerLeaderboard::distinct('user_id')->count();
+        
+        return [
+            'totalUsersInSteps' => $totalUsersInSteps,
+            'totalUsersInSleeps' => $totalUsersInSleeps,
+            'totalUsersInWater' => $totalUsersInWater,
+        ];
+    }
+    
 }
