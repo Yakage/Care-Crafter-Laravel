@@ -135,7 +135,7 @@
                         <li>
                             <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-link" style="color: aqua;">Logout</button>
+                            <button type="submit" class="btn btn-link">Logout</button>
                             </form>
                         </li>
                     </ul>
@@ -190,7 +190,7 @@
                         <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                    <button type="submit" class="btn btn-primary" style="color: white; background-color: #84a5df;">Update Profile</button>
 
             
         </form>

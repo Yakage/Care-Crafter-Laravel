@@ -14,12 +14,7 @@ body {
 h1{
     text-align: center; 
     padding: 5px;
-}
-h1 span { 
-    background-color: rgb(255, 255, 255);
-    border-radius: 15px;
-    padding-left: 8px;
-    padding-right: 8px;
+    color: white;
 }
 .tbl-container {
     margin: auto;

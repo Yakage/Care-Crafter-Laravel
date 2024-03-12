@@ -44,9 +44,6 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.user-ui.user')}}">Account</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.leaderboards')}}">Leaderboards</a>
                         </li>
                         <li class="nav-item">
@@ -58,6 +55,9 @@
                             <span class="d-none d-sm-inline mx-1 text-primary">{{ $user->name }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-white text-small shadow">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.user-ui.user')}}">Account</a>
+                        </li>
                             <li>
                                 <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                                 @csrf
