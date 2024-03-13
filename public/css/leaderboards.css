@@ -25,7 +25,7 @@ h1 span {
     margin: auto;
     width: 50%;
   }*/
-  
+
 .tbl-container {
     background-color: #ffffff; /* White background for table container */
     border-radius: 10px;
@@ -50,6 +50,7 @@ h1 span {
 .table th {
     background-color: #2c82c9; /* Blue background for table header */
     color: #ffffff; /* White text color for table header */
+    width: 33%;
 }
 
 .table tbody tr:nth-child(even) {
