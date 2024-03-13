@@ -16,7 +16,7 @@ class FeedbackController extends Controller{
         ]);
     
         $feedback = new UserFeedback;
-        $feedback->name = $user->name;
+        $feedback->name = auth()->name();
         $feedback->message = $request->input('message');
         $feedback->user_id = auth()->id(); // Assuming user authentication
         $feedback->save();
