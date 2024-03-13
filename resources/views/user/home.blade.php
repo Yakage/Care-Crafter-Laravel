@@ -53,6 +53,7 @@
 </head>
 
 <body>
+    <header>
         <nav class="navbar bg-body-tertiary fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
@@ -71,6 +72,9 @@
                     <h4>Hi, {{ $user->name }}! How are you feeling today?</h4>
 
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.home')}}">Home</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Features</a>
                             <ul class="dropdown-menu">
@@ -106,6 +110,8 @@
                 </div>
             </div>
         </nav>
+    </header>
+        
 
         <div class="container p-5 statistics-head">
             <h1 class="text-center text-white mb-5">Today's Statistics</h1>

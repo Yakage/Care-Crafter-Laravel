@@ -32,23 +32,22 @@
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                 <div class="offcanvas-body">
-                    <h4>Hi, {{ $user->name }}!</h4>
+                    <h4>Hi, {{ $user->name }}! How are you feeling today?</h4>
 
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.home')}}">Home</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.home')}}">Home</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Features</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Step Tracking</a></li>
-                                <li><a class="dropdown-item" href="#">Sleep Tracking</a></li>
-                                <li><a class="dropdown-item" href="#">Water Intake Reminder</a></li>
-                    
+                                <li><a class="dropdown-item" href="{{ route('user.stepTracker')}}">Step Tracking</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.sleepsTracker')}}">Sleep Tracking</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.waterIntake')}}">Water Intake Reminder</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Leaderboards</a>
+                            <a class="nav-link" href="{{ route('user.leaderboards')}}">Leaderboards</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.feedback')}}">Feedback</a>
@@ -59,13 +58,13 @@
                             <span class="d-none d-sm-inline mx-1 text-primary">{{ $user->name }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-white text-small shadow">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.user-ui.user')}}" style="margin-left: 9px;">Account</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.user-ui.user')}}">Account</a>
+                        </li>
                             <li>
                                 <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-link" style="text-decoration: none;">Logout</button>
+                                <button type="submit" class="btn btn-link">Logout</button>
                                 </form>
                             </li>
                         </ul>
