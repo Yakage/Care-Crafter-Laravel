@@ -94,7 +94,7 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->steps }}</td>
+                            <td>{{ $user->total_steps }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -118,7 +118,7 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->score }}</td>  
+                                <td>{{ $user->total_sleeps }}</td>  
                             </tr>
                         @endforeach
                     </tbody>
@@ -141,7 +141,7 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->water }}</td>
+                                <td>{{ $user->total_water }}</td>
                             </tr>
                         @endforeach
                     </tbody>
