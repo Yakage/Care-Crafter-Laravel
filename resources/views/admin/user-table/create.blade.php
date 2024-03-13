@@ -76,7 +76,7 @@
                         </div>
                     
                     <div class="button">
-                        <input type="submit" value="Create">
+                        <input type="submit" value="Create" style="margin-left: 250px">
                     </div>
                 </div>
             </form>
