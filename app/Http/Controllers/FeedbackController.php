@@ -14,15 +14,14 @@ class FeedbackController extends Controller{
         ], [
             'message.max' => 'The message must not exceed 700 characters.'
         ]);
-    
+
         $feedback = new UserFeedback;
-        $feedback->name = $user->name;
+        $feedback->name = $user->name; // Access the 'name' attribute directly
         $feedback->message = $request->input('message');
-        $feedback->user_id = auth()->id(); // Assuming user authentication
+        $feedback->user_id = $user->id; // Assuming user authentication
         $feedback->save();
 
         // Redirect to the 'user.feedback' view
         return redirect()->route('user.feedback')->with('success', 'Feedback successfully submitted');
-    }
-    
+    }   
 }

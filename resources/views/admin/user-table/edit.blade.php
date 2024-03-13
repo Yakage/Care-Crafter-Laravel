@@ -8,10 +8,24 @@
     <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
-    <div class="container">
-        @if (session('status'))
-            <div class="alert alert">{{session('status')}}</div>
+    <div id="messageDialog" class="dialog">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif  
+        @if(session()->has('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
         @endif
+        @if(session()->has('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+        @endif
+    </div>
+    <div class="container">
         <div class="title">
             <h4>Update User Data 
                 <a href="{{ url('admin.user-table')}}" class="back">Back</a>
@@ -37,8 +51,11 @@
                     </div>
                     <div class="input-box">
                         <span class="details">Gender</span>
-                        <input type="text" id="gender" class="form-control form-control-sm" name="gender" value="{{ $users->gender }}" required>
-                    </div>
+                            <select class="form-control form-control-sm" name="gender" required>
+                                <option value="male">male</option>
+                                <option value="female">female</option>
+                            </select>
+                        </div>
                     <div class="input-box">
                         <span class="details">Height</span>
                         <input type="text" class="form-control form-control-sm" name="height" value="{{ $users->height }}"required>
@@ -55,5 +72,6 @@
             </form>
         </div>
     </div>
+    <script src="js/loginandregister.js"></script>
 </body>
 </html>
