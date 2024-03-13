@@ -103,16 +103,16 @@ class UserController extends Controller
         if (Auth::check()) {
             // User is authenticated
             //$topUsers = StepTrackerLeaderboard::orderBy('steps', 'desc')->limit(10)->get();
-            $topUsers = StepTrackerLeaderboard::select('user_id', 'name', DB::raw('SUM(steps) AS total_score'))
+            $topUsers = StepTrackerLeaderboard::select('user_id', 'name', DB::raw('SUM(steps) AS total_steps'))
             ->groupBy('user_id', 'name')
-            ->orderByDesc('total_score')
+            ->orderByDesc('total_steps')
             ->limit(10)
             ->get();
 
             //$topSleepers = SleepTrackerLeaderboard::orderBy('score', 'desc')->limit(10)->get();
-            $topSleepers = SleepTrackerLeaderboard::select('user_id', 'name', DB::raw('SUM(sleeps) AS total_score'))
+            $topSleepers = SleepTrackerLeaderboard::select('user_id', 'name', DB::raw('SUM(sleeps) AS total_sleeps'))
             ->groupBy('user_id', 'name')
-            ->orderByDesc('total_score')
+            ->orderByDesc('total_sleeps')
             ->limit(10)
             ->get();
 

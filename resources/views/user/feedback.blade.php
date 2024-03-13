@@ -34,8 +34,8 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             margin-top: 75px;
-            margin-left: 30px
-            /* display: none; Initially hide the dialog */
+            margin-left: 30px;
+            display: none; /*Initially hide the dialog */
         
         }
         
@@ -104,9 +104,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Features</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Step Tracking</a></li>
-                                <li><a class="dropdown-item" href="#">Sleep Tracking</a></li>
-                                <li><a class="dropdown-item" href="#">Water Intake Reminder</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.stepTracker')}}">Step Tracking</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.sleepsTracker')}}">Sleep Tracking</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.waterIntake')}}">Water Intake Reminder</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
