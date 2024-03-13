@@ -139,38 +139,41 @@ class AdminController extends Controller
 
     public function storeUsers(Request $request){
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'age' => 'required|integer',
-            'height' => 'required|numeric', // Validate as numeric (including decimals)
-            'weight' => 'required|numeric', // Validate as numeric (including decimals)
-            'gender' => 'required|string',
-            'password' => 'required|string',
+            'name' => 'required|string|max:255', // Limit name to 255 characters
+            'email' => 'required|email|unique:users|max:255', // Limit email to 255 characters
+            'birthday' => 'required|date',
+            'gender' => 'required|in:male,female', // Specify allowed gender values
+            'height' => 'required|numeric|min:1|max:300', // Limit height between 1 and 300 cm
+            'weight' => 'required|numeric|min:1|max:300', // Limit weight between 1 and 300 kg
+            'password' => 'required|string|min:8',
             'confirm_password' => 'required|string|same:password',
         ], [
-            'name' => 'Please enter your name',
-            'email' => 'Please enter your email',
-            'age' => 'Please enter your age',
-            'height' => 'Please enter your heigh in kilograms',
-            'weight' => 'Please enter your weight in kilograms',
-            'gender' => 'Please enter your gender [male or female Only]',
+            'name.max' => 'Name must not exceed 255 characters.',
+            'email.max' => 'Email must not exceed 255 characters.',
+            'gender.in' => 'Gender must be either male or female.',
+            'height.numeric' => 'Height must be a numeric value.',
+            'height.min' => 'Height must be at least 1 cm.',
+            'height.max' => 'Height cannot exceed 300 cm.',
+            'weight.numeric' => 'Weight must be a numeric value.',
+            'weight.min' => 'Weight must be at least 1 kg.',
+            'weight.max' => 'Weight cannot exceed 300 kg.',
             'password.min' => 'The password must be at least 8 characters.',
-            'confirm_password.same' => 'The password and password confirmation does not match.',
+            'confirm_password.same' => 'The password and password confirmation do not match.',
         ]);
 
         $data['name'] = $request->name;
         $data['email'] = $request->email;
-        $data['age'] = $request->age;
+        $data['birthday'] = $request->birthday;
+        $data['gender'] = $request->gender;
         $data['height'] = $request->height;
         $data['weight'] = $request->weight;
-        $data['gender'] = $request->gender;
         $data['password'] = Hash::make($request->password);
         $data['confirm_password'] = $request->confirm_password;
         $data['role'] = 'user';
         $data['status'] = 'online';
 
-        User::create($data);
-        return redirect()->route('admin.home')->with("success", "User successfully created");
+        User::create($data);  
+        return redirect()->url('admin.user-table')->with("success", "User Data successfully created");
     
          
     }
