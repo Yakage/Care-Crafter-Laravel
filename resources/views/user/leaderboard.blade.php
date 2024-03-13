@@ -110,7 +110,7 @@
                         <tr>
                             <th>Rank</th>
                             <th>Name</th>
-                            <th> Sleeps </th>
+                            <th> Sleep time </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,7 +118,14 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->total_sleeps }}</td>  
+                                <td>{{-- Convert seconds to HH:MM:SS format --}}
+                                    @php
+                                        $hours = floor($user->total_sleeps / 3600);
+                                        $minutes = floor(($user->total_sleeps / 60) % 60);
+                                        $seconds = $user->total_sleeps % 60;
+                                    @endphp
+                                    {{ sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds) }}
+                                </td>  
                             </tr>
                         @endforeach
                     </tbody>
