@@ -235,6 +235,9 @@
             /* margin-top: 10px;
             margin-bottom: 10px; */
         }
+        .card {
+            margin-bottom: 30px; 
+        }
         
         </style>
 
@@ -245,92 +248,224 @@
     <span class="mx-auto yawa" style="margin-top: 100px; margin-bottom: 100px;">Meats for diet</span>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="{{ asset('img/chicken breasts.jpg')}}" alt="Chicken Breast" class="card-img-top" style="width: 450px; height: 450px; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Chicken Breast</h5>
-                        <p class="card-text">Here's the nutrition breakdown for a skinless chicken breast:</p>
-                        <p class="card-text">Calories: 128</p>
-                        <p class="card-text">Protein: 25.9</p>
-                        <p class="card-text">Fat: 2.69</p>
-                    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/chicken breasts.jpg')}}" alt="Chicken Breast" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Chicken Breast</h5>
+                    <p class="card-text">Here's the nutrition breakdown for a skinless chicken breast:</p>
+                    <p class="card-text">Calories: 128g</p>
+                    <p class="card-text">Protein: 25.9</p>
+                    <p class="card-text">Fat: 2.69</p>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="{{ asset('img/leanbeef.jpg')}}" alt="Lean Beef" class="card-img-top" style="width: 450px; height: 450px; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Lean Beef</h5>
-                        <p class="card-text">Here's the nutrition breakdown for Lean Beef:</p>
-                        <p class="card-text">Calories: 250</p>
-                        <p class="card-text">Protein: 26g</p>
-                        <p class="card-text">Fat: 25g</p>
-                    </div>
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/leanbeef.jpg')}}" alt="Lean Beef" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Lean Beef</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Lean Beef:</p>
+                    <p class="card-text">Calories: 250g</p>
+                    <p class="card-text">Protein: 26g</p>
+                    <p class="card-text">Fat: 25g</p>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-12 text-center my-5">
-                <span class="mx-auto yawa">Nuts for diet</span>
-                <p class="mx-auto">A nut-rich diet offers numerous health benefits due to their high nutritional content. Rich in healthy fats, protein, fiber, vitamins, and minerals, nuts can support heart health by reducing bad cholesterol levels and lowering the risk of cardiovascular diseases.</p>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="{{ asset('img/walnut.png')}}" alt="Walnut" class="card-img-top" style="width: 450px; height: 450px; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Walnut</h5>
-                        <p class="card-text">Here's the nutrition breakdown for Walnut:</p>
-                        <p class="card-text">Calories: 654g</p>
-                        <p class="card-text">Protein: 15g</p>
-                        <p class="card-text">Fat: 65g</p>
-                    </div>
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/bison.jpg')}}" alt="Lean Beef" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Bison meat</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Lean Beef:</p>
+                    <p class="card-text">Calories: 124g</p>
+                    <p class="card-text">Protein: 20g</p>
+                    <p class="card-text">Fat: 7g</p>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="{{ asset('img/pistachio.png')}}" alt="Pistachio Nuts" class="card-img-top" style="width: 450px; height: 450px; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Pistachio Nuts</h5>
-                        <p class="card-text">Here's the nutrition breakdown for Pistacio Nuts:</p>
-                        <p class="card-text">Calories: 59</p>
-                        <p class="card-text">Protein: 10g</p>
-                        <p class="card-text">Fat: 0.4g</p>
-                    </div>
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/duck.jpg')}}" alt="Lean Beef" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Duck meat</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Lean Beef:</p>
+                    <p class="card-text">Calories: 337g</p>
+                    <p class="card-text">Protein: 19g</p>
+                    <p class="card-text">Fat: 5g</p>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-12 text-center my-5">
-                <span class="mx-auto yawa">Dairy for diet</span>
-                <p class="mx-auto">Incorporating dairy into your diet offers numerous health benefits. Dairy products are rich sources of essential nutrients like calcium, protein, vitamins, and minerals, which are crucial for bone health, muscle function, and overall well-being. Additionally, dairy consumption may lower the risk of osteoporosis, improve dental health, and support weight management when consumed in moderation as part of a balanced diet.</p>
-            </div>
+        <div class="col-md-12 text-center my-5">
+            <span class="mx-auto yawa">Nuts for diet</span>
+            <p class="mx-auto">A nut-rich diet offers numerous health benefits due to their high nutritional content. Rich in healthy fats, protein, fiber, vitamins, and minerals, nuts can support heart health by reducing bad cholesterol levels and lowering the risk of cardiovascular diseases.</p>
+        </div>
 
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="{{ asset('img/greek yogurt.jpg')}}" alt="Greek Yogurt" class="card-img-top" style="width: 450px; height: 450px; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Greek Yogurt</h5>
-                        <p class="card-text">Here's the nutrition breakdown for Walnut:</p>
-                        <p class="card-text">Calories: 59g</p>
-                        <p class="card-text">Protein: 10g</p>
-                        <p class="card-text">Fat: 0.4g</p>
-                    </div>
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/walnuts.jpg')}}" alt="Walnut" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Walnut</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Walnut:</p>
+                    <p class="card-text">Calories: 654g</p>
+                    <p class="card-text">Protein: 15g</p>
+                    <p class="card-text">Fat: 65g</p>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="{{ asset('img/kefir.jpg')}}" alt="Kefir" class="card-img-top" style="width: 450px; height: 450px; border-radius: 12px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Kefir</h5>
-                        <p class="card-text">Here's the nutrition breakdown for Kefir Drink:</p>
-                        <p class="card-text">Calories: 104g</p>
-                        <p class="card-text">Protein: 10g per serving</p>
-                        <p class="card-text">Fat: 2.5g</p>
-                    </div>
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/pistachio.png')}}" alt="Pistachio Nuts" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Pistachio Nuts</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Pistachio Nuts:</p>
+                    <p class="card-text">Calories: 59</p>
+                    <p class="card-text">Protein: 10g</p>
+                    <p class="card-text">Fat: 0.4g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/macadamia.jpg')}}" alt="Pistachio Nuts" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Macadamia Nuts</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Macadamia Nuts:</p>
+                    <p class="card-text">Calories: 718g</p>
+                    <p class="card-text">Protein: 8g</p>
+                    <p class="card-text">Fat: 76g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/cashew.jpg')}}" alt="Pistachio Nuts" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Cashew Nuts</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Cashew Nuts:</p>
+                    <p class="card-text">Calories: 157g</p>
+                    <p class="card-text">Protein: 5g</p>
+                    <p class="card-text">Fat: 12g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center my-5">
+            <span class="mx-auto yawa">Dairy for diet</span>
+            <p class="mx-auto">Incorporating dairy into your diet offers numerous health benefits. Dairy products are rich sources of essential nutrients like calcium, protein, vitamins, and minerals, which are crucial for bone health, muscle function, and overall well-being. Additionally, dairy consumption may lower the risk of osteoporosis, improve dental health, and support weight management when consumed in moderation as part of a balanced diet.</p>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/greek yogurt.jpg')}}" alt="Greek Yogurt" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Greek Yogurt</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Greek Yogurt:</p>
+                    <p class="card-text">Calories: 59g</p>
+                    <p class="card-text">Protein: 10g</p>
+                    <p class="card-text">Fat: 0.4g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/kefir.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Kefir</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Kefir Drink:</p>
+                    <p class="card-text">Calories: 104g</p>
+                    <p class="card-text">Protein: 10g per serving</p>
+                    <p class="card-text">Fat: 2.5g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/swisscheese.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Swiss Cheese</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Swiss Cheese:</p>
+                    <p class="card-text">Calories: 380g</p>
+                    <p class="card-text">Protein: 27g per serving</p>
+                    <p class="card-text">Fat: 28g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/bluecheese.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Blue Cheese</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Blue Cheese:</p>
+                    <p class="card-text">Calories: 353g</p>
+                    <p class="card-text">Protein: 21g per serving</p>
+                    <p class="card-text">Fat: 29g</p>
+                </div>
+            </div>
+        </div>
+
+        <span class="mx-auto yawa mb-3">Fish for diet</span>
+        <p class="mx-auto par">Fish is a highly nutritious addition to any diet. Packed with high-quality protein, omega-3 fatty acids, vitamins, and minerals, it offers numerous health benefits. Not only is fish low in saturated fat, but it also provides essential nutrients like vitamin D and B12.</p>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/salmon.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Salmon</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Kefir Drink:</p>
+                    <p class="card-text">Calories: 104g</p>
+                    <p class="card-text">Protein: 20g per serving</p>
+                    <p class="card-text">Fat: 13g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/tilapia.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Tilapia</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Kefir Drink:</p>
+                    <p class="card-text">Calories: 208g</p>
+                    <p class="card-text">Protein: 26g per serving</p>
+                    <p class="card-text">Fat: 2.7g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/sardine.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Sardine</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Sardine:</p>
+                    <p class="card-text">Calories: 134g</p>
+                    <p class="card-text">Protein: 23g per serving</p>
+                    <p class="card-text">Fat: 8g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/mackarel.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 600px; border-radius: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Mackarel</h5>
+                    <p class="card-text">Here's the nutrition breakdown for Mackarel:</p>
+                    <p class="card-text">Calories: 305g</p>
+                    <p class="card-text">Protein: 19g per serving</p>
+                    <p class="card-text">Fat: 25g</p>
                 </div>
             </div>
         </div>
@@ -338,9 +473,6 @@
 </div>
 
 
-        </div>
-    </div>
-        </div>
        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
