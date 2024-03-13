@@ -41,7 +41,7 @@ Route::get('/search-feedbacks', [AdminController::class, 'feedbackSearch'])->nam
 Route::get('/admin.user-feedbacks', [AdminController::class, 'userFeedbacks'])->name('admin.user.feedbacks');
 Route::get('/search', [AdminController::class, 'userSearch'])->name('user.search');
 Route::get('/admin.user-table', [AdminController::class, 'indexUsers'])->name('admin.user.table');
-Route::get('/admin.user-table.create', [AdminController::class, 'createUsers']);
+Route::get('/admin.user-table.create', [AdminController::class, 'createUsers'])->name('admin.user-table.create');
 Route::post('/admin.user-table.create' , [AdminController::class, 'storeUsers']);
 Route::get('/admin.user-table.{id}.edit', [AdminController::class, 'editUsers']);
 Route::put('/admin.user-table/{id}/edit', [AdminController::class, 'updateUsers']);

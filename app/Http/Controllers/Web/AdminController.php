@@ -173,7 +173,7 @@ class AdminController extends Controller
         $data['status'] = 'online';
 
         User::create($data);  
-        return redirect()->route('admin.user-table')->with("success", "User Data successfully created");
+        return redirect()->route('admin.user-table.create')->with("success", "User Data successfully created");
     
          
     }
