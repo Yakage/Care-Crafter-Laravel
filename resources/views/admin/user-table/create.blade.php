@@ -9,16 +9,24 @@
     
 </head>
 <body >
-    <div class="container">
-        @if (session('status'))
-            <div class="alert alert">{{session('status')}}</div>
+    <div id="messageDialog" class="dialog">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif  
+        @if(session()->has('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
         @endif
-
-        <div class="title">
-            <h4>Create User Data
-                <a href="{{ url('admin.user-table')}}" class="back">Back</a>
-            </h4>
-        </div>
+        @if(session()->has('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+        @endif
+    </div>
+    <div class="container">
         <div class="content">
             <form action="{{ url('admin.user-table.create')}}" method="POST">
                 @csrf
@@ -68,5 +76,6 @@
             </form>
         </div>
     </div>
+    <script src="js/loginandregister.js"></script>
 </body>
 </html>
