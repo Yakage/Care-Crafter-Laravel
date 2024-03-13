@@ -20,6 +20,7 @@ class StepTrackerController extends Controller{
                                          ->first(); // Retrieve the latest record
     return response()->json($results);
     }
+
     public function getStepHistory2(StepTrackerLogs $stepTrackerLogs) {
         $user = Auth::user(); // Retrieve authenticated user based on the token
         $results = $stepTrackerLogs::where('user_id', $user->id)
@@ -35,9 +36,6 @@ class StepTrackerController extends Controller{
     
         return response()->json($results);
     }
-    
-    
-
 
 
     public function createStepHistory(Request $request){
@@ -57,8 +55,50 @@ class StepTrackerController extends Controller{
 
         return response()->json(['message' => 'Steps tracked successfully']);
     }
+
+    public function updateStepHistory(Request $request){
+        $user = Auth::user();
+        $request->validate([
+            'current_steps' => 'required|numeric',
+        ]);
+    
+        // Check if there's an existing record for the current user and date
+        $existingRecord = StepTrackerLogs::where('user_id', $user->id)
+            ->whereDate('date', now()->toDateString())
+            ->first();
+    
+        if ($existingRecord) {
+            // Update existing record
+            $existingRecord->current_steps = $request->current_steps;
+            $existingRecord->save();
+            return response()->json(['message' => 'Steps tracked successfully']);
+        }else{
+            return response()->json(['message' => 'Steps tracked unseccessfully']);
+        }
+    }
     
     // FOR LEaderboard
+    public function updateSteps(Request $request){
+        $user = Auth::user();
+        $request->validate([
+            'steps' => 'required|numeric',
+        ]);
+    
+        // Check if there's an existing record for the current user and date
+        $existingRecord = StepTrackerLeaderboard::where('user_id', $user->id)
+            ->whereDate('date', now()->toDateString())
+            ->first();
+    
+        if ($existingRecord) {
+            // Update existing record
+            $existingRecord->steps = $request->steps;
+            $existingRecord->save();
+            return response()->json(['message' => 'Steps tracked successfully']);
+        }else{
+            return response()->json(['message' => 'Steps tracked unseccessfully']);
+        }
+    }
+    
     public function createSteps(Request $request){
         $user = Auth::user();
         $request->validate([
@@ -73,7 +113,20 @@ class StepTrackerController extends Controller{
         $stepTrackerLeaderBoard->save();
 
         return response()->json(['message' => 'Steps tracked successfully']);
+        
     }
+
+    public function totalSteps() {
+        $user = Auth::user();
+    
+        // Sum the steps for the authenticated user
+        $totalSteps = StepTrackerLeaderboard::where('user_id', $user->id)
+            ->sum('steps');
+    
+        return response()->json(['total_steps' => $totalSteps]);
+    }
+    
+    
 
     public function showDailySteps(){
         $dailySteps = StepTrackerLeaderboard::select('name', DB::raw('SUM(steps) as total_steps'))

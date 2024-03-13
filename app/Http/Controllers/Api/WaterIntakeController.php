@@ -111,6 +111,16 @@ class WaterIntakeController extends Controller{
         return response()->json(['message' => 'Water Created successfully']);
     }
 
+    public function totalWater() {
+        $user = Auth::user();
+    
+        // Sum the steps for the authenticated user
+        $totalWater = WaterIntakeLeaderboard::where('user_id', $user->id)
+            ->sum('water');
+    
+        return response()->json(['total_water' => $totalWater]);
+    }
+
     //For statistics
     public function getDailyWater(Request $request){
         $user = Auth::user();
