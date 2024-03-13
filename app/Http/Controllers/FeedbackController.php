@@ -8,22 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class FeedbackController extends Controller{
     public function store(Request $request){
-    $user = Auth::user();
-    $request->validate([
-        'message' => 'required|min:5|max:700' // Validation rules
-    ], [
-        'message.max' => 'The message must not exceed 700 characters.'
-    ]);
+        $user = Auth::user();
+        $request->validate([
+            'message' => 'required|min:5|max:700' // Validation rules
+        ], [
+            'message.max' => 'The message must not exceed 700 characters.'
+        ]);
 
-    $feedback = new UserFeedback;
-    $feedback->name = $user->name; // Access the 'name' attribute directly
-    $feedback->message = $request->input('message');
-    $feedback->user_id = $user->id; // Assuming user authentication
-    $feedback->save();
+        $feedback = new UserFeedback;
+        $feedback->name = $user->name; // Access the 'name' attribute directly
+        $feedback->message = $request->input('message');
+        $feedback->user_id = $user->id; // Assuming user authentication
+        $feedback->save();
 
-    // Redirect to the 'user.feedback' view
-    return redirect()->route('user.feedback')->with('success', 'Feedback successfully submitted');
-}
-
-    
+        // Redirect to the 'user.feedback' view
+        return redirect()->route('user.feedback')->with('success', 'Feedback successfully submitted');
+    }   
 }

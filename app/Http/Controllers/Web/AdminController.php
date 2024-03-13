@@ -210,21 +210,16 @@ class AdminController extends Controller
             'weight.min' => 'Weight must be at least 1 kg.',
             'weight.max' => 'Weight cannot exceed 300 kg.',
         ]);
-        try {
-            User::findOrFail($id)->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'birthday' => $request->birthday,
-                'height' => $request->height,
-                'weight' => $request->weight,
-                'gender' => $request->gender,
-            ]);
-            return redirect()->route('admin.user-table')->with("success", "User Data successfully updated");
-        } catch (\Exception $e) {
-            // Handle the exception, for example, log it
-            Log::error($e->getMessage());
-            return redirect()->route('admin.user-table.{id}.edit')->with("error", "User Data not created");
-        }
+        
+        User::findOrFail($id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'birthday' => $request->birthday,
+            'height' => $request->height,
+            'weight' => $request->weight,
+            'gender' => $request->gender,
+        ]);
+        return redirect()->route('admin.user-table')->with("success", "User Data successfully updated");
     }
 
     public function destroyUsers(int $id){
