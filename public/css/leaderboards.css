@@ -21,15 +21,37 @@ h1 span {
     padding-left: 8px;
     padding-right: 8px;
 }
-.tbl-container {
+/*.tbl-container {
     margin: auto;
     width: 50%;
-  }
-.bg-blue {
-    background-color: rgb(0, 162, 255);
-    color: white;
-  }
-.bdr {
-    border-radius: 6px;
-    overflow: hidden;
-  }
+  }*/
+  
+.tbl-container {
+    background-color: #ffffff; /* White background for table container */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px; /* Adjust the width as needed */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0; /* Light gray border between rows */
+    text-align: left;
+}
+
+.table th {
+    background-color: #2c82c9; /* Blue background for table header */
+    color: #ffffff; /* White text color for table header */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f0f0f0; /* Light gray background for even rows */
+}
