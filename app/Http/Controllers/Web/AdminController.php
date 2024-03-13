@@ -11,6 +11,7 @@ use App\Models\UserLogin;
 use App\Models\WaterIntakeLeaderboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -137,7 +138,60 @@ class AdminController extends Controller
         return view('admin.user-table.create');
     }
 
-    public function storeUsers(Request $request){
+    public function storeUsers(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255', // Limit name to 255 characters
+        'email' => 'required|email|unique:users|max:255', // Limit email to 255 characters
+        'birthday' => 'required|date',
+        'gender' => 'required|in:male,female', // Specify allowed gender values
+        'height' => 'required|numeric|min:1|max:300', // Limit height between 1 and 300 cm
+        'weight' => 'required|numeric|min:1|max:300', // Limit weight between 1 and 300 kg
+        'password' => 'required|string|min:8',
+        'confirm_password' => 'required|string|same:password',
+    ], [
+        'name.max' => 'Name must not exceed 255 characters.',
+        'email.max' => 'Email must not exceed 255 characters.',
+        'gender.in' => 'Gender must be either male or female.',
+        'height.numeric' => 'Height must be a numeric value.',
+        'height.min' => 'Height must be at least 1 cm.',
+        'height.max' => 'Height cannot exceed 300 cm.',
+        'weight.numeric' => 'Weight must be a numeric value.',
+        'weight.min' => 'Weight must be at least 1 kg.',
+        'weight.max' => 'Weight cannot exceed 300 kg.',
+        'password.min' => 'The password must be at least 8 characters.',
+        'confirm_password.same' => 'The password and password confirmation do not match.',
+    ]);
+
+    $data['name'] = $request->name;
+    $data['email'] = $request->email;
+    $data['birthday'] = $request->birthday;
+    $data['gender'] = $request->gender;
+    $data['height'] = $request->height;
+    $data['weight'] = $request->weight;
+    $data['password'] = Hash::make($request->password);
+    $data['confirm_password'] = $request->confirm_password;
+    $data['role'] = 'user';
+    $data['status'] = 'online';
+
+    try {
+        User::create($data);
+        return redirect()->route('admin.user-table.create')->with("success", "User Data successfully created");
+    } catch (\Exception $e) {
+        // Handle the exception, for example, log it
+        Log::error($e->getMessage());
+        return redirect()->route('admin.user-table.create')->with("error", "User Data not created");
+    }
+}
+
+
+    public function editUsers(int $id){
+        $users = User::findOrFail($id);
+        //return $students;
+        return view('admin.user-table.edit', compact('users'));
+    }
+
+    public function updateUsers(Request $request, int $id){
         $request->validate([
             'name' => 'required|string|max:255', // Limit name to 255 characters
             'email' => 'required|email|unique:users|max:255', // Limit email to 255 characters
@@ -145,8 +199,6 @@ class AdminController extends Controller
             'gender' => 'required|in:male,female', // Specify allowed gender values
             'height' => 'required|numeric|min:1|max:300', // Limit height between 1 and 300 cm
             'weight' => 'required|numeric|min:1|max:300', // Limit weight between 1 and 300 kg
-            'password' => 'required|string|min:8',
-            'confirm_password' => 'required|string|same:password',
         ], [
             'name.max' => 'Name must not exceed 255 characters.',
             'email.max' => 'Email must not exceed 255 characters.',
@@ -157,58 +209,29 @@ class AdminController extends Controller
             'weight.numeric' => 'Weight must be a numeric value.',
             'weight.min' => 'Weight must be at least 1 kg.',
             'weight.max' => 'Weight cannot exceed 300 kg.',
-            'password.min' => 'The password must be at least 8 characters.',
-            'confirm_password.same' => 'The password and password confirmation do not match.',
         ]);
-
-        $data['name'] = $request->name;
-        $data['email'] = $request->email;
-        $data['birthday'] = $request->birthday;
-        $data['gender'] = $request->gender;
-        $data['height'] = $request->height;
-        $data['weight'] = $request->weight;
-        $data['password'] = Hash::make($request->password);
-        $data['confirm_password'] = $request->confirm_password;
-        $data['role'] = 'user';
-        $data['status'] = 'online';
-
-        User::create($data);  
-        return redirect()->route('admin.user-table.create')->with("success", "User Data successfully created");
-    
-         
-    }
-
-    public function editUsers(int $id){
-        $users = User::findOrFail($id);
-        //return $students;
-        return view('admin.user-table.edit', compact('users'));
-    }
-
-    public function updateUsers(Request $request, int $id){
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'birthday' => 'required|date',
-            'height' => 'required|numeric', // Validate as numeric (including decimals)
-            'weight' => 'required|numeric', // Validate as numeric (including decimals)
-            'gender' => 'required|string',
-        ]);
-        User::findOrFail($id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'birthday' => $request->birthday,
-            'height' => $request->height,
-            'weight' => $request->weight,
-            'gender' => $request->gender,
-        ]);
-        return redirect()->route('admin.user.table')->with('status', 'User Data Updated');
+        try {
+            User::findOrFail($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'birthday' => $request->birthday,
+                'height' => $request->height,
+                'weight' => $request->weight,
+                'gender' => $request->gender,
+            ]);
+            return redirect()->route('admin.user-table')->with("success", "User Data successfully updated");
+        } catch (\Exception $e) {
+            // Handle the exception, for example, log it
+            Log::error($e->getMessage());
+            return redirect()->route('admin.user-table.{id}.edit')->with("error", "User Data not created");
+        }
     }
 
     public function destroyUsers(int $id){
         $users = User::findOrFail($id);
         $users->delete();
 
-        return redirect()->back()->with('status', 'Users Data Deleted');
+        return redirect()->back()->with('success', 'Users Data Deleted');
     }
     
      // For Feedbacks

@@ -51,8 +51,11 @@
                     </div>
                     <div class="input-box">
                         <span class="details">Gender</span>
-                        <input type="text" id="gender" class="form-control form-control-sm" name="gender" value="{{ $users->gender }}" required>
-                    </div>
+                            <select class="form-control form-control-sm" name="gender" required>
+                                <option value="male">male</option>
+                                <option value="female">female</option>
+                            </select>
+                        </div>
                     <div class="input-box">
                         <span class="details">Height</span>
                         <input type="text" class="form-control form-control-sm" name="height" value="{{ $users->height }}"required>
