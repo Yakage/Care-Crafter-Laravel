@@ -103,7 +103,7 @@ class UserController extends Controller
             'user_id' => $user->id,
         ];
 
-    return view('user.user-ui.user', compact('userData'));
+    return view('user.user-ui.user', compact('userData','user'));
 }
     public function update(Request $request)
     {
