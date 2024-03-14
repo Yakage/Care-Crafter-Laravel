@@ -20,6 +20,7 @@ class StepTrackerController extends Controller{
                                          ->first(); // Retrieve the latest record
     return response()->json($results);
     }
+
     public function getStepHistory2(StepTrackerLogs $stepTrackerLogs) {
         $user = Auth::user(); // Retrieve authenticated user based on the token
         $results = $stepTrackerLogs::where('user_id', $user->id)
@@ -35,9 +36,6 @@ class StepTrackerController extends Controller{
     
         return response()->json($results);
     }
-    
-    
-
 
 
     public function createStepHistory(Request $request){
@@ -57,8 +55,50 @@ class StepTrackerController extends Controller{
 
         return response()->json(['message' => 'Steps tracked successfully']);
     }
+
+    public function updateStepHistory(Request $request){
+        $user = Auth::user();
+        $request->validate([
+            'current_steps' => 'required|numeric',
+        ]);
+    
+        // Check if there's an existing record for the current user and date
+        $existingRecord = StepTrackerLogs::where('user_id', $user->id)
+            ->whereDate('date', now()->toDateString())
+            ->first();
+    
+        if ($existingRecord) {
+            // Update existing record
+            $existingRecord->current_steps = $request->current_steps;
+            $existingRecord->save();
+            return response()->json(['message' => 'Steps tracked successfully']);
+        }else{
+            return response()->json(['message' => 'Steps tracked unseccessfully']);
+        }
+    }
     
     // FOR LEaderboard
+    public function updateSteps(Request $request){
+        $user = Auth::user();
+        $request->validate([
+            'steps' => 'required|numeric',
+        ]);
+    
+        // Check if there's an existing record for the current user and date
+        $existingRecord = StepTrackerLeaderboard::where('user_id', $user->id)
+            ->whereDate('date', now()->toDateString())
+            ->first();
+    
+        if ($existingRecord) {
+            // Update existing record
+            $existingRecord->steps = $request->steps;
+            $existingRecord->save();
+            return response()->json(['message' => 'Steps tracked successfully']);
+        }else{
+            return response()->json(['message' => 'Steps tracked unseccessfully']);
+        }
+    }
+    
     public function createSteps(Request $request){
         $user = Auth::user();
         $request->validate([
@@ -73,7 +113,20 @@ class StepTrackerController extends Controller{
         $stepTrackerLeaderBoard->save();
 
         return response()->json(['message' => 'Steps tracked successfully']);
+        
     }
+
+    public function totalSteps() {
+        $user = Auth::user();
+    
+        // Sum the steps for the authenticated user
+        $totalSteps = StepTrackerLeaderboard::where('user_id', $user->id)
+            ->sum('steps');
+    
+        return response()->json(['total_steps' => $totalSteps]);
+    }
+    
+    
 
     public function showDailySteps(){
         $dailySteps = StepTrackerLeaderboard::select('name', DB::raw('SUM(steps) as total_steps'))
@@ -105,54 +158,6 @@ class StepTrackerController extends Controller{
 
         return response()->json($monthlySteps);
     }
-
-    //FOR Statistics
-    public function getDailySteps(Request $request){
-        $user = Auth::user();
-    
-        $dailySteps = StepTrackerLeaderboard::select(
-            DB::raw('CASE WHEN DAYOFWEEK(date) = 1 THEN 0 ELSE DAYOFWEEK(date) - 1 END as day_of_week'), // Adjust day of the week to start from Sunday (0)
-            DB::raw('SUM(steps) as total_steps')
-        )
-        ->where('user_id', $user->id) // Filter by user ID
-        ->groupBy(DB::raw('CASE WHEN DAYOFWEEK(date) = 1 THEN 0 ELSE DAYOFWEEK(date) - 1 END')) // Group by transformed day of the week
-        ->orderByRaw('DAYOFWEEK(date) DESC') // Order by day of the week descending to get recent days first
-        ->get();
-    
-        return response()->json($dailySteps);
-    }
-    
-    public function getWeeklySteps(Request $request){
-        $user = Auth::user();
-    
-        $weeklySteps = StepTrackerLeaderboard::select(
-            DB::raw('DATE_ADD(date, INTERVAL -WEEKDAY(date) DAY) as week_start_date'), // Calculate the start date of the week
-            DB::raw('SUM(steps) as total_steps') // Sum of steps for each week
-        )
-        ->where('user_id', $user->id) // Filter by user ID
-        ->groupBy(DB::raw('DATE_ADD(date, INTERVAL -WEEKDAY(date) DAY)')) // Group by week start date
-        ->orderByRaw('DATE_ADD(date, INTERVAL -WEEKDAY(date) DAY) ASC') // Order by week start date to get recent weeks first
-        ->get();
-    
-        return response()->json($weeklySteps);
-    }
-    
-    public function getMonthlySteps(Request $request){
-        $user = Auth::user();
-    
-        $monthlySteps = StepTrackerLeaderboard::select(
-            DB::raw('MONTH(date) as month_number'), // Get the month index
-            DB::raw('SUM(steps) as total_steps') // Sum of steps for each month
-        )
-        ->where('user_id', $user->id) // Filter by user ID
-        ->groupBy(DB::raw('MONTH(date)'), DB::raw('DATE_FORMAT(date, "%Y-%m-01")')) // Group by month number and month start date
-        ->orderByRaw('MONTH(date) ASC') // Order by month number to get the months in chronological order
-        ->get();
-    
-        return response()->json($monthlySteps);
-    }
-    
-    
 
     // For Statistics
     public function chartDataStepsWeekly() {

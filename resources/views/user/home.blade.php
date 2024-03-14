@@ -53,6 +53,7 @@
 </head>
 
 <body>
+    <header>
         <nav class="navbar bg-body-tertiary fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
@@ -109,6 +110,8 @@
                 </div>
             </div>
         </nav>
+    </header>
+        
 
         <div class="container p-5 statistics-head">
             <h1 class="text-center text-white mb-5">Today's Statistics</h1>

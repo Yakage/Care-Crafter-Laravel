@@ -167,6 +167,16 @@ class SleepTrackerController extends Controller{
         return response()->json(['message' => 'Sleeps tracked successfully']);
     }
     
+    public function totalSleeps() {
+        $user = Auth::user();
+    
+        // Sum the steps for the authenticated user
+        $totalSleeps = SleepTrackerLeaderboard::where('user_id', $user->id)
+            ->sum('sleeps');
+    
+        return response()->json(['total_sleeps' => $totalSleeps]);
+    }
+    
     public function showDailySleeps() {
         $dailySleeps = SleepTrackerLeaderboard::select('name', DB::raw('SUM(sleeps) as total_sleeps'))
                         ->where('date', now()->format('Y-m-d'))

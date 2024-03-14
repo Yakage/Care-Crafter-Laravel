@@ -38,17 +38,17 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/getStepHistory', [StepTrackerController::class, 'getStepHistory']);
     Route::get('/getStepHistory2', [StepTrackerController::class, 'getStepHistory2']);
     Route::post('/createStepHistory', [StepTrackerController::class, 'createStepHistory']);
+    Route::put('/updateStepHistory', [StepTrackerController::class, 'updateStepHistory']);
         
         //FOr Leaderboards
+    Route::get('/totalSteps', [StepTrackerController::class, 'totalSteps']);    
+    Route::put('/updateStep', [StepTrackerController::class, 'updateSteps']);
     Route::post('/createStep', [StepTrackerController::class, 'createSteps']);
     Route::get('/showDailyStep', [StepTrackerController::class, 'showDailySteps']);
     Route::get('/showWeeklyStep', [StepTrackerController::class, 'showWeeklySteps']);
     Route::get('/showMonthlyStep', [StepTrackerController::class, 'showMonthlySteps']);
+    
         //FOR Statistics
-    Route::get('getDailyStep', [StepTrackerController::class, 'getDailySteps']);
-    Route::get('getWeeklyStep', [StepTrackerController::class, 'getWeeklySteps']);
-    Route::get('getMonthlyStep', [StepTrackerController::class, 'getMonthlySteps']);
-
     Route::get('/chartDataStepsWeekly', [StepTrackerController::class, 'chartDataStepsWeekly']);
     Route::get('/chartDataStepsMonthly', [StepTrackerController::class, 'chartDataStepsMonthly']);
 
@@ -62,7 +62,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     Route::get('/getScore', [SleepTrackerController::class, 'getScoreLogs']);
     Route::post('/createScore', [SleepTrackerController::class, 'createScore']);
-        //For LeaderBoard
+        //For leaderbaords
+    Route::get('/totalSleeps', [SleepTrackerController::class, 'totalSleeps']);  
     Route::post('/createSleep', [SleepTrackerController::class, 'createSleeps']);
     Route::get('/showDailySleep', [SleepTrackerController::class, 'showDailySleeps']);
     Route::get('/showWeeklySleep', [SleepTrackerController::class, 'showWeeklySleeps']);
@@ -72,6 +73,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     //For Water 
         //For Leaderboard
+    Route::get('/totalWater', [WaterIntakeController::class, 'totalWater']);  
     Route::post('/createWater', [WaterIntakeController::class, 'createWater']);
     Route::get('/showDailyWater', [WaterIntakeController::class, 'showDailyWater']);
     Route::get('/showWeeklyWater', [WaterIntakeController::class, 'showWeeklyWater']);
