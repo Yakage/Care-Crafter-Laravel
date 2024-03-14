@@ -24,6 +24,7 @@ class WaterIntakeController extends Controller{
         $waterIntakeLeaderboard->name = $user->name;
         $waterIntakeLeaderboard->water = $request->water;
         $waterIntakeLeaderboard->date = now();
+        $waterIntakeLeaderboard->avatar = $user->avatar;
         $waterIntakeLeaderboard->save();
     
         return response()->json(['message' => 'Water intake tracked successfully']);

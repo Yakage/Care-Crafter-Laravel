@@ -110,6 +110,7 @@ class StepTrackerController extends Controller{
         $stepTrackerLeaderBoard->name = $user->name;
         $stepTrackerLeaderBoard->steps = $request->steps;
         $stepTrackerLeaderBoard->date = now();
+        $stepTrackerLeaderBoard->avatar = $user->avatar;
         $stepTrackerLeaderBoard->save();
 
         return response()->json(['message' => 'Steps tracked successfully']);
@@ -129,28 +130,27 @@ class StepTrackerController extends Controller{
     
 
     public function showDailySteps(){
-        $dailySteps = StepTrackerLeaderboard::select('name', DB::raw('SUM(steps) as total_steps'))
+        $dailySteps = StepTrackerLeaderboard::select('name', DB::raw('MAX(avatar) as latest_avatar'), DB::raw('SUM(steps) as total_steps'))
                     ->where('date', now()->format('Y-m-d'))
                     ->groupBy('name')
                     ->orderByDesc('total_steps')
                     ->get();
-
+    
         return response()->json($dailySteps);
-}
+    }
 
 
     public function showWeeklySteps(){
-        $weeklySteps = StepTrackerLeaderboard::select('name', DB::raw('SUM(steps) as total_steps'))
+        $weeklySteps = StepTrackerLeaderboard::select('name', DB::raw('MAX(avatar) as latest_avatar'), DB::raw('SUM(steps) as total_steps'))
                         ->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()])
                         ->groupBy('name')
                         ->orderByDesc('total_steps')
                         ->get();
-
         return response()->json($weeklySteps);
     }
 
     public function showMonthlySteps(){
-        $monthlySteps = StepTrackerLeaderboard::select('name', DB::raw('SUM(steps) as total_steps'))
+        $monthlySteps = StepTrackerLeaderboard::select('name', DB::raw('MAX(avatar) as latest_avatar'), DB::raw('SUM(steps) as total_steps'))
                         ->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])
                         ->groupBy('name')
                         ->orderByDesc('total_steps')

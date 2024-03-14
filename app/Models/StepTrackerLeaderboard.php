@@ -15,6 +15,7 @@ class StepTrackerLeaderboard extends Model
         'score',
         'steps',
         'date',
+        'avatar',
     ];
     public function user(){
         return $this->belongsTo(User::class);
