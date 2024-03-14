@@ -124,8 +124,13 @@ class AuthenticationController extends Controller{
         $data['status'] = 'online';
         $data['avatar'] = 1;
 
-        User::create($data);  
-        return redirect()->route('login')->with("success", "Registration Successful, Login to access the app");
+        $user = User::create($data);   
+        if ($user) {
+            return redirect()->route('login')->with("success", "Registration Successful, Login to access the app");
+        } else {
+            // Registration failed, return back to the registration form with an error message
+            return back()->withInput()->with("error", "Registration Failed. Please try again.");
+        }
        
     }
 
