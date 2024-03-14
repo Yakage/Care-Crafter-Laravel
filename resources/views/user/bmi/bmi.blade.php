@@ -10,7 +10,7 @@
     <title>User Interface</title>
 
     <!--Swiper css -->
-    <link rel="stylesheet" href="{{secure_asset('assets/css/swiper-bundle.min.css')}}">
+    <link rel="stylesheet" href="{{('assets/css/swiper-bundle.min.css')}}">
     <!--Swiper css -->
 
 
