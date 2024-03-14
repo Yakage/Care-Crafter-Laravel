@@ -54,7 +54,6 @@ Route::get('/admin.users-features', [AdminController::class, 'featuresStatistics
 //For Users
 Route::get('/user-home', [AuthenticationController::class, 'userHome'])->name('user.home');
 //user dash
-Route::get('/user/user-ui/user', 'UserController@index')->name('user.user-ui.user')->middleware('auth');
 Route::get('/user/user-ui/user', [UserController::class, 'userDashboard'])->name('user.user-ui.user');
 Route::post('/user/user-ui/user', [UserController::class, 'update']);
 Route::get('/user-feedback', [UserController::class, 'userFeedback'])->name('user.feedback');
