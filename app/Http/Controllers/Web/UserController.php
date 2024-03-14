@@ -53,7 +53,9 @@ class UserController extends Controller
             ->whereDate('date', $currentDate)
             ->sum('sleeps');
 
-        $sleepScore = $user->sleepTrackerLeaderboard->score ?? 0;
+            $sleepScore = SleepTrackerLeaderboard::where('user_id', $user->id)
+            ->whereDate('date', $currentDate)
+            ->value('score');
 
 
         // Check if a user is authenticated
