@@ -31,9 +31,9 @@ class WaterIntakeController extends Controller{
     }
     
     public function showDailyWater(){
-        $dailyWaterIntake = WaterIntakeLeaderboard::select('name', DB::raw('SUM(water) as total_water'))
+        $dailyWaterIntake = WaterIntakeLeaderboard::select('name',DB::raw('MAX(avatar) as latest_avatar'), DB::raw('SUM(water) as total_water'))
                     ->where('date', now()->format('Y-m-d'))
-                    ->groupBy('name')
+                    ->groupBy('name', 'avatar')
                     ->orderByDesc('total_water')
                     ->get();
     
@@ -41,9 +41,9 @@ class WaterIntakeController extends Controller{
     }
     
     public function showWeeklyWater(){
-        $weeklyWaterIntake = WaterIntakeLeaderboard::select('name', DB::raw('SUM(water) as total_water'))
+        $weeklyWaterIntake = WaterIntakeLeaderboard::select('name', DB::raw('MAX(avatar) as latest_avatar'),DB::raw('SUM(water) as total_water'))
                         ->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()])
-                        ->groupBy('name')
+                        ->groupBy('name', 'avatar')
                         ->orderByDesc('total_water')
                         ->get();
     
@@ -51,9 +51,9 @@ class WaterIntakeController extends Controller{
     }
     
     public function showMonthlyWater(){
-        $monthlyWaterIntake = WaterIntakeLeaderboard::select('name', DB::raw('SUM(water) as total_water'))
+        $monthlyWaterIntake = WaterIntakeLeaderboard::select('name', DB::raw('MAX(avatar) as latest_avatar'),DB::raw('SUM(water) as total_water'))
                         ->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])
-                        ->groupBy('name')
+                        ->groupBy('name', 'avatar')
                         ->orderByDesc('total_water')
                         ->get();
     

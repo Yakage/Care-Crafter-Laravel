@@ -64,7 +64,7 @@ class StepTrackerController extends Controller{
     
         // Check if there's an existing record for the current user and date
         $existingRecord = StepTrackerLogs::where('user_id', $user->id)
-            ->whereDate('date', now()->toDateString())
+            ->whereDate('created_at', now()->toDateString())
             ->first();
     
         if ($existingRecord) {
@@ -93,7 +93,7 @@ class StepTrackerController extends Controller{
             // Update existing record
             $existingRecord->steps = $request->steps;
             $existingRecord->save();
-            return response()->json(['message' => 'Steps tracked successfully']);
+            return response()->json(['message' => 'Steps tracked updated successfully']);
         }else{
             return response()->json(['message' => 'Steps tracked unseccessfully']);
         }
