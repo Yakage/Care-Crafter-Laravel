@@ -71,6 +71,9 @@
                     <h4>Hi, {{ $user->name }}! How are you feeling today?</h4>
 
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.home')}}">Home</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Features</a>
                             <ul class="dropdown-menu">
@@ -114,7 +117,7 @@
                     <div class="card statistics">
                         <div class="card-body">
                             <h3 class="card-title"><i class="fas fa-walking"></i> Steps</h3>
-                            <p class="text-center mt-5">Goal:</p>
+                            <p class="text-center mt-5">Goal: {{ $userDailyGoal }}</p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +125,7 @@
                     <div class="card statistics">
                         <div class="card-body">
                             <h3 class="card-title"><i class="fas fa-tint"></i> Water</h3>
-                            <p class="text-center mt-5">Total Water Intake:</p>
+                            <p class="text-center mt-5">Total Water Intake: {{ $totalWaterIntake}}</p>
                         </div>
                     </div>
                 </div>
@@ -130,7 +133,8 @@
                     <div class="card statistics">
                         <div class="card-body">
                             <h3 class="card-title"><i class="fas fa-weight"></i> BMI</h3>
-                            <p class="text-center mt-5">Score:</p>
+                            <p class="text-center mt-5">BMI: {{ $bmi}}</p>
+                            <p class="text-center mt-5">Classification: {{ $bmiClassification }}</p>
                         </div>
                     </div>
                 </div>
@@ -138,8 +142,8 @@
                     <div class="card statistics">
                         <div class="card-body">
                             <h3 class="card-title"><i class="fas fa-bed"></i> Sleep</h3>
-                            <p class="text-center mt-5">Total Sleep:</p>
-                            <p class="text-center mt-5">Score:</p>
+                            <p class="text-center mt-5">Total Sleep: {{ $totalSleepTime}}</p>
+                            <p class="text-center mt-5">Score: {{ $sleepScore}}</p>
                         </div>
                     </div>
                 </div>
