@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\SleepTrackerLeaderboard;
 use App\Models\User;
 use App\Models\UserLogin;
 use Illuminate\Http\Request;
