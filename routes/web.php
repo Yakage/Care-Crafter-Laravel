@@ -10,6 +10,7 @@ use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\Web\StepTrackerController;
 use App\Http\Controllers\Web\WaterIntakeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 
 
@@ -101,3 +102,6 @@ Route::get('/getHistoryOfBMI', [BMIController::class, 'getBMI']);
 Route::post('/createBMI', [BMIController::class, 'createBMI']);
 //For sleep controller
 Route::get('/welcome', function () {return view('welcome');})->name('welcome');
+
+
+URL::forceScheme('https');

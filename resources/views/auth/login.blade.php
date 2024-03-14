@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Login</title>
-    <link rel="stylesheet" href="css/login.css" >
+    <link rel="stylesheet" href="{{('assets/css/login.css')}}">
 </head>
 <body>
     <div id="messageDialog" class="dialog">

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Users Data</title>
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="{{secure_asset('assets/css/register.css')}}">
 </head>
 <body>
     <div id="messageDialog" class="dialog">
