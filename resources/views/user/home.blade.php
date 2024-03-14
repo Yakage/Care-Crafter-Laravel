@@ -26,6 +26,11 @@
             margin-bottom: 30px; 
         }
 
+        .card-img-top {
+            height: auto;
+            width: 100%;
+        }
+
         .statistics-head {
             margin-top: 100px;
             margin-bottom: 150px;
@@ -163,7 +168,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/chicken breasts.jpg')}}" alt="Chicken Breast" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/chicken breasts.jpg')}}" alt="Chicken Breast" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Chicken Breast</h5>
                             <p class="card-text">Here's the nutrition breakdown for a skinless chicken breast:</p>
@@ -176,7 +181,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/leanbeef.jpg')}}" alt="Lean Beef" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/leanbeef.jpg')}}" alt="Lean Beef" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Lean Beef</h5>
                             <p class="card-text">Here's the nutrition breakdown for Lean Beef:</p>
@@ -189,7 +194,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/bison.jpg')}}" alt="Lean Beef" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/bison.jpg')}}" alt="Lean Beef" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Bison meat</h5>
                             <p class="card-text">Here's the nutrition breakdown for Lean Beef:</p>
@@ -202,7 +207,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/duck.jpg')}}" alt="Lean Beef" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/duck.jpg')}}" alt="Lean Beef" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Duck meat</h5>
                             <p class="card-text">Here's the nutrition breakdown for Lean Beef:</p>
@@ -220,7 +225,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/walnuts.jpg')}}" alt="Walnut" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/walnuts.jpg')}}" alt="Walnut" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Walnut</h5>
                             <p class="card-text">Here's the nutrition breakdown for Walnut:</p>
@@ -233,7 +238,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/pistachio.png')}}" alt="Pistachio Nuts" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/pistachio.png')}}" alt="Pistachio Nuts" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Pistachio Nuts</h5>
                             <p class="card-text">Here's the nutrition breakdown for Pistachio Nuts:</p>
@@ -246,7 +251,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/macadamia.jpg')}}" alt="Pistachio Nuts" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/macadamia.jpg')}}" alt="Pistachio Nuts" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Macadamia Nuts</h5>
                             <p class="card-text">Here's the nutrition breakdown for Macadamia Nuts:</p>
@@ -259,7 +264,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/cashew.jpg')}}" alt="Pistachio Nuts" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/cashew.jpg')}}" alt="Pistachio Nuts" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Cashew Nuts</h5>
                             <p class="card-text">Here's the nutrition breakdown for Cashew Nuts:</p>
@@ -277,7 +282,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/greek yogurt.jpg')}}" alt="Greek Yogurt" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/greek yogurt.jpg')}}" alt="Greek Yogurt" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Greek Yogurt</h5>
                             <p class="card-text">Here's the nutrition breakdown for Greek Yogurt:</p>
@@ -290,7 +295,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/kefir.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/kefir.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Kefir</h5>
                             <p class="card-text">Here's the nutrition breakdown for Kefir Drink:</p>
@@ -303,7 +308,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/swisscheese.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/swisscheese.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Swiss Cheese</h5>
                             <p class="card-text">Here's the nutrition breakdown for Swiss Cheese:</p>
@@ -316,7 +321,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/bluecheese.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/bluecheese.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Blue Cheese</h5>
                             <p class="card-text">Here's the nutrition breakdown for Blue Cheese:</p>
@@ -332,7 +337,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/salmon.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/salmon.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Salmon</h5>
                             <p class="card-text">Here's the nutrition breakdown for Kefir Drink:</p>
@@ -345,7 +350,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/tilapia.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/tilapia.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Tilapia</h5>
                             <p class="card-text">Here's the nutrition breakdown for Kefir Drink:</p>
@@ -358,7 +363,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/sardine.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/sardine.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Sardine</h5>
                             <p class="card-text">Here's the nutrition breakdown for Sardine:</p>
@@ -371,7 +376,7 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <img src="{{ asset('img/mackarel.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style="max-height: 300px; border-radius: 12px;">
+                        <img src="{{ asset('img/mackarel.jpg')}}" alt="Kefir" class="card-img-top img-fluid" style=" border-radius: 12px;">
                         <div class="card-body">
                             <h5 class="card-title">Mackarel</h5>
                             <p class="card-text">Here's the nutrition breakdown for Mackarel:</p>
