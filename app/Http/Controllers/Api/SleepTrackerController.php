@@ -179,9 +179,9 @@ class SleepTrackerController extends Controller{
     }
     
     public function showDailySleeps() {
-        $dailySleeps = SleepTrackerLeaderboard::select('name', DB::raw('SUM(sleeps) as total_sleeps'))
+        $dailySleeps = SleepTrackerLeaderboard::select('name', DB::raw('MAX(avatar) as latest_avatar'),DB::raw('SUM(sleeps) as total_sleeps'))
                         ->where('date', now()->format('Y-m-d'))
-                        ->groupBy('name')
+                        ->groupBy('name', 'avatar')
                         ->orderByDesc('total_sleeps')
                         ->get();
     
@@ -199,9 +199,9 @@ class SleepTrackerController extends Controller{
     
     
     public function showWeeklySleeps(){
-        $weeklySleeps = SleepTrackerLeaderboard::select('name', DB::raw('SUM(sleeps) as total_sleeps'))
+        $weeklySleeps = SleepTrackerLeaderboard::select('name', DB::raw('MAX(avatar) as latest_avatar'), DB::raw('SUM(sleeps) as total_sleeps'))
                         ->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()])
-                        ->groupBy('name')
+                        ->groupBy('name', 'avatar')
                         ->orderByDesc('total_sleeps')
                         ->get();
     
@@ -217,9 +217,9 @@ class SleepTrackerController extends Controller{
     }
     
     public function showMonthlySleeps(){
-        $monthlySleeps = SleepTrackerLeaderboard::select('name', DB::raw('SUM(sleeps) as total_sleeps'))
+        $monthlySleeps = SleepTrackerLeaderboard::select('name', DB::raw('MAX(avatar) as latest_avatar'), DB::raw('SUM(sleeps) as total_sleeps'))
                         ->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])
-                        ->groupBy('name')
+                        ->groupBy('name', 'avatar')
                         ->orderByDesc('total_sleeps')
                         ->get();
 

@@ -103,7 +103,7 @@ form {
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                 <div class="offcanvas-body">
-                    <h4>Hi, {{ $userData->name }}! How are you feeling today?</h4>
+                    <h4>Hi, {{ $user->name }}! How are you feeling today?</h4>
 
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
@@ -126,7 +126,7 @@ form {
                     </ul>
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="d-none d-sm-inline mx-1 text-primary">{{ $userData->name }}</span>
+                            <span class="d-none d-sm-inline mx-1 text-primary">{{ $user->name }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-white text-small shadow">
                         <li class="nav-item">
