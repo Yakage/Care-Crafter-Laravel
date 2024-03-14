@@ -162,6 +162,7 @@ class SleepTrackerController extends Controller{
         $sleepTrackerLeaderBoard->score = $request->score;
         $sleepTrackerLeaderBoard->sleeps = $request->sleeps;
         $sleepTrackerLeaderBoard->date = now();
+        $sleepTrackerLeaderBoard->avatar = $user->avatar;
         $sleepTrackerLeaderBoard->save();
     
         return response()->json(['message' => 'Sleeps tracked successfully']);

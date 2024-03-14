@@ -24,6 +24,7 @@ class WaterIntakeController extends Controller{
         $waterIntakeLeaderboard->name = $user->name;
         $waterIntakeLeaderboard->water = $request->water;
         $waterIntakeLeaderboard->date = now();
+        $waterIntakeLeaderboard->avatar = $user->avatar;
         $waterIntakeLeaderboard->save();
     
         return response()->json(['message' => 'Water intake tracked successfully']);
@@ -69,7 +70,14 @@ class WaterIntakeController extends Controller{
                                         ->first();
 
         // Get the sum of current_water for all logs
-        $waterSum = WaterIntakeLogs::where('user_id', $user->id)->sum('current_water');
+        // Get the current date in the 'Y-m-d' format
+        $currentDate = date('Y-m-d');
+
+        // Get the total sum of water intake for the current day
+        $waterSum = WaterIntakeLogs::where('user_id', $user->id)
+            ->whereDate('created_at', $currentDate)
+            ->sum('current_water');
+
 
         return response()->json([$latestWaterLog, 'water_sum' => $waterSum]);
     }

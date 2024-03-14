@@ -14,6 +14,7 @@ class WaterIntakeLeaderboard extends Model
         'name',
         'water',
         'date',
+        'avatar',
     ];
     public function user(){
         return $this->belongsTo(User::class);

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('score');
             $table->integer('sleeps');
             $table->date('date');
+            $table->integer('avatar')->nullable();
             $table->timestamps();
         });
     }

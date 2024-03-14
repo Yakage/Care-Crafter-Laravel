@@ -29,7 +29,8 @@ class UserController extends Controller{
             'birthday' => 'required|date',
             'gender' => 'required|string|in:male,female',
             'height' => 'required|numeric',
-            'weight' => 'required|numeric',       
+            'weight' => 'required|numeric',
+            'avatar' => 'required|numeric'       
          ], [
             'name.required' => 'Please enter your name',
             'birthday.required' => 'Please enter your birthday',
