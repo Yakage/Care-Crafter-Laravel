@@ -51,7 +51,7 @@ class UserController extends Controller
         if (Auth::check()) {
             // User is authenticated
 
-            return view('statistics', compact('user', 'userDailyGoal', 'totalWaterIntake', 'bmi','bmiClassification', 'totalSleepTime', 'sleepScore'));
+            return view('user.home', compact('user', 'userDailyGoal', 'totalWaterIntake', 'bmi','bmiClassification', 'totalSleepTime', 'sleepScore'));
         //     return view('user.home', 
         //     ['user' => $user,
         //     'userDailyGoal' => $userDailyGoal
