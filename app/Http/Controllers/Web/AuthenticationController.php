@@ -122,7 +122,7 @@ class AuthenticationController extends Controller{
         $data['confirm_password'] = $request->confirm_password;
         $data['role'] = 'user';
         $data['status'] = 'online';
-        $data['avatar'] = '1';
+        $data['avatar'] = 1;
 
         User::create($data);  
         return redirect()->route('login')->with("success", "Registration Successful, Login to access the app");
