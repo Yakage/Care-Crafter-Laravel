@@ -101,3 +101,7 @@ Route::get('/getHistoryOfBMI', [BMIController::class, 'getBMI']);
 Route::post('/createBMI', [BMIController::class, 'createBMI']);
 //For sleep controller
 Route::get('/welcome', function () {return view('welcome');})->name('welcome');
+
+if (App::environment('production')){
+    URL::forceScheme('https');
+}
