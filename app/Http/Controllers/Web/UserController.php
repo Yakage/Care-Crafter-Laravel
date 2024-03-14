@@ -43,15 +43,24 @@ class UserController extends Controller
             }
         }
 
-        $totalSleepTime = $user->sleepTracker->time_slept ??0;
-        $sleepScore = $user->sleepTracker->sleep_score ?? 0;
+        // $totalSleepTime = $user->SleepTrackerLeaderboard->sleeps ??0;
+
+        // Get the current date
+        $currentDate = now()->toDateString();
+
+        // Query the database to get the sum of sleeps for the current day and the current user
+        $totalSleeps = SleepTrackerLeaderboard::where('user_id', $user->id)
+            ->whereDate('date', $currentDate)
+            ->sum('sleeps');
+
+        $sleepScore = $user->sleepTrackerLeaderboard->score ?? 0;
 
 
         // Check if a user is authenticated
         if (Auth::check()) {
             // User is authenticated
 
-            return view('user.home', compact('user', 'userDailyGoal', 'totalWaterIntake', 'bmi','bmiClassification', 'totalSleepTime', 'sleepScore'));
+            return view('user.home', compact('user', 'userDailyGoal', 'totalWaterIntake', 'bmi','bmiClassification', 'totalSleeps', 'sleepScore'));
         //     return view('user.home', 
         //     ['user' => $user,
         //     'userDailyGoal' => $userDailyGoal
