@@ -87,63 +87,64 @@ form {
 </head>
 
 <body>
-<!--update users page-->
-<nav class="navbar bg-body-tertiary fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="{{ asset('img/CareCrafter-removebg-preview.png')}}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                CareCrafter
-        </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">CareCrafter Menu</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-        <div class="offcanvas-body">
-            <h4>Welcome, {{ $userData ['name'] }}!</h4>
+    <header>
+        <nav class="navbar bg-body-tertiary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('img/CareCrafter-removebg-preview.png')}}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    CareCrafter
+                </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">CareCrafter Menu</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                <div class="offcanvas-body">
+                    <h4>Hi, {{ $user->name }}! How are you feeling today?</h4>
 
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.home')}}">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Features</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('user.stepTracker')}}">Step Tracking</a></li>
-                            <li><a class="dropdown-item" href="{{ route('user.sleepsTracker')}}">Sleep Tracking</a></li>
-                            <li><a class="dropdown-item" href="{{ route('user.waterIntake')}}">Water Intake Reminder</a></li>
-                        </ul>
-                </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('user.leaderboards')}}">Leaderboards</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.feedback')}}">Feedback</a>
-                    </li>
-            </ul>
-                <div class="dropdown pb-4">
-                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="d-none d-sm-inline mx-1 text-primary">{{ $userData ['name'] }}</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-white text-small shadow">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.home')}}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Features</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('user.stepTracker')}}">Step Tracking</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.sleepsTracker')}}">Sleep Tracking</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.waterIntake')}}">Water Intake Reminder</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.leaderboards')}}">Leaderboards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.feedback')}}">Feedback</a>
+                        </li>
+                    </ul>
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="d-none d-sm-inline mx-1 text-primary">{{ $user->name }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-white text-small shadow">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.user-ui.user')}}">Account</a>
                         </li>
-                        <li>
-                            <form id="logoutForm" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-link">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
+                            <li>
+                                <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-link">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 </div>
             </div>
-        </div>
-    </div>
-</nav>
+        </nav>
+    </header>
 
         
     <div class="userdata">

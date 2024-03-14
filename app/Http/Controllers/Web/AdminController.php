@@ -173,6 +173,7 @@ class AdminController extends Controller
     $data['confirm_password'] = $request->confirm_password;
     $data['role'] = 'user';
     $data['status'] = 'online';
+    $data['avatar'] = 1;
 
     try {
         User::create($data);

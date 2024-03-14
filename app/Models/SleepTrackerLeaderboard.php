@@ -15,6 +15,7 @@ class SleepTrackerLeaderboard extends Model
         'name',
         'sleeps',
         'date',
+        'avatar',
     ];
 
     public function user(){

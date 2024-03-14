@@ -65,6 +65,7 @@ Route::get('/user-sleepTracker', [UserController::class, 'sleepsTracker'])->name
 Route::get('/user-waterIntake', [UserController::class, 'waterIntake'])->name(('user.waterIntake'));
 
 
+
 //feedback
 Route::post('/user-feedback', [FeedbackController::class, 'store'])->name('store.Feedback');
 

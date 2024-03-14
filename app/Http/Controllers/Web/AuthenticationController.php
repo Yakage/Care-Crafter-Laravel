@@ -17,9 +17,31 @@ class AuthenticationController extends Controller{
 
     public function login(Request $request){
         $credentials = $request->only('email', 'password');
-        
+
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+
+            $userDailyGoal = $user->stepTrackerLog->daily_goal ?? 0;
+            $totalWaterIntake = $user->waterIntakeLog->current_water ?? 0;
+
+            $height = $user->height;
+            $weight = $user->weight;
+            $bmi = $height && $weight ? round(($weight / pow($height / 100, 2)), 2) : 'Not available';
+
+            if ($bmi !== 'Not available') {
+                if ($bmi < 18.5) {
+                    $bmiClassification = 'Underweight';
+                } elseif ($bmi >= 18.5 && $bmi < 25) {
+                    $bmiClassification = 'Normal weight';
+                } elseif ($bmi >= 25 && $bmi < 30) {
+                    $bmiClassification = 'Overweight';
+                } else {
+                    $bmiClassification = 'Obese';
+                }
+            }
+
+            $totalSleepTime = $user->sleepTracker->time_slept ??0;
+            $sleepScore = $user->sleepTracker->sleep_score ?? 0;
 
             // Check if the user status is not already set to 'online'
             if ($user->status !== 'online') {
@@ -35,7 +57,7 @@ class AuthenticationController extends Controller{
             if ($user->role === 'admin') {
                 return redirect()->route('admin.home'); // Redirect to admin dashboard
             } else {
-                return view('user.home', compact('user')); // Pass user object to user dashboard view
+                return view('user.home', compact('user','userDailyGoal','totalWaterIntake', 'bmi','bmiClassification','totalSleepTime', 'sleepScore')); // Pass user object to user dashboard view
             }
         }
 
@@ -100,6 +122,7 @@ class AuthenticationController extends Controller{
         $data['confirm_password'] = $request->confirm_password;
         $data['role'] = 'user';
         $data['status'] = 'online';
+        $data['avatar'] = 1;
 
         User::create($data);  
         return redirect()->route('login')->with("success", "Registration Successful, Login to access the app");

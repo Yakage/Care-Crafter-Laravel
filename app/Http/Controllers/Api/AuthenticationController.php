@@ -85,6 +85,7 @@ class AuthenticationController extends Controller{
             'password' => Hash::make($request->password),
             'role' => 'user',
             'status' => 'online',
+            'avatar' => 1,
         ]);
     
         if ($user) {
@@ -95,7 +96,7 @@ class AuthenticationController extends Controller{
     }
     
 
-    public function logout(Request $request){
+    public function logout(){
         auth()->user()->currentAccessToken()->delete();
         // Check if a user is authenticated
         if (Auth::check()) {
@@ -104,8 +105,6 @@ class AuthenticationController extends Controller{
             // Update the user status to 'offline'
             $user->status = 'offline';
             $user->save();
-
-            Auth::logout();
         }
         return response()->json(['message' => 'Logged out successfully'], 200);
     }

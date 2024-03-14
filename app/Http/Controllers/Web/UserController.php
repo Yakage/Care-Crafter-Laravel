@@ -24,10 +24,40 @@ class UserController extends Controller
     public function userHome(){
         $user = Auth::user();
 
+        $userDailyGoal = $user->stepTrackerLog->daily_goal ?? 0;
+        $totalWaterIntake = $user->waterIntakeLog->current_water ?? 0;
+    
+        $height = $user->height;
+        $weight = $user->weight;
+        $bmi = $height && $weight ? round(($weight / pow($height / 100, 2)), 2) : 'Not available';
+
+        if ($bmi !== 'Not available') {
+            if ($bmi < 18.5) {
+                $bmiClassification = 'Underweight';
+            } elseif ($bmi >= 18.5 && $bmi < 25) {
+                $bmiClassification = 'Normal weight';
+            } elseif ($bmi >= 25 && $bmi < 30) {
+                $bmiClassification = 'Overweight';
+            } else {
+                $bmiClassification = 'Obese';
+            }
+        }
+
+        $totalSleepTime = $user->sleepTracker->time_slept ??0;
+        $sleepScore = $user->sleepTracker->sleep_score ?? 0;
+
+
         // Check if a user is authenticated
         if (Auth::check()) {
             // User is authenticated
-            return view('user.home', ['user' => $user]);
+
+            return view('user.home', compact('user', 'userDailyGoal', 'totalWaterIntake', 'bmi','bmiClassification', 'totalSleepTime', 'sleepScore'));
+        //     return view('user.home', 
+        //     ['user' => $user,
+        //     'userDailyGoal' => $userDailyGoal
+        
+        // ]);
+            // return view('user.home', compact('user', 'stepGoal', 'totalWaterIntake', 'bmi', 'totalSleepTime', 'sleepScore'));
         } else {
             // User is not authenticated
             return redirect('/login');
@@ -156,5 +186,22 @@ class UserController extends Controller
         // $updatedAt = $stepTrackerLogs->updated_at; 
         return view('user.water-intake.home', compact('user'));
     }
+
+    public function showStatistics()
+{
+    $user = Auth::user();
+    
+    $stepGoal = $user->stepTrackerLog->daily_goal ?? 'Not set';
+    $totalWaterIntake = $user->waterIntakeLog->current_water ?? 'Not available';
+    
+    $height = $user->height;
+    $weight = $user->weight;
+    $bmi = $height && $weight ? round(($weight / pow($height / 100, 2)), 2) : 'Not available';
+    
+    $totalSleepTime = $user->sleepTrackerScore->total_time ?? 'Not available';
+    $sleepScore = $user->sleepTrackerScore->score_logs ?? 'Not available';
+    
+    return view('statistics', compact('user', 'stepGoal', 'totalWaterIntake', 'bmi', 'totalSleepTime', 'sleepScore'));
+}
     
 }
