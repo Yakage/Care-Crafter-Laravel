@@ -150,7 +150,7 @@
                     <div class="card statistics">
                         <div class="card-body">
                             <h3 class="card-title"><i class="fas fa-bed"></i> Sleep</h3>
-                            <p class="text-center mt-5">Total Sleep: {{ $totalSleepTime}}</p>
+                            <p class="text-center mt-5">Total Sleep: {{ $totalSleeps}}</p>
                             <p class="text-center mt-5">Score: {{ $sleepScore}}</p>
                         </div>
                     </div>
