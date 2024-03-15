@@ -29,7 +29,7 @@
     </div>
     
     <div class="container">
-        <div class="title">Register an account for CareCrafter</div>
+        <div class="title">Register an account for CareCrafter <img src= "{{ asset('img/CareCrafter-removebg-preview.png')}}" style="display: inline-block; height: 50px; width: 50px; vertical-align: middle;"></div>
         <div class="content">
             <form id="registerForm" action="{{route('register.post')}}" method="POST">
                 @csrf
