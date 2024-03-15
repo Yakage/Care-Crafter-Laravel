@@ -41,7 +41,6 @@
                 </div>
             </form>
         </div>
-        <div class="pass"><a href="">Forgot Password?</a></div>
         <div class="signup_link">Create a account?  <a href="{{ route('register')}}">Register</a></div>
     </div>
     <script src="js/loginandregister.js"></script>

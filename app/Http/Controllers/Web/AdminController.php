@@ -124,13 +124,14 @@ class AdminController extends Controller
                         $query->where('name', 'like', '%'.$searchTerm.'%')
                               ->orWhere('email', 'like', '%'.$searchTerm.'%');
                     })
+                    ->orderBy('name')
                     ->get();
         return view('admin.user-table', compact('users'));
     }
     
 
     public function indexUsers(){
-        $users = User::get();
+        $users = User::orderBy('id')->get();
         return view('admin.user-table', compact('users'));
     }
 
@@ -195,7 +196,7 @@ class AdminController extends Controller
     public function updateUsers(Request $request, int $id){
         $request->validate([
             'name' => 'required|string|max:255', // Limit name to 255 characters
-            'email' => 'required|email|unique:users|max:255', // Limit email to 255 characters
+            'email' => 'required|email|max:255', // Limit email to 255 characters
             'birthday' => 'required|date',
             'gender' => 'required|in:male,female', // Specify allowed gender values
             'height' => 'required|numeric|min:1|max:300', // Limit height between 1 and 300 cm
@@ -220,7 +221,7 @@ class AdminController extends Controller
             'weight' => $request->weight,
             'gender' => $request->gender,
         ]);
-        return redirect()->route('admin.user-table')->with("success", "User Data successfully updated");
+        return redirect()->route('admin.user.table')->with("success", "User Data successfully updated");
     }
 
     public function destroyUsers(int $id){
