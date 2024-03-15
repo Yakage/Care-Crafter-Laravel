@@ -221,7 +221,7 @@ class AdminController extends Controller
             'weight' => $request->weight,
             'gender' => $request->gender,
         ]);
-        return redirect()->route('admin.user-table')->with("success", "User Data successfully updated");
+        return redirect()->route('admin.user.table')->with("success", "User Data successfully updated");
     }
 
     public function destroyUsers(int $id){
