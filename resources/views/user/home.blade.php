@@ -161,9 +161,9 @@
 
 
         <div class="container text-center p-5 mt-5">
-            <span class="mx-auto yawa mb-3">Dietary Suggestions</span>
-            <p class="mx-auto par">On our website, we offer personalized dietary suggestions tailored to your preferences, restrictions, and health goals. Simply navigate to your user profile, input your dietary information, and let our system generate customized recommendations for you.</p>
-            <span class="mx-auto yawa" style="margin-top: 100px; margin-bottom: 100px;">Meats for diet</span>
+        <span class="mx-auto yawa mb-3 text-white">Dietary Suggestions</span>
+        <p class="mx-auto par text-white">On our website, we offer personalized dietary suggestions tailored to your preferences, restrictions, and health goals. Simply navigate to your user profile, input your dietary information, and let our system generate customized recommendations for you.</p>
+            <span class="mx-auto yawa text-white" style="margin-top: 100px; margin-bottom: 100px;">Meats for diet</span>
             <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -219,8 +219,8 @@
                 </div>
 
                 <div class="col-md-12 text-center my-5">
-                    <span class="mx-auto yawa">Nuts for diet</span>
-                    <p class="mx-auto">A nut-rich diet offers numerous health benefits due to their high nutritional content. Rich in healthy fats, protein, fiber, vitamins, and minerals, nuts can support heart health by reducing bad cholesterol levels and lowering the risk of cardiovascular diseases.</p>
+                    <span class="mx-auto yawa text-white">Nuts for diet</span>
+                    <p class="mx-auto text-white">A nut-rich diet offers numerous health benefits due to their high nutritional content. Rich in healthy fats, protein, fiber, vitamins, and minerals, nuts can support heart health by reducing bad cholesterol levels and lowering the risk of cardiovascular diseases.</p>
                 </div>
 
                 <div class="col-md-6">
@@ -276,8 +276,8 @@
                 </div>
 
                 <div class="col-md-12 text-center my-5">
-                    <span class="mx-auto yawa">Dairy for diet</span>
-                    <p class="mx-auto">Incorporating dairy into your diet offers numerous health benefits. Dairy products are rich sources of essential nutrients like calcium, protein, vitamins, and minerals, which are crucial for bone health, muscle function, and overall well-being. Additionally, dairy consumption may lower the risk of osteoporosis, improve dental health, and support weight management when consumed in moderation as part of a balanced diet.</p>
+                    <span class="mx-auto yawa text-white">Dairy for diet</span>
+                    <p class="mx-auto text-white">Incorporating dairy into your diet offers numerous health benefits. Dairy products are rich sources of essential nutrients like calcium, protein, vitamins, and minerals, which are crucial for bone health, muscle function, and overall well-being. Additionally, dairy consumption may lower the risk of osteoporosis, improve dental health, and support weight management when consumed in moderation as part of a balanced diet.</p>
                 </div>
 
                 <div class="col-md-6">
@@ -332,8 +332,8 @@
                     </div>
                 </div>
 
-                <span class="mx-auto yawa mb-3">Fish for diet</span>
-                <p class="mx-auto par">Fish is a highly nutritious addition to any diet. Packed with high-quality protein, omega-3 fatty acids, vitamins, and minerals, it offers numerous health benefits. Not only is fish low in saturated fat, but it also provides essential nutrients like vitamin D and B12.</p>
+                <span class="mx-auto yawa mb-3 text-white">Fish for diet</span>
+                <p class="mx-auto par text-white">Fish is a highly nutritious addition to any diet. Packed with high-quality protein, omega-3 fatty acids, vitamins, and minerals, it offers numerous health benefits. Not only is fish low in saturated fat, but it also provides essential nutrients like vitamin D and B12.</p>
 
                 <div class="col-md-6">
                     <div class="card">
