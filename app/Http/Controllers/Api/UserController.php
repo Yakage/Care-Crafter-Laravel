@@ -23,42 +23,36 @@ class UserController extends Controller{
     public function updateUser(Request $request){
 
         $user = Auth::user();
+    
         // Validate the request data
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255', // Limit name to 255 characters
             'birthday' => 'required|date',
-            'gender' => 'required|string|in:male,female',
-            'height' => 'required|numeric',
-            'weight' => 'required|numeric',
-            'avatar' => 'required|numeric'       
-         ], [
-            'name.required' => 'Please enter your name',
-            'birthday.required' => 'Please enter your birthday',
-            'gender.required' => 'Please enter your gender',
-            'gender.in' => 'Please enter a valid gender (male or female)',
-            'height.required' => 'Please enter your height',
-            'weight.required' => 'Please enter your weight',
+            'gender' => 'required|in:male,female', // Specify allowed gender values
+            'height' => 'required|numeric|min:1|max:300', // Limit height between 1 and 300 cm
+            'weight' => 'required|numeric|min:1|max:300', // Limit weight between 1 and 300 kg
+        ], [
+            'name.max' => 'Name must not exceed 255 characters.',
+            'gender.in' => 'Gender must be either male or female.',
+            'height.numeric' => 'Height must be a numeric value.',
+            'height.min' => 'Height must be at least 1 cm.',
+            'height.max' => 'Height cannot exceed 300 cm.',
+            'weight.numeric' => 'Weight must be a numeric value.',
+            'weight.min' => 'Weight must be at least 1 kg.',
+            'weight.max' => 'Weight cannot exceed 300 kg.',
         ]);
-
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
-
+    
         // Update user data
-        // $user->name = $request->input('name');
-        // $user->email = $request->input('email');
-        // $user->age = $request->input('age');
-        // $user->height = $request->input('height');
-        // $user->weight = $request->input('weight');
-        // $user->gender = $request->input('gender');
-
-        // // Save the updated user
-        // $user->save();
-        $user->update($validatedData);
-
-        // Return a success response
+        try {
+            $user->update($validatedData);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to update user.'], 500);
+        }
+    
+        // Return updated user data
         return response()->json(['message' => 'User updated successfully', 'user' => $user], 200);
     }
+    
 
     
 

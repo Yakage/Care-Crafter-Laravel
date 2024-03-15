@@ -73,7 +73,7 @@ class StepTrackerController extends Controller{
             $existingRecord->save();
             return response()->json(['message' => 'Steps tracked successfully']);
         }else{
-            return response()->json(['message' => 'Steps tracked unseccessfully']);
+            return response()->json(['message' => 'No Step data for this day']);
         }
     }
     
@@ -95,7 +95,7 @@ class StepTrackerController extends Controller{
             $existingRecord->save();
             return response()->json(['message' => 'Steps tracked updated successfully']);
         }else{
-            return response()->json(['message' => 'Steps tracked unseccessfully']);
+            return response()->json(['message' => 'No Step data for this day']);
         }
     }
     

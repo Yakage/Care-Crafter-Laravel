@@ -92,9 +92,18 @@ class SleepTrackerController extends Controller{
     
     public function getScoreLogs(SleepTrackerScore $sleepTrackerScore){
         $user = Auth::user(); // Retrieve authenticated user based on the token
-        $score = $sleepTrackerScore->where('user_id', $user->id)->latest()->first();
+        $today = now()->toDateString(); // Get the current date in the format YYYY-MM-DD
+    
+        // Retrieve the latest score record for the authenticated user for the current day
+        $score = $sleepTrackerScore
+            ->where('user_id', $user->id)
+            ->whereDate('created_at', $today)
+            ->latest()
+            ->first();
+    
         return response()->json($score);
     }
+    
     
 
     public function createScore(Request $request){
@@ -114,6 +123,36 @@ class SleepTrackerController extends Controller{
         return response()->json(['message' => 'Score_logs for Sleep Tracker is created for this user', $score]);
 
     }
+
+    public function updateScore(Request $request){
+        $user = Auth::user();
+        $request->validate([
+            'score_logs' => 'required',
+            'total_time' => 'required',
+        ]);
+    
+        // Find the latest score record for the user for the current date
+        $score = SleepTrackerScore::where('user_id', $user->id)
+            ->whereDate('created_at', now()->toDateString())
+            ->latest() // Get the latest record
+            ->first();
+    
+        // Check if the record exists
+        if ($score) {
+            // Update the existing record
+            $score->update([
+                'score_log' => $request->input('score_logs'),
+                'total_time' => $request->input('total_time')
+            ]);
+            return response()->json(['message' => 'Score_logs for Sleep Tracker is updated for this user', 'score' => $score]);
+        } else {
+            // If no existing record found, return error message
+            return response()->json(['error' => 'No score record found for this user on this day'], 404);
+        }
+    }
+    
+    
+    
     
     public function getSleepHistory(SleepTrackerLeaderboard $sleepTrackerLeaderboard){
         $user = Auth::user(); // Retrieve authenticated user based on the token
@@ -129,10 +168,11 @@ class SleepTrackerController extends Controller{
 
     public function getSleepTime() {
         $user = Auth::user();
-        $latestSleep = SleepTrackerLeaderboard::select('name', 'score', DB::raw('SUM(sleeps) as total_sleeps'))
-                                                ->where('date', now()->format('Y-m-d'))
+        $today = now()->toDateString(); // Get the current date in the format YYYY-MM-DD
+    
+        $latestSleep = SleepTrackerLeaderboard::select('name', 'score', DB::raw('sleeps as total_sleeps'))
+                                                ->where('date', $today)
                                                 ->where('user_id', $user->id)
-                                                ->groupBy('name', 'score')
                                                 ->orderByDesc('total_sleeps')
                                                 ->first();
     
@@ -147,6 +187,7 @@ class SleepTrackerController extends Controller{
     
         return response()->json($latestSleep);
     }
+    
     
     
     public function createSleeps(Request $request){
@@ -167,6 +208,34 @@ class SleepTrackerController extends Controller{
     
         return response()->json(['message' => 'Sleeps tracked successfully']);
     }
+
+    public function updateSleeps(Request $request){
+        $user = Auth::user();
+        $request->validate([
+            'score' => 'required',
+            'sleeps' => 'required|numeric',
+        ]);
+    
+        // Find the latest record for the current day and user
+        $latestRecord = SleepTrackerLeaderboard::where('user_id', $user->id)
+            ->whereDate('date', now()->toDateString())
+            ->latest()
+            ->first();
+    
+        // Check if a record for the current day exists
+        if ($latestRecord) {
+            // Update the latest record
+            $latestRecord->update([
+                'score' => $request->score,
+                'sleeps' => $request->sleeps
+            ]);
+            return response()->json(['message' => 'Sleeps tracked successfully', 'record' => $latestRecord]);
+        } else {
+            // If no record for the current day exists, return an error message
+            return response()->json(['error' => 'No record found for today'], 404);
+        }
+    }
+    
     
     public function totalSleeps() {
         $user = Auth::user();
