@@ -42,10 +42,6 @@
                         <input type="text" class="form-control form-control-sm" name="name" value="{{ $users->name }}" required>
                     </div>
                     <div class="input-box">
-                        <span class="details">Email</span>
-                        <input type="email" class="form-control form-control-sm" name="email" value="{{ $users->email }}" required>
-                    </div>
-                    <div class="input-box">
                         <span class="details">Birthday</span>
                         <input type="date" class="form-control form-control-sm" name="birthday" value="{{ $users->birthday }}" required>
                     </div>

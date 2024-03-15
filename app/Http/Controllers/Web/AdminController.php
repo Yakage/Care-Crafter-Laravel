@@ -124,13 +124,14 @@ class AdminController extends Controller
                         $query->where('name', 'like', '%'.$searchTerm.'%')
                               ->orWhere('email', 'like', '%'.$searchTerm.'%');
                     })
+                    ->orderBy('name')
                     ->get();
         return view('admin.user-table', compact('users'));
     }
     
 
     public function indexUsers(){
-        $users = User::get();
+        $users = User::orderBy('id')->get();
         return view('admin.user-table', compact('users'));
     }
 
