@@ -130,7 +130,7 @@ class AdminController extends Controller
     
 
     public function indexUsers(){
-        $users = User::get();
+        $users = User::orderBy('id')->get();
         return view('admin.user-table', compact('users'));
     }
 
