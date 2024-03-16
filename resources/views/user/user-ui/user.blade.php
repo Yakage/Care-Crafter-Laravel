@@ -147,7 +147,7 @@ form {
     </header>
 
         
-    <div class="userdata">
+    <div class="userdata mt-5">
     <h1>Welcome, {{ $userData['name'] }}!</h1>
     <p>Your email address is: {{ $userData['email'] }}</p>
 
