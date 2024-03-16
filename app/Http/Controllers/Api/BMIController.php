@@ -17,7 +17,7 @@ class BMIController extends Controller{
     public function createBMI(Request $request){
         $user = Auth::user();
         $request->validate([
-            'bmi' => 'required',
+            'bmi' => 'required|',
             'category' => 'required',
         ]);
 

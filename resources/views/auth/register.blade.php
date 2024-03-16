@@ -48,7 +48,7 @@
                     <input type="date" class="form-control form-control-sm" name="birthday" placeholder="Enter your birthday" required>
                 </div>
                 <div class="input-box">
-                <span class="details">Gender</span>
+                <span class="details">Sex</span>
                     <select class="form-control form-control-sm" name="gender" required>
                         <option value="male">male</option>
                         <option value="female">female</option>

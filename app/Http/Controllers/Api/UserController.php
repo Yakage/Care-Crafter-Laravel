@@ -52,8 +52,4 @@ class UserController extends Controller{
         // Return updated user data
         return response()->json(['message' => 'User updated successfully', 'user' => $user], 200);
     }
-    
-
-    
-
 }

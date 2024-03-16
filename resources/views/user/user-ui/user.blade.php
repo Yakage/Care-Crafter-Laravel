@@ -176,7 +176,7 @@ form {
                 </div>
 
                 <div class="form-group">
-                    <label for="gender">Gender</label>
+                    <label for="gender">Sex</label>
                     <select name="gender" id="gender" class="form-control" required>
                         <option value="male" @if ($userData['gender'] === 'male') selected @endif>Male</option>
                         <option value="female" @if ($userData['gender'] === 'female') selected @endif>Female</option>
