@@ -19,7 +19,9 @@
         @endif
     </div>
     <div class="container">
-        <div class="title">Login to CareCrafter</div>
+    
+        <div class="title">Login to CareCrafter <img src= "{{ asset('img/CareCrafter-removebg-preview.png')}}" style="display: inline-block; height: 50px; width: 50px; vertical-align: middle;"></div>
+        
         <div class="content">
             <form id='loginForm' action="{{route('login')}}" method="POST">
                 @csrf
