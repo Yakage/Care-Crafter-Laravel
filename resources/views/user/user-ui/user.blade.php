@@ -157,7 +157,10 @@ form {
             <div class="user-info-fields">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" value="{{ $userData['name'] }}" class="form-control" required>
+                    <input type="text" name="name" id="name" value="{{ $userData['name'] }}" class="form-control @error('name') is-invalid @enderror" required pattern="[A-Za-z\s]+" title="Name should only contain letters and spaces">
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">

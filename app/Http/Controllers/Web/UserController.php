@@ -135,7 +135,12 @@ class UserController extends Controller
 
         $user->update($validatedData);
 
-        return redirect()->route('user.user-ui.user')->with('success', 'Profile updated successfully!');
+        // If update is successful, redirect with success message
+        return redirect()->route('user.user-ui.user')->with('success', 'Profile updated successfully!')
+        ->withInput(); // Preserve old input
+
+        // If validation fails, redirect back with errors
+        return redirect()->route('user.user-ui.user')->withInput()->withErrors($request->validated());
     }
 
     public function leaderboard() {
