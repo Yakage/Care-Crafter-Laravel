@@ -120,13 +120,12 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|regex:/^[A-Za-z\s]+$/',
             'birthday' => 'required|date',
-            'height' => 'required|numeric',
-            'weight' => 'required|numeric',
+            'height' => 'required|numeric|min:55|max:255',
+            'weight' => 'required|numeric|min:30|max:650',
             'gender' => 'required|in:male,female,other',
             'password' => 'nullable|confirmed|min:8',
-            
         ]);
 
          // Remove password fields from the validated data if they are not provided

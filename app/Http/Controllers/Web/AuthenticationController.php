@@ -100,12 +100,12 @@ class AuthenticationController extends Controller{
 
     function registerPost(Request $request){
         $request->validate([
-            'name' => 'required|string|max:255', // Limit name to 255 characters
+            'name' => 'required|string|max:255|regex:/^[A-Za-z\s]+$/', // Limit name to 255 characters
             'email' => 'required|email|unique:users|max:255', // Limit email to 255 characters
             'birthday' => 'required|date',
             'gender' => 'required|in:male,female', // Specify allowed gender values
-            'height' => 'required|numeric|min:1|max:300', // Limit height between 1 and 300 cm
-            'weight' => 'required|numeric|min:1|max:300', // Limit weight between 1 and 300 kg
+            'height' => 'required|numeric|min:55|max:255', // Limit height between 1 and 300 cm
+            'weight' => 'required|numeric|min:30|max:650', // Limit weight between 1 and 300 kg
             'password' => 'required|string|min:8',
             'confirm_password' => 'required|string|same:password',
         ], [
